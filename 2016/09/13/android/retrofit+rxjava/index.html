@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>retrofit+rxjava | wamcs hood</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="本文讨论rxjava＋retrofit的运用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="retrofit+rxjava">
+<meta property="og:url" content="wamcs.github.io/2016/09/13/android/retrofit+rxjava/index.html">
+<meta property="og:site_name" content="wamcs hood">
+<meta property="og:description" content="本文讨论rxjava＋retrofit的运用">
+<meta property="og:updated_time" content="2016-11-04T15:06:27.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="retrofit+rxjava">
+<meta name="twitter:description" content="本文讨论rxjava＋retrofit的运用">
+  
+    <link rel="alternative" href="/atom.xml" title="wamcs hood" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/img/header_picture.jpg" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">wamcs</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Rome was not built in a day</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+						<li>Über</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/" title="github">github</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android-Test/" style="font-size: 10px;">Android Test</a> <a href="/tags/Android-代码记录/" style="font-size: 10px;">Android 代码记录</a> <a href="/tags/Android-基础/" style="font-size: 20px;">Android 基础</a> <a href="/tags/Android-库/" style="font-size: 10px;">Android 库</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/sql语法/" style="font-size: 10px;">sql语法</a> <a href="/tags/数据结构/" style="font-size: 20px;">数据结构</a> <a href="/tags/网络基础/" style="font-size: 15px;">网络基础</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">nothing is true，everything is permitted</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">wamcs</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img src="/img/header_picture.jpg" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">wamcs</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Rome was not built in a day</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/" title="github">github</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-android/retrofit+rxjava" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/09/13/android/retrofit+rxjava/" class="article-date">
+  	<time datetime="2016-09-12T16:00:04.000Z" itemprop="datePublished">2016-09-13</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      retrofit+rxjava
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android-库/">Android 库</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Android/">Android</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文讨论rxjava＋retrofit的运用</p>
+<a id="more"></a>
+<h1 id="retrofit"><a href="#retrofit" class="headerlink" title="retrofit"></a>retrofit</h1><p>retrofit是square的又一个强大的库，他的特点在于利用接口，方法，注解参数来声明式定义一个请求应该如何被创建，这样的组织形式使得在本地编写api的时候更加清晰。</p>
+<h2 id="Rest"><a href="#Rest" class="headerlink" title="Rest"></a>Rest</h2><p>REST(Representational State Transfer)是一种设计思路，它首次出现在2000年Roy Fielding的博士论文中，Roy Fielding是 HTTP 规范的主要编写者之一。 他在论文中提到:“<strong>我这篇文章的写作目的，就是想在符合架构原理的前提下，理解和评估以网络为基础的应用软件的架构设计，得到一个功能强、性能好、适宜通信的架构。REST指的是一组架构约束条件和原则。</strong>”</p>
+<p>REST本身并没有创造新的东西，而是对旧有的资源进行整合。目前来说只适用于web，HTTP是目前唯一一个与REST绑定的实例，有三个重要的概念:<strong>资源</strong>,<strong>表现层</strong>,<strong>状态转化</strong>。</p>
+<h3 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h3><p>任何我们所需要的事物都可以被称为资源，无论格式，内容。URI（Uniform Resource Identifier）在Web中会对资源进行唯一标识，根据URI我们便可以获取到资源。 <strong>URI的设计应该遵循可寻址性原则，具有自描述性，需要在形式上给人以直觉上的关联。</strong> 有一些技巧</p>
+<ul>
+<li>使用 _ 或 - 对URI中的单词进行分割，使得表达更加易懂</li>
+<li>使用／来表示层级关系</li>
+<li>使用？添加参数来进行资源的过滤</li>
+</ul>
+<h3 id="表现层"><a href="#表现层" class="headerlink" title="表现层"></a>表现层</h3><p>即资源展示形式，表示需要以什么格式来组织数据进行传输。在HTTP协议中通过报文头部的请求行“accept”和“content－Type”来设定</p>
+<h3 id="状态转化"><a href="#状态转化" class="headerlink" title="状态转化"></a>状态转化</h3><p>访问一个网站，即了客户端和服务器的一个互动过程。在这个过程中，肯定涉及到数据和状态的变化。而HTTP协议是无状态的，如果客户端想要通知服务器端改变数据和状态的变化，肯定要通过某种方式来通知它。</p>
+<p>HTTP中提供了8种方法常用的有四种，GET，POST，PUT，DELETE。简单来理解可以用数据库的操做来进行对应。</p>
+<h2 id="retrofit使用"><a href="#retrofit使用" class="headerlink" title="retrofit使用"></a>retrofit使用</h2><p>添加权限是必要的<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.INTERNET"</span> /&gt;</span></div></pre></td></tr></table></figure></p>
+<p>添加依赖<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">compile &apos;com.squareup.okhttp3:okhttp:3.2.0&apos;</div><div class="line">compile &apos;com.squareup.retrofit2:converter-gson:2.0.2&apos;</div><div class="line">compile &apos;com.squareup.retrofit2:retrofit:2.0.2&apos;</div><div class="line">compile &apos;com.google.code.gson:gson:2.6.2&apos;</div></pre></td></tr></table></figure></p>
+<p>其中okhttp用于添加拦截，gson用于数据格式的转换（默认）<br>如果需要用到rxjava还需要添加如下依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">compile &apos;com.squareup.retrofit2:adapter-rxjava:2.0.2&apos;</div><div class="line">compile &apos;io.reactivex:rxandroid:1.2.0&apos;</div></pre></td></tr></table></figure>
+<p>接下来该创建retrofit对象和api接口，创建retrofit对象有主要的几个方法需要配置</p>
+<ul>
+<li>baseUrl()作为interface中所有url的基础URL，可以把公共的部分写在这里</li>
+<li>client() 添加httpClient，一般是用okHttpClient，主要进行网络操作，retrofit其实只是个架子，工作的是okHttp,这个client是对请求添加一些东西，比如可以拦截请求然后统一添加一些数据，添加缓存，添加超时策略等</li>
+<li>addConverterFactor() 目前大多采用json来传输数据，所以这里使用的是gson,GsonConverterFactory.create()返回的就是一个gson对象</li>
+<li>addCallAdapterFactory() 如果要使用rxjava需要这个方法中进行设置。当然使用rxjava ＋ retorfit 非常之爽</li>
+</ul>
+<p>下面主要说明retrofit的注解，这个是其特色，整体采用了rest设计，所以在前面提前说了下rest。</p>
+<h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><h4 id="方法注释"><a href="#方法注释" class="headerlink" title="方法注释"></a>方法注释</h4><ul>
+<li>方法类 @GET，@POST，@PUT，@DELETE 后面加URL</li>
+<li>方法注释 @Headers 里面直接添加请求行</li>
+<li>方法注释 @Http 其拥有三个属性：method，path，hasBody<h4 id="请求头注视"><a href="#请求头注视" class="headerlink" title="请求头注视"></a>请求头注视</h4></li>
+<li>参数注释 @Header value 为请求行名称，该注解会更新已有的请求头</li>
+<li>方法注释 @Headers value 为多个请求头，这些请求头固定<h4 id="请求和响应格式注解"><a href="#请求和响应格式注解" class="headerlink" title="请求和响应格式注解"></a>请求和响应格式注解</h4></li>
+<li>方法注释 @FormUrlEncoded 表示请求发送编码表单数据，每个键值对需要使用@Field注解</li>
+<li>方法注释 @Multipart 表示请求发送multipart数据，需要配合使用@Part</li>
+<li>方法注释<h4 id="请求参数类注解"><a href="#请求参数类注解" class="headerlink" title="请求参数类注解"></a>请求参数类注解</h4></li>
+<li>参数注释 @Query @QueryMap 用于Http Get请求传递参数.</li>
+<li>参数注释 @Field @FiledMap 用于Post方式传递参数,需要在请求接口方法上添加@FormUrlEncoded,即以表单的方式传递参数</li>
+<li>参数注释 @Part @PartMap 用于表单字段,Part和PartMap与Multipart注解结合使用,适合文件上传的情况</li>
+<li>参数注释 @Body 用于Post,根据转换方式将实例对象转化为对应字符串传递参数.</li>
+<li>参数注释 @Path 用于URL中替位符 @GET(“group/{id}/users”) ｛｝中即为替换值</li>
+<li>参数注释 @URL 根据标记的URL进行请求</li>
+</ul>
+<h3 id="拦截器"><a href="#拦截器" class="headerlink" title="拦截器"></a>拦截器</h3><p>在app api接口设计中，我们往往需要客户端在请求方法时，携带appid，appkey，timestamp，signature及version等header。有时是以参数直接加在url上的。(使用HttpClientBuilder来添加拦截)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Interceptor headerInterceptor = <span class="keyword">new</span> Interceptor() &#123;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Response <span class="title">intercept</span><span class="params">(Chain chain)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">        Request originalRequest = chain.request();</div><div class="line">        Request.Builder builder = originalRequest.newBuilder();</div><div class="line">        builder.header(<span class="string">"appid"</span>, <span class="string">"1"</span>);</div><div class="line">        builder.header(<span class="string">"timestamp"</span>, System.currentTimeMillis() + <span class="string">""</span>);</div><div class="line">        builder.header(<span class="string">"appkey"</span>, <span class="string">"zRc9bBpQvZYmpqkwOo"</span>);</div><div class="line">        builder.header(<span class="string">"signature"</span>, <span class="string">"dsljdljflajsnxdsd"</span>);</div><div class="line"></div><div class="line">        Request.Builder requestBuilder =builder.method(originalRequest.method(), originalRequest.body());</div><div class="line">        Request request = requestBuilder.build();</div><div class="line">        <span class="keyword">return</span> chain.proceed(request);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">return</span> headerInterceptor;</div><div class="line"></div><div class="line">Interceptor urlInterceptor = <span class="keyword">new</span> Interceptor()&#123;</div><div class="line">  <span class="meta">@Override</span></div><div class="line">   <span class="function"><span class="keyword">public</span> Response <span class="title">intercept</span><span class="params">(Chain chain)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">       Request originalRequest = chain.request();</div><div class="line">       HttpUrl originUrl = originalRequest.url();</div><div class="line">       HttpUrl newUrl = originUrl.newBuilder()</div><div class="line">               .addQueryParameter(<span class="string">"ostype"</span>, <span class="string">"1"</span>)</div><div class="line">               .addQueryParameter(<span class="string">"version"</span>, String.valueOf(AppData.getVersionCode()))</div><div class="line">               .build();</div><div class="line">       Request processed = originalRequest.newBuilder()</div><div class="line">               .url(newUrl).build();</div><div class="line">       <span class="keyword">return</span> chain.proceed(processed);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>统一输出请求日志<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">HttpLoggingInterceptor interceptor = <span class="keyword">new</span> HttpLoggingInterceptor(<span class="keyword">new</span> HttpLoggingInterceptor.Logger() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">log</span><span class="params">(String message)</span> </span>&#123;</div><div class="line">                System.out.println(<span class="string">"message = "</span> + message);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div></pre></td></tr></table></figure></p>
+<p>创建缓存拦截器</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">httpClientBuilder.cache(<span class="keyword">new</span> Cache(AppData.getCacheDir(), <span class="number">1024</span> * <span class="number">1024</span> * <span class="number">100</span>));</div></pre></td></tr></table></figure>
+<hr>
+<h1 id="RxJava"><a href="#RxJava" class="headerlink" title="RxJava"></a>RxJava</h1><p>RxJava的应用场景很多,在扔物线和dddd864140130的文章中提到了几种,包括RxBinding,RxLifecycle,RxBus,retrofit等等<br>RxBinding封装了原先android的时间体系,RxLifecycle是封装了生命周期,RxBus封装了EventBus,在项目中我更多使用到的是Rxjava对data的分装，和retrofit的绑定使用，特别是在后台自己做的时候。</p>
+<ul>
+<li>线程切换,利用Schedulers来切换线程，可以很轻松的在不同线程间切换，逻辑变得清晰，代码变得简洁</li>
+<li>map 对网络返回的Respone映射</li>
+<li>flatmap 目前大部分服务端接口设计都是通过用户名和密码登录获取access token，后面其他api的请求都是借助该token。对于需要注册功能的产品来说，我们经常面对这样的问题：使用用户名和密码登录成功后，保存服务器返回的access token，再调用服务端接口获取用户的详情信息</li>
+<li>merge 很多情况下，一个界面中需要的数据来自多个数据源（请求），而只有当所有的请求的响应数据都拿到之后才能渲染界面。</li>
+<li>concat 构建多级缓存，利用takeFirst，和merge的区别参看<a href="http://wiki.jikexueyuan.com/project/rx-docs/Intro.html" target="_blank" rel="external">ReactiveX</a></li>
+<li>timer 定时任务</li>
+<li>interval 周期性任务</li>
+<li>filter 过滤</li>
+<li>内存泄漏,当我们不需要的时候，主动取消订阅，原因在于Observable内部持有subscriber引用，而在subscriber中可能会持有view之类的引用</li>
+<li>封装第三方网络api，利用create方法</li>
+</ul>
+<p>参考：</p>
+<ol>
+<li><a href="http://wiki.jikexueyuan.com/project/android-weekly/issue-145/introduction-to-RP.html" target="_blank" rel="external">响应式编程（Reactive Programming）介绍</a></li>
+<li><a href="http://wiki.jikexueyuan.com/project/rx-docs/Intro.html" target="_blank" rel="external">ReactiveX</a></li>
+<li><a href="https://gank.io/post/560e15be2dca930e00da1083" target="_blank" rel="external">给 Android 开发者的 RxJava 详解</a></li>
+<li><a href="http://blog.csdn.net/dd864140130/article/category/2689167" target="_blank" rel="external">dd864140130的csdn博客</a></li>
+<li><a href="http://mccxj.github.io/blog/20130530_introduce-to-rest.html" target="_blank" rel="external">理解RESTFul架构</a></li>
+</ol>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/09/02/effective java/effective java 1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">effective java</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="android/retrofit+rxjava" data-title="retrofit+rxjava" data-url="wamcs.github.io/2016/09/13/android/retrofit+rxjava/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 wamcs
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: undefined,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: undefined
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Sql语法 | wamcs hood</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="基础语法SQL DML 和DDL可以把 SQL 分为两个部分：数据操作语言 (DML) 和 数据定义语言 (DDL)。
+DMLSQL (结构化查询语言)是用于执行查询的语法。但是 SQL 语言也包含用于更新、插入和删除记录的语法。查询和更新指令构成了 SQL 的 DML 部分：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sql语法">
+<meta property="og:url" content="wamcs.github.io/2016/03/23/SQL/sql语法/index.html">
+<meta property="og:site_name" content="wamcs hood">
+<meta property="og:description" content="基础语法SQL DML 和DDL可以把 SQL 分为两个部分：数据操作语言 (DML) 和 数据定义语言 (DDL)。
+DMLSQL (结构化查询语言)是用于执行查询的语法。但是 SQL 语言也包含用于更新、插入和删除记录的语法。查询和更新指令构成了 SQL 的 DML 部分：">
+<meta property="og:updated_time" content="2016-09-10T12:15:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Sql语法">
+<meta name="twitter:description" content="基础语法SQL DML 和DDL可以把 SQL 分为两个部分：数据操作语言 (DML) 和 数据定义语言 (DDL)。
+DMLSQL (结构化查询语言)是用于执行查询的语法。但是 SQL 语言也包含用于更新、插入和删除记录的语法。查询和更新指令构成了 SQL 的 DML 部分：">
+  
+    <link rel="alternative" href="/atom.xml" title="wamcs hood" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/img/header_picture.jpg" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">wamcs</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Rome was not built in a day</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+						<li>Über</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/" title="github">github</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android-Test/" style="font-size: 10px;">Android Test</a> <a href="/tags/Android-代码记录/" style="font-size: 10px;">Android 代码记录</a> <a href="/tags/Android-基础/" style="font-size: 20px;">Android 基础</a> <a href="/tags/Android-库/" style="font-size: 10px;">Android 库</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/sql语法/" style="font-size: 10px;">sql语法</a> <a href="/tags/数据结构/" style="font-size: 20px;">数据结构</a> <a href="/tags/网络基础/" style="font-size: 15px;">网络基础</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">nothing is true，everything is permitted</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">wamcs</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img src="/img/header_picture.jpg" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">wamcs</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Rome was not built in a day</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/" title="github">github</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-SQL/sql语法" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/23/SQL/sql语法/" class="article-date">
+  	<time datetime="2016-03-23T14:20:27.000Z" itemprop="datePublished">2016-03-23</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Sql语法
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql语法/">sql语法</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/SQL/">SQL</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="基础语法"><a href="#基础语法" class="headerlink" title="基础语法"></a>基础语法</h2><h3 id="SQL-DML-和DDL"><a href="#SQL-DML-和DDL" class="headerlink" title="SQL DML 和DDL"></a>SQL DML 和DDL</h3><p>可以把 SQL 分为两个部分：数据操作语言 (DML) 和 数据定义语言 (DDL)。</p>
+<h4 id="DML"><a href="#DML" class="headerlink" title="DML"></a>DML</h4><p>SQL (结构化查询语言)是用于执行查询的语法。但是 SQL 语言也包含用于更新、插入和删除记录的语法。<br>查询和更新指令构成了 SQL 的 DML 部分：</p>
+<a id="more"></a>
+<ul>
+<li><strong>SELECT</strong> - 从数据库表中获取数据</li>
+<li><strong>UPDATE</strong> - 更新数据库表中的数据</li>
+<li><strong>DELETE</strong> - 从数据库表中删除数据</li>
+<li><strong>INSERT INTO</strong> - 向数据库表中插入数据</li>
+</ul>
+<p>SQL 的数据定义语言 (DDL) 部分使我们有能力创建或删除表格。我们也可以定义索引（键），规定表之间的链接，以及施加表间的约束。</p>
+<h4 id="DDL"><a href="#DDL" class="headerlink" title="DDL"></a>DDL</h4><p>SQL 中最重要的 DDL 语句:</p>
+<ul>
+<li><strong>CREATE DATABASE</strong> - 创建新数据库</li>
+<li><strong>ALTER DATABASE</strong> - 修改数据库</li>
+<li><strong>CREATE TABLE</strong> - 创建新表</li>
+<li><strong>ALTER TABLE</strong> - 变更（改变）数据库表</li>
+<li><strong>DROP TABLE</strong> - 删除表</li>
+<li><strong>CREATE INDEX</strong> - 创建索引（搜索键）</li>
+<li><strong>DROP INDEX</strong> - 删除索引</li>
+</ul>
+<hr>
+<h3 id="SQL-SELECT"><a href="#SQL-SELECT" class="headerlink" title="SQL SELECT"></a>SQL SELECT</h3><p>语句SELECT 语句用于从表中选取数据。<br>结果被存储在一个结果表中（称为结果集）。</p>
+<p>SQL SELECT 语法</p>
+<blockquote>
+<p>SELECT 列名称 FROM 表名称</p>
+</blockquote>
+<p>以及：</p>
+<blockquote>
+<p>SELECT * FROM 表名称  </p>
+</blockquote>
+<p>（*代表选取整个table中的全部列）</p>
+<p><strong>ps</strong>：SQL 语句对大小写不敏感。SELECT 等效于 select。</p>
+<hr>
+<h3 id="SQL-SELECT-DISTINCT语句"><a href="#SQL-SELECT-DISTINCT语句" class="headerlink" title="SQL SELECT DISTINCT语句"></a>SQL SELECT DISTINCT语句</h3><p>在表中，可能会包含重复值。这并不成问题，不过，有时也许希望仅仅列出不同（distinct）的值。</p>
+<p>关键词 <strong>DISTINCT</strong> 用于返回唯一不同的值。</p>
+<p>语法：</p>
+<blockquote>
+<p>SELECT DISTINCT 列名称 FROM 表名称</p>
+</blockquote>
+<hr>
+<h3 id="WHERE-子句"><a href="#WHERE-子句" class="headerlink" title="WHERE 子句"></a>WHERE 子句</h3><p>如需有条件地从表中选取数据，可将 WHERE 子句添加到 SELECT 语句。</p>
+<p>语法:</p>
+<blockquote>
+<p>SELECT 列名称 FROM 表名称 WHERE 列 运算符 值</p>
+</blockquote>
+<hr>
+<h3 id="ORDER-BY-语句"><a href="#ORDER-BY-语句" class="headerlink" title="ORDER BY 语句"></a>ORDER BY 语句</h3><p>用于对结果集进行排序。</p>
+<ul>
+<li>EDSC为逆排序</li>
+<li>ASC为顺排序</li>
+</ul>
+<hr>
+<h3 id="INSERT-INTO-语句"><a href="#INSERT-INTO-语句" class="headerlink" title="INSERT INTO 语句"></a>INSERT INTO 语句</h3><p>INSERT INTO 语句用于向表格中插入新的行。</p>
+<p>语法:</p>
+<blockquote>
+<p>INSERT INTO 表名称 VALUES (值1, 值2,….)</p>
+</blockquote>
+<p>我们也可以指定所要插入数据的列：</p>
+<blockquote>
+<p>INSERT INTO table_name (列1, 列2,…) VALUES (值1, 值2,….)</p>
+</blockquote>
+<hr>
+<h3 id="Update-语句"><a href="#Update-语句" class="headerlink" title="Update 语句"></a>Update 语句</h3><p>Update 语句用于修改表中的数据。</p>
+<p>语法：</p>
+<blockquote>
+<p>UPDATE 表名称 SET 列名称 = 新值 WHERE 列名称 = 某值</p>
+</blockquote>
+<hr>
+<h3 id="DELETE-语句"><a href="#DELETE-语句" class="headerlink" title="DELETE 语句"></a>DELETE 语句</h3><p>DELETE 语句用于删除表中的行。</p>
+<p>语法</p>
+<blockquote>
+<p>DELETE FROM 表名称 WHERE 列名称 = 值</p>
+</blockquote>
+<hr>
+<h2 id="高级语法"><a href="#高级语法" class="headerlink" title="高级语法"></a>高级语法</h2><h3 id="SQL-SELECT-TOP语句"><a href="#SQL-SELECT-TOP语句" class="headerlink" title="SQL SELECT TOP语句"></a>SQL SELECT TOP语句</h3><p>SQL Server 的语法：</p>
+<blockquote>
+<p>SELECT TOP number|percent column_name(s)<br>FROM table_name</p>
+</blockquote>
+<p>（top后可跟行数或者百分数）</p>
+<ul>
+<li><p>MySQL 和 Oracle 中的 SQL SELECT TOP 是等价的MySQL 语法</p>
+<blockquote>
+<p>SELECT column_name(s) FROM table_name LIMIT number</p>
+<p>for example:</p>
+<p>SELECT * FROM Persons LIMIT 5</p>
+</blockquote>
+</li>
+<li><p>Oracle 语法</p>
+<blockquote>
+<p>SELECT column_name(s) FROM table_name WHERE ROWNUM &lt;= number</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h3 id="SQL-LIKE语句"><a href="#SQL-LIKE语句" class="headerlink" title="SQL LIKE语句"></a>SQL LIKE语句</h3><p><strong>LIKE</strong> 操作符用于在 WHERE 子句中搜索列中的指定模式。</p>
+<p>SQL LIKE 操作符语法</p>
+<blockquote>
+<p>SELECT column_name(s) FROM table_name WHERE column_name LIKE pattern</p>
+</blockquote>
+<p><strong>pattern</strong> 中用于描述特征，例如 <strong>‘%N’</strong> 表示 <strong>where</strong> 所指的列中选取值中结尾为N的行，同理 <strong>‘N%’</strong> 表示开头为N，<strong>‘%N%’</strong> 表示中间含N。</p>
+<hr>
+<h3 id="SQL-通配符"><a href="#SQL-通配符" class="headerlink" title="SQL 通配符"></a>SQL 通配符</h3><p>在搜索数据库中的数据时，SQL 通配符可以替代一个或多个字符。</p>
+<p>SQL 通配符必须与 LIKE 运算符一起使用。</p>
+<p>在 SQL 中，可使用以下通配符：</p>
+<table>
+<thead>
+<tr>
+<th>通配符描述</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>%</td>
+<td>替代一个或多个字符</td>
+</tr>
+<tr>
+<td>_</td>
+<td>仅替代一个字符</td>
+</tr>
+<tr>
+<td>[charlist]</td>
+<td>字符列中的任何单一字符</td>
+</tr>
+<tr>
+<td>[^charlist]或者[!charlist]</td>
+<td>不在字符列中的任何单一字符</td>
+</tr>
+</tbody>
+</table>
+<p>注：[]用法</p>
+<p>我们希望从上面的 “Persons” 表中选取居住的城市以 “A” 或 “L” 或 “N” 开头的人：</p>
+<p>我们可以使用下面的 SELECT 语句：</p>
+<blockquote>
+<p>SELECT * FROM Persons<br>WHERE City LIKE ‘[ALN]%’</p>
+</blockquote>
+<p>我们希望从上面的 “Persons” 表中选取居住的城市不以 “A” 或 “L” 或 “N” 开头的人：</p>
+<p>我们可以使用下面的 SELECT 语句：</p>
+<blockquote>
+<p>SELECT * FROM Persons<br>WHERE City LIKE ‘[!ALN]%’</p>
+</blockquote>
+<hr>
+<h3 id="IN-操作符"><a href="#IN-操作符" class="headerlink" title="IN 操作符"></a>IN 操作符</h3><p>IN 操作符允许我们在 WHERE 子句中规定多个值。</p>
+<p>SQL IN 语法</p>
+<blockquote>
+<p>SELECT column_name(s) FROM table_name WHERE column_name IN (value1,value2,…)</p>
+</blockquote>
+<hr>
+<h3 id="BETWEEN-操作符"><a href="#BETWEEN-操作符" class="headerlink" title="BETWEEN 操作符"></a>BETWEEN 操作符</h3><p>操作符 BETWEEN … AND 会选取介于两个值之间的数据范围。这些值可以是数值、文本或者日期。</p>
+<p>SQL BETWEEN 语法</p>
+<blockquote>
+<p>SELECT column_name(s) FROM table_name WHERE column_name BETWEEN value1 AND value2</p>
+</blockquote>
+<hr>
+<h3 id="SQL-Alias（别名）"><a href="#SQL-Alias（别名）" class="headerlink" title="SQL Alias（别名）"></a>SQL Alias（别名）</h3><p>表的 SQL Alias 语法</p>
+<blockquote>
+<p>SELECT column_name(s) FROM table_name AS alias_name</p>
+</blockquote>
+<p>列的 SQL Alias 语法</p>
+<blockquote>
+<p>SELECT column_name AS alias_name FROM table_name</p>
+</blockquote>
+<h4 id="Alias-实例-使用表名称别名"><a href="#Alias-实例-使用表名称别名" class="headerlink" title="Alias 实例:使用表名称别名"></a>Alias 实例:使用表名称别名</h4><p>假设我们有两个表分别是：”Persons” 和 “Product_Orders”。我们分别为它们指定别名 “p” 和 “po”。</p>
+<p>现在，我们希望列出 “John Adams” 的所有定单。</p>
+<p>我们可以使用下面的 SELECT 语句：</p>
+<blockquote>
+<p>SELECT po.OrderID, p.LastName, p.FirstName FROM Persons AS p, Product_Orders AS po WHERE p.LastName=’Adams’ AND p.FirstName=’John’</p>
+</blockquote>
+<p>不使用别名的 SELECT 语句：</p>
+<blockquote>
+<p>SELECT Product_Orders.OrderID, Persons.LastName, Persons.FirstName FROM Persons, Product_Orders WHERE Persons.LastName=’Adams’ AND Persons.FirstName=’John’</p>
+</blockquote>
+<hr>
+<p>从上面两条 SELECT 语句可以看到，别名使查询程序更易阅读和书写。</p>
+<h4 id="Alias-实例-使用一个列名别名"><a href="#Alias-实例-使用一个列名别名" class="headerlink" title="Alias 实例: 使用一个列名别名"></a>Alias 实例: 使用一个列名别名</h4><p>表Persons:</p>
+<table>
+<thead>
+<tr>
+<th>Id</th>
+<th>LastName</th>
+<th>FirstName</th>
+<th>Address</th>
+<th>City</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Adams</td>
+<td>John</td>
+<td>OxfordStreet</td>
+<td>London</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Bush</td>
+<td>George</td>
+<td>Fifth Avenue</td>
+<td>New York</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Carter</td>
+<td>Thomas</td>
+<td>Changan Street</td>
+<td>Beijing</td>
+</tr>
+</tbody>
+</table>
+<p>SQL:</p>
+<blockquote>
+<p>SELECT LastName AS Family, FirstName AS Name FROM Persons</p>
+</blockquote>
+<p>结果：</p>
+<table>
+<thead>
+<tr>
+<th>Family</th>
+<th>Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Adams</td>
+<td>John</td>
+</tr>
+<tr>
+<td>Bush</td>
+<td>George</td>
+</tr>
+<tr>
+<td>Carter</td>
+<td>Thomas</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/03/28/数据结构与算法分析/红黑树/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          红黑树
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/03/23/数据结构与算法分析/数据结构与算法分析（六）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">数据结构与算法分析 (六)</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="SQL/sql语法" data-title="Sql语法" data-url="wamcs.github.io/2016/03/23/SQL/sql语法/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 wamcs
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: undefined,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: undefined
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

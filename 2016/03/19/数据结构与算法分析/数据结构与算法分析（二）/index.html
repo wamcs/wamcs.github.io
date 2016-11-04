@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>数据结构与算法分析（二） | wamcs hood</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="此系列为数据结构与算法分析C++描述学习后的笔记
+树ps：（树的详细概念请参考离散数学中的图论）
+历遍三种历遍方式的不同主要在于根节点的历遍时间
+
+先序历遍：根节点 -&amp;gt; 左子树 -&amp;gt; 右子树
+
+12345678void preOrderTraverse(avlTree tree)&amp;#123;    if(tree!=NULL)&amp;#123;        std::cout&amp;lt;&amp;l">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构与算法分析（二）">
+<meta property="og:url" content="wamcs.github.io/2016/03/19/数据结构与算法分析/数据结构与算法分析（二）/index.html">
+<meta property="og:site_name" content="wamcs hood">
+<meta property="og:description" content="此系列为数据结构与算法分析C++描述学习后的笔记
+树ps：（树的详细概念请参考离散数学中的图论）
+历遍三种历遍方式的不同主要在于根节点的历遍时间
+
+先序历遍：根节点 -&amp;gt; 左子树 -&amp;gt; 右子树
+
+12345678void preOrderTraverse(avlTree tree)&amp;#123;    if(tree!=NULL)&amp;#123;        std::cout&amp;lt;&amp;l">
+<meta property="og:image" content="wamcs.github.io/\images\singleRotate.png">
+<meta property="og:image" content="wamcs.github.io/\images\doubleRotate.png">
+<meta property="og:updated_time" content="2016-09-02T12:28:32.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据结构与算法分析（二）">
+<meta name="twitter:description" content="此系列为数据结构与算法分析C++描述学习后的笔记
+树ps：（树的详细概念请参考离散数学中的图论）
+历遍三种历遍方式的不同主要在于根节点的历遍时间
+
+先序历遍：根节点 -&amp;gt; 左子树 -&amp;gt; 右子树
+
+12345678void preOrderTraverse(avlTree tree)&amp;#123;    if(tree!=NULL)&amp;#123;        std::cout&amp;lt;&amp;l">
+<meta name="twitter:image" content="wamcs.github.io/\images\singleRotate.png">
+  
+    <link rel="alternative" href="/atom.xml" title="wamcs hood" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/img/header_picture.jpg" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">wamcs</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Rome was not built in a day</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+						<li>Über</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/" title="github">github</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android-Test/" style="font-size: 10px;">Android Test</a> <a href="/tags/Android-代码记录/" style="font-size: 10px;">Android 代码记录</a> <a href="/tags/Android-基础/" style="font-size: 20px;">Android 基础</a> <a href="/tags/Android-库/" style="font-size: 10px;">Android 库</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/sql语法/" style="font-size: 10px;">sql语法</a> <a href="/tags/数据结构/" style="font-size: 20px;">数据结构</a> <a href="/tags/网络基础/" style="font-size: 15px;">网络基础</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">nothing is true，everything is permitted</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">wamcs</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img src="/img/header_picture.jpg" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">wamcs</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Rome was not built in a day</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/" title="github">github</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-数据结构与算法分析/数据结构与算法分析（二）" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/19/数据结构与算法分析/数据结构与算法分析（二）/" class="article-date">
+  	<time datetime="2016-03-19T08:22:37.000Z" itemprop="datePublished">2016-03-19</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      数据结构与算法分析（二）
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构/">数据结构</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/数据结构与算法/">数据结构与算法</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>此系列为数据结构与算法分析C++描述学习后的笔记</strong></p>
+<h2 id="树"><a href="#树" class="headerlink" title="树"></a>树</h2><p>ps：（树的详细概念请参考离散数学中的图论）</p>
+<h3 id="历遍"><a href="#历遍" class="headerlink" title="历遍"></a>历遍</h3><p>三种历遍方式的不同主要在于根节点的历遍时间</p>
+<ul>
+<li>先序历遍：根节点 -&gt; 左子树 -&gt; 右子树</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">preOrderTraverse</span><span class="params">(avlTree tree)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span>(tree!=<span class="literal">NULL</span>)&#123;</div><div class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt;tree-&gt;value&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line">        preOrderTraverse(tree-&gt;left);</div><div class="line">        preOrderTraverse(tree-&gt;right);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<ul>
+<li>中序历遍：左子树 -&gt; 根节点 -&gt; 右子树</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">inOrderTraverse</span><span class="params">(avlTree tree)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span>(tree!=<span class="literal">NULL</span>)&#123;</div><div class="line">        inOrderTraverse(tree-&gt;left);</div><div class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt;tree-&gt;value&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line">        inOrderTraverse(tree-&gt;right);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>后序历遍：左子树 -&gt; 右子树 -&gt; 根节点  </li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">afterOrderTraverse</span><span class="params">(avlTree tree)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span>(tree!=<span class="literal">NULL</span>)&#123;</div><div class="line">        afterOrderTraverse(tree-&gt;left);</div><div class="line">        afterOrderTraverse(tree-&gt;right);</div><div class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt;tree-&gt;value&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>虽然所有的递归都可以改为非递归，但毕竟递归简洁啊，如此就必定要牺牲别的比如时间</p>
+<hr>
+<h3 id="普通树"><a href="#普通树" class="headerlink" title="普通树"></a>普通树</h3>  <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> TreeNode *preTreeNode</div><div class="line"><span class="keyword">struct</span> TreeNode&#123;</div><div class="line">  ElementType elementType;</div><div class="line">  preTreeNode FirstChild;</div><div class="line">  preTreeNode NextSibling;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>  这样父节点的FirstChild指向其第一个子节点，而另一个NextSibling指向与其相邻的第一个兄弟节点，这样将整个树串起来</p>
+<p>  一个与（一）中对应的应用是是<strong>表达式树</strong></p>
+<p>  此树的全部父节点都是运算符号，子节点为数字，用中序历遍打印出运算式，构造也很简单，和栈的使用一样，只不过遇到符号是使之变为父节点，其子节点为栈中pop出的俩数，然后把构造了的树再入栈</p>
+<hr>
+<h3 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h3><p>由于其查找为二分查找，故运行时间平均为O ( log <em>N</em> )</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> TreeNode *SearchTree;</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> TreeNode *Tposition;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">MakeEmpty</span><span class="params">(SearchTree S)</span></span>;</div><div class="line"><span class="function">SearchTree <span class="title">Insert</span><span class="params">(<span class="keyword">int</span> x,SearchTree S)</span></span>;</div><div class="line"><span class="function">SearchTree <span class="title">Delete</span><span class="params">(<span class="keyword">int</span> x,SearchTree S)</span></span>;</div><div class="line"><span class="function">Tposition <span class="title">Find</span><span class="params">(<span class="keyword">int</span> x,SearchTree S)</span></span>;</div><div class="line"><span class="function">Tposition <span class="title">FindMin</span><span class="params">(SearchTree S)</span></span>;</div><div class="line"><span class="function">Tposition <span class="title">FindMax</span><span class="params">(SearchTree S)</span></span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">getValue</span><span class="params">(Tposition P)</span></span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">preOrderTraverse</span><span class="params">(SearchTree S)</span></span>;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">inOrderTraverse</span><span class="params">(SearchTree S)</span></span>;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">afterOrderTraverse</span><span class="params">(SearchTree S)</span></span>;</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// _BINARYTREE_H</span></span></div><div class="line"></div><div class="line"><span class="keyword">struct</span> TreeNode</div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> value;</div><div class="line">    SearchTree leftTree;</div><div class="line">    SearchTree rightTree;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">MakeEmpty</span><span class="params">(SearchTree S)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span>(S!=<span class="literal">NULL</span>)&#123;</div><div class="line">        MakeEmpty(S-&gt;leftTree);</div><div class="line">        MakeEmpty(S-&gt;rightTree);</div><div class="line">        <span class="built_in">free</span>(S);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function">SearchTree <span class="title">Insert</span><span class="params">(<span class="keyword">int</span> x,SearchTree S)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span>(S==<span class="literal">NULL</span>)&#123;</div><div class="line">        S=(SearchTree)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> TreeNode));</div><div class="line">        <span class="keyword">if</span>(S!=<span class="literal">NULL</span>)&#123;</div><div class="line">            S-&gt;value=x;</div><div class="line">            S-&gt;leftTree=<span class="literal">NULL</span>;</div><div class="line">            S-&gt;rightTree=<span class="literal">NULL</span>;</div><div class="line">            <span class="keyword">return</span> S;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span>&#123;</div><div class="line">        <span class="keyword">if</span>(x&lt;S-&gt;value)</div><div class="line">            S-&gt;leftTree=Insert(x,S-&gt;leftTree);</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(x&gt;S-&gt;value)</div><div class="line">            S-&gt;rightTree=Insert(x,S-&gt;rightTree);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> S;</div><div class="line"></div><div class="line">&#125;</div><div class="line"><span class="function">SearchTree <span class="title">Delete</span><span class="params">(<span class="keyword">int</span> x,SearchTree S)</span></span></div><div class="line">&#123;</div><div class="line">    Tposition temp;</div><div class="line">    <span class="keyword">if</span>(x&lt;S-&gt;value)</div><div class="line">        S-&gt;leftTree=Delete(x,S-&gt;leftTree);</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(x&gt;S-&gt;value)</div><div class="line">        S-&gt;rightTree=Delete(x,S-&gt;rightTree);</div><div class="line">    <span class="keyword">else</span>&#123;</div><div class="line">        <span class="keyword">if</span>(S-&gt;leftTree!=<span class="literal">NULL</span>&amp;&amp;S-&gt;rightTree!=<span class="literal">NULL</span>)&#123;</div><div class="line">            temp=FindMin(S-&gt;rightTree);</div><div class="line">            S-&gt;value=temp-&gt;value;</div><div class="line">            S-&gt;rightTree=Delete(S-&gt;value,S-&gt;rightTree);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span>&#123;</div><div class="line">            temp=S;</div><div class="line">            <span class="keyword">if</span>(S-&gt;leftTree==<span class="literal">NULL</span>)</div><div class="line">                S=S-&gt;rightTree;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(S-&gt;rightTree==<span class="literal">NULL</span>)</div><div class="line">                S=S-&gt;leftTree;</div><div class="line">            <span class="built_in">free</span>(temp);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> S;</div><div class="line">&#125;</div><div class="line"><span class="function">Tposition <span class="title">Find</span><span class="params">(<span class="keyword">int</span> x,SearchTree S)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span>(S==<span class="literal">NULL</span>)</div><div class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</div><div class="line">    <span class="keyword">if</span>(x&lt;S-&gt;value)</div><div class="line">        <span class="keyword">return</span> Find(x,S-&gt;leftTree);</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(x&gt;S-&gt;value)</div><div class="line">        <span class="keyword">return</span> Find(x,S-&gt;rightTree);</div><div class="line">    <span class="keyword">else</span></div><div class="line">        <span class="keyword">return</span> S;</div><div class="line">&#125;</div><div class="line"><span class="function">Tposition <span class="title">FindMin</span><span class="params">(SearchTree S)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span>(S==<span class="literal">NULL</span>)</div><div class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</div><div class="line">    <span class="keyword">if</span>(S-&gt;leftTree!=<span class="literal">NULL</span>)</div><div class="line">        <span class="keyword">return</span> FindMin(S-&gt;leftTree);</div><div class="line">    <span class="keyword">else</span></div><div class="line">        <span class="keyword">return</span> S;</div><div class="line"></div><div class="line">&#125;</div><div class="line"><span class="function">Tposition <span class="title">FindMax</span><span class="params">(SearchTree S)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span>(S==<span class="literal">NULL</span>)</div><div class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</div><div class="line">    <span class="keyword">if</span>(S-&gt;rightTree!=<span class="literal">NULL</span>)</div><div class="line">        <span class="keyword">return</span> FindMin(S-&gt;rightTree);</div><div class="line">    <span class="keyword">else</span></div><div class="line">        <span class="keyword">return</span> S;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">getValue</span><span class="params">(Tposition P)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">return</span> P-&gt;value;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>重点在delete的处理</p>
+<hr>
+<h3 id="AVL树"><a href="#AVL树" class="headerlink" title="AVL树"></a>AVL树</h3><p>Avl树保持树的深度，即左子树与右子树的最大深度相差不能超过一，与二叉树的区别主要在于在insert与delete中加入旋转操作，使得树保持平衡</p>
+<h4 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h4><p>旋转分为单旋和双旋，双旋式单旋的组合</p>
+<ul>
+<li>单旋：</li>
+</ul>
+<p><img src="\images\singleRotate.png" alt="singleRotate"></p>
+<p>图比较好理解思路下面是代码<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">static</span> node <span class="title">singleRotateLeft</span><span class="params">(node root)</span> <span class="comment">//左子树高于右子树，右旋</span></span></div><div class="line">&#123;</div><div class="line">    node temp=root-&gt;left;</div><div class="line">    root-&gt;left=temp-&gt;right;</div><div class="line">    temp-&gt;right=root;</div><div class="line">    <span class="keyword">return</span> temp;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">static</span> node <span class="title">singleRotateRight</span><span class="params">(node root)</span><span class="comment">//于上边相反</span></span></div><div class="line">&#123;</div><div class="line">    node temp=root-&gt;right;</div><div class="line">    root-&gt;right=temp-&gt;left;</div><div class="line">    temp-&gt;left=root;</div><div class="line">    <span class="keyword">return</span> temp;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ul>
+<li>双旋：</li>
+</ul>
+<p><img src="\images\doubleRotate.png" alt="doubleRoate"></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">static</span> node <span class="title">doubleRotateLeft</span><span class="params">(node root)</span></span></div><div class="line">&#123;</div><div class="line">    root-&gt;right=singleRotateLeft(root-&gt;right);</div><div class="line">    <span class="keyword">return</span> singleRotateRight(root);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">static</span> node <span class="title">doubleRotateRight</span><span class="params">(node root)</span></span></div><div class="line">&#123;</div><div class="line">    root-&gt;left=singleRotateRight(root-&gt;left);</div><div class="line">    <span class="keyword">return</span> singleRotateLeft(root);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="avl树实现"><a href="#avl树实现" class="headerlink" title="avl树实现"></a>avl树实现</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> AVL_TREE_H;</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="keyword">struct</span> avlTreeNode;</div><div class="line"><span class="keyword">typedef</span> avlTreeNode *avlTree;</div><div class="line"><span class="keyword">typedef</span> avlTreeNode *node;</div><div class="line"></div><div class="line"><span class="function">avlTree <span class="title">init_tree</span><span class="params">()</span></span>;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">MakeEmpty</span><span class="params">(avlTree tree)</span></span>;</div><div class="line"><span class="function">avlTree <span class="title">Insert</span><span class="params">(<span class="keyword">int</span> x,avlTree tree)</span></span>;</div><div class="line"><span class="function">avlTree <span class="title">Delete</span><span class="params">(<span class="keyword">int</span> x,avlTree tree)</span></span>;</div><div class="line"><span class="function">node <span class="title">Find</span><span class="params">(<span class="keyword">int</span> x,avlTree tree)</span></span>;</div><div class="line"><span class="function">node <span class="title">FindMin</span><span class="params">( avlTree tree)</span></span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">Height</span><span class="params">(node tree)</span></span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">Max</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>;</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// AVL_TREE_H</span></span></div><div class="line"></div><div class="line"><span class="keyword">struct</span> avlTreeNode</div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> value;</div><div class="line">    <span class="keyword">int</span> Height;</div><div class="line">    node left;</div><div class="line">    node right;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">MakeEmpty</span><span class="params">(avlTree tree)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span>(tree!=<span class="literal">NULL</span>)&#123;</div><div class="line">        MakeEmpty(tree-&gt;left);</div><div class="line">        MakeEmpty(tree-&gt;right);</div><div class="line">        <span class="built_in">free</span>(tree);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function">avlTree <span class="title">Insert</span><span class="params">(<span class="keyword">int</span> x,avlTree tree)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span>(tree==<span class="literal">NULL</span>)&#123;</div><div class="line">        tree=(avlTree)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> avlTreeNode));</div><div class="line">        <span class="keyword">if</span>(tree!=<span class="literal">NULL</span>)&#123;</div><div class="line">            tree-&gt;value=x;</div><div class="line">            tree-&gt;Height=<span class="number">0</span>;</div><div class="line">            tree-&gt;left=<span class="literal">NULL</span>;</div><div class="line">            tree-&gt;right=<span class="literal">NULL</span>;</div><div class="line">            <span class="keyword">return</span> tree;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span>&#123;</div><div class="line">        <span class="keyword">if</span>(x&lt;tree-&gt;value)&#123;</div><div class="line">            tree-&gt;left=Insert(x,tree-&gt;left);</div><div class="line">            <span class="keyword">if</span>(Height(tree-&gt;left)-Height(tree-&gt;right)==<span class="number">2</span>)&#123;</div><div class="line">                <span class="keyword">if</span>(x&lt;tree-&gt;left-&gt;value)</div><div class="line">                    tree=singleRotateLeft(tree);</div><div class="line">                <span class="keyword">else</span></div><div class="line">                    tree=doubleRotateRight(tree);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span>&#123;</div><div class="line">            tree-&gt;right=Insert(x,tree-&gt;right);</div><div class="line">            <span class="keyword">if</span>(Height(tree-&gt;right)-Height(tree-&gt;left)==<span class="number">2</span>)&#123;</div><div class="line">                <span class="keyword">if</span>(x&gt;tree-&gt;right-&gt;value)</div><div class="line">                    tree=singleRotateRight(tree);</div><div class="line">                <span class="keyword">else</span></div><div class="line">                    tree=doubleRotateLeft(tree);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    tree-&gt;Height=Max(Height(tree-&gt;left),Height(tree-&gt;right))+<span class="number">1</span>;</div><div class="line">    <span class="keyword">return</span> tree;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function">avlTree <span class="title">Delete</span><span class="params">(<span class="keyword">int</span> x,avlTree tree)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span>(x&lt;tree-&gt;value)&#123;</div><div class="line">         tree-&gt;left=Delete(x,tree-&gt;left);</div><div class="line">         <span class="keyword">if</span>(Height(tree-&gt;right)-Height(tree-&gt;left)==<span class="number">2</span>)&#123;</div><div class="line">                <span class="keyword">if</span>(Height(tree-&gt;right-&gt;left)&gt;Height(tree-&gt;right-&gt;right))</div><div class="line">                    tree=doubleRotateLeft(tree);</div><div class="line">                <span class="keyword">else</span></div><div class="line">                    tree=singleRotateRight(tree);</div><div class="line">            &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(x&gt;tree-&gt;value)&#123;</div><div class="line">        tree-&gt;right=Delete(x,tree-&gt;right);</div><div class="line"></div><div class="line">        <span class="keyword">if</span>(Height(tree-&gt;left)-Height(tree-&gt;right)==<span class="number">2</span>)&#123;</div><div class="line">                <span class="keyword">if</span>(Height(tree-&gt;left-&gt;right)&gt;Height(tree-&gt;left-&gt;left))</div><div class="line">                    tree=doubleRotateRight(tree);</div><div class="line">                <span class="keyword">else</span></div><div class="line">                    tree=singleRotateLeft(tree);</div><div class="line">            &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span>&#123;</div><div class="line">        node temp;</div><div class="line">        <span class="keyword">if</span>(tree-&gt;left!=<span class="literal">NULL</span>&amp;&amp;tree-&gt;right!=<span class="literal">NULL</span>)&#123;</div><div class="line">            temp=FindMin(tree-&gt;right);</div><div class="line">            tree-&gt;value=temp-&gt;value;</div><div class="line">            tree-&gt;right=Delete(temp-&gt;value,tree-&gt;right);</div><div class="line">             <span class="keyword">if</span>(Height(tree-&gt;left)-Height(tree-&gt;right)==<span class="number">2</span>)&#123;</div><div class="line">                <span class="keyword">if</span>(Height(tree-&gt;left-&gt;right)&gt;Height(tree-&gt;left-&gt;left))</div><div class="line">                    tree=doubleRotateRight(tree);</div><div class="line">                <span class="keyword">else</span></div><div class="line">                    tree=singleRotateLeft(tree);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span>&#123;</div><div class="line">             temp=tree;</div><div class="line">            <span class="keyword">if</span>(tree-&gt;left==<span class="literal">NULL</span>)</div><div class="line">                tree=tree-&gt;right;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(tree-&gt;right==<span class="literal">NULL</span>)</div><div class="line">                tree=tree-&gt;left;</div><div class="line">            <span class="built_in">free</span>(temp);</div><div class="line">            tree=<span class="literal">NULL</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span>(tree!=<span class="literal">NULL</span>)</div><div class="line">    tree-&gt;Height=Max(Height(tree-&gt;left),Height(tree-&gt;right))+<span class="number">1</span>;</div><div class="line">    <span class="keyword">return</span> tree;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function">node <span class="title">Find</span><span class="params">(<span class="keyword">int</span> x,avlTree tree)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span>(tree!=<span class="literal">NULL</span>)&#123;</div><div class="line">        <span class="keyword">if</span>(tree-&gt;value==x)</div><div class="line">            <span class="keyword">return</span> tree;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(x&lt;tree-&gt;value)</div><div class="line">            Find(x,tree-&gt;left);</div><div class="line">        <span class="keyword">else</span></div><div class="line">            Find(x,tree-&gt;right);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function">node <span class="title">FindMin</span><span class="params">(avlTree tree)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span>(tree==<span class="literal">NULL</span>)</div><div class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</div><div class="line">    <span class="keyword">if</span>(tree-&gt;left!=<span class="literal">NULL</span>)</div><div class="line">        <span class="keyword">return</span> FindMin(tree-&gt;left);</div><div class="line">    <span class="keyword">else</span></div><div class="line">        <span class="keyword">return</span> tree;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>注意insert和delete中递归的使用和状态的判断</p>
+<p>ps:还有B-树和伸展树等等，没有细看，立flag</p>
+<hr>
+<p><a href="http://www.cnblogs.com/oldhorse/archive/2009/11/16/1604009.html" target="_blank" rel="external">B-,B+树说明</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/03/19/数据结构与算法分析/数据结构与算法分析（三）/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          数据结构与算法分析（三）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/03/19/数据结构与算法分析/数据结构与算法分析（一）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">数据结构与算法分析（一）</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="数据结构与算法分析/数据结构与算法分析（二）" data-title="数据结构与算法分析（二）" data-url="wamcs.github.io/2016/03/19/数据结构与算法分析/数据结构与算法分析（二）/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 wamcs
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: undefined,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: undefined
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

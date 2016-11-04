@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>android IPC | wamcs hood</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="IPC进程间通信(Inter-Process Communication),由于进程的限制而产生的一种数据交流机制。在各类的操作系统中有着广泛的运用，比如Windows的剪贴板，管道，邮槽，Linux中有命名管道，共享内容，信号量等。。。Android虽然内核是linxu，但是有着自己独特的IPC机制，也就是Binder，同时socket也可以作为android的进程间通信的方式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="android IPC">
+<meta property="og:url" content="wamcs.github.io/2016/04/05/android/android-IPC/index.html">
+<meta property="og:site_name" content="wamcs hood">
+<meta property="og:description" content="IPC进程间通信(Inter-Process Communication),由于进程的限制而产生的一种数据交流机制。在各类的操作系统中有着广泛的运用，比如Windows的剪贴板，管道，邮槽，Linux中有命名管道，共享内容，信号量等。。。Android虽然内核是linxu，但是有着自己独特的IPC机制，也就是Binder，同时socket也可以作为android的进程间通信的方式">
+<meta property="og:image" content="http://7xt1ey.com1.z0.glb.clouddn.com/IPC_method.png">
+<meta property="og:updated_time" content="2016-09-02T12:30:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="android IPC">
+<meta name="twitter:description" content="IPC进程间通信(Inter-Process Communication),由于进程的限制而产生的一种数据交流机制。在各类的操作系统中有着广泛的运用，比如Windows的剪贴板，管道，邮槽，Linux中有命名管道，共享内容，信号量等。。。Android虽然内核是linxu，但是有着自己独特的IPC机制，也就是Binder，同时socket也可以作为android的进程间通信的方式">
+<meta name="twitter:image" content="http://7xt1ey.com1.z0.glb.clouddn.com/IPC_method.png">
+  
+    <link rel="alternative" href="/atom.xml" title="wamcs hood" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/img/header_picture.jpg" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">wamcs</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Rome was not built in a day</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+						<li>Über</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/" title="github">github</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android-Test/" style="font-size: 10px;">Android Test</a> <a href="/tags/Android-代码记录/" style="font-size: 10px;">Android 代码记录</a> <a href="/tags/Android-基础/" style="font-size: 20px;">Android 基础</a> <a href="/tags/Android-库/" style="font-size: 10px;">Android 库</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/sql语法/" style="font-size: 10px;">sql语法</a> <a href="/tags/数据结构/" style="font-size: 20px;">数据结构</a> <a href="/tags/网络基础/" style="font-size: 15px;">网络基础</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">nothing is true，everything is permitted</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">wamcs</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img src="/img/header_picture.jpg" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">wamcs</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Rome was not built in a day</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/" title="github">github</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-android/android-IPC" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/05/android/android-IPC/" class="article-date">
+  	<time datetime="2016-04-05T02:18:57.000Z" itemprop="datePublished">2016-04-05</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      android IPC
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android-基础/">Android 基础</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Android/">Android</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="IPC"><a href="#IPC" class="headerlink" title="IPC"></a>IPC</h1><p>进程间通信(Inter-Process Communication),由于进程的限制而产生的一种数据交流机制。在各类的操作系统中有着广泛的运用，比如Windows的剪贴板，管道，邮槽，Linux中有命名管道，共享内容，信号量等。。。Android虽然内核是linxu，但是有着自己独特的IPC机制，也就是Binder，同时socket也可以作为android的进程间通信的方式</p>
+<a id="more"></a>
+<h2 id="进程和线程"><a href="#进程和线程" class="headerlink" title="进程和线程"></a>进程和线程</h2><p>就个人理解来说，进程是CPU的执行单元，原则上一个CPU同时只能运行一个进程，进程拥有着地址空间，有着自己的内存空间。俩进程间是不会相互影响的。</p>
+<p>当然，如果想跑多进程呢，由此产生了 <strong>并发</strong> 和 <strong>并行</strong> 技术。 <strong>对于进程数多于CPU数的情况采用并发技术</strong> ，并发采用的是 <strong>“时间片轮转进程调度算法”</strong> ，这个算法的思路也好理解，在系统的调配下，每个进程轮流的占用CPU，占用时间极短一般是毫秒级，用户感觉不到CPU在为多个进程服务，好像多个进程在同时运行。<strong>而对于进程数少于CPU数的采用的是并行技术</strong>，也就是进程跑在不同的CPU上咯</p>
+<p>再说说线程，对于线程的熟悉程度应该比进程高。线程是依附于进程的，线程们共用着线程的内存空间。为了防止争用资源产生错误，产生了互斥锁，原子性，线程安全等操作。而多线程并发操作和进程的并发操作几乎是相同的。</p>
+<p>一般来说线程的崩溃会导致所在进程的崩溃，而进程的崩溃并不会影响到别的进程的运行。</p>
+<p>如果想看看通俗易懂的解释就来戳戳这里<a href="http://www.ruanyifeng.com/blog/2013/04/processes_and_threads.html" target="_blank" rel="external">《进程与线程的一个简单解释》</a></p>
+<hr>
+<p>在android中多进程的使用一般有这么两种情况，一种为android中对于单个进程的内存大小有限制，故采用多进程的模式，另一种就是某些特殊的模块需要运行在单独的进程中，窃以为流氓们都是如此耍流氓的。</p>
+<p>android中开启多进程是简单的，只需在AndroidManifest.xml中的activity OR service给予android:process属性就好，注意使用“：”的话，“：”之前添加的是包名。简单的背后是复杂，添加倒是爽了，带来的问题是相当棘手的，毕竟上帝他老人家是公平的。</p>
+<h2 id="IPC基础"><a href="#IPC基础" class="headerlink" title="IPC基础"></a>IPC基础</h2><h3 id="Serializable-and-Parcelable"><a href="#Serializable-and-Parcelable" class="headerlink" title="Serializable and Parcelable"></a>Serializable and Parcelable</h3><p>在java中有着序列化的概念，这也是跨进程通信的关键。在java中一个对象只有在JVM运行时才会存在，脱离了JVM便会不复存在。如果我们想持久化的拥有对象，或者对于网络传输需要传个类不过分吧，然而这些都要脱离JVM。要保存数据怎么办。其状态保存为一组字节，在未来，再将这些字节组装成对象。在java中就产生了Serializable接口，这个接口是一个空接口</p>
+<p>example：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">implements</span> <span class="title">Serializable</span></span>&#123;</div><div class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">32819043829890L</span>;<span class="comment">//long型，作为类的序列化标识</span></div><div class="line"></div><div class="line">  <span class="keyword">public</span> <span class="keyword">int</span> userId;</div><div class="line">  <span class="keyword">public</span> String userName;</div><div class="line">  <span class="keyword">public</span> <span class="keyword">boolean</span> isMale;</div><div class="line"></div><div class="line">  ......</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//序列化</span></div><div class="line">User  user = <span class="keyword">new</span> User(<span class="number">0</span>, <span class="string">"jake"</span>, <span class="keyword">true</span>);</div><div class="line">ObjectOutputStream out = <span class="keyword">new</span> ObjectOutputStream(<span class="keyword">new</span> FileOutputStream(<span class="string">"cache.txt"</span>));</div><div class="line">out.writeObject(user);</div><div class="line">out.close();</div><div class="line"></div><div class="line"><span class="comment">//反序列化</span></div><div class="line">ObjectInputStream in = <span class="keyword">new</span> ObjectInputStream(<span class="keyword">new</span> FileInputStream(<span class="string">"cache.txt"</span>));</div><div class="line">User user = (User)in.readObject();</div><div class="line">in.close();</div></pre></td></tr></table></figure></p>
+<p>Serializable序列化比较简单，<strong>serialVersionUID</strong> 实际是序列化重要的一个特征值。可以不设置，系统会自己根据类的结构得到一个hash值作为serialVersionUID。他的作用是在反序列化的时候会和序列化文件中的serialVersionUID值比对，如果类的serialVersionUID与序列化文件中的不同，反序列化就会发生错误。比如序列化后加了个方法就会导致反序列化错误。而人工设定的最大好处在于即使类中结构发生了改变，反序列化时会最大可能的还原。当然如果手抖改了类名，属性的数据类型等，那就无论怎样都无法反序列化了</p>
+<p><strong>Parcelable</strong> 是android中用于序列化的接口,使用方法比Serializable复杂，但在android中效率高。写过android的对于它应该并不陌生，在android平台序列化使用的也是他咯</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">implements</span> <span class="title">Parcelable</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> String userName;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> userId;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> isMale;</div><div class="line">    <span class="keyword">private</span> List&lt;Book&gt; books;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">describeContents</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"><span class="comment">//序列化过程</span></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">writeToParcel</span><span class="params">(Parcel dest, <span class="keyword">int</span> flags)</span> </span>&#123;</div><div class="line">        dest.writeString(<span class="keyword">this</span>.userName);</div><div class="line">        dest.writeInt(<span class="keyword">this</span>.userId);</div><div class="line">        dest.writeByte(isMale ? (<span class="keyword">byte</span>) <span class="number">1</span> : (<span class="keyword">byte</span>) <span class="number">0</span>);</div><div class="line">        dest.writeTypedList(books);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">()</span> </span>&#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"><span class="comment">//反序列化过程，注意顺序不能乱</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="title">User</span><span class="params">(Parcel in)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.userName = in.readString();</div><div class="line">        <span class="keyword">this</span>.userId = in.readInt();</div><div class="line">        <span class="keyword">this</span>.isMale = in.readByte() != <span class="number">0</span>;</div><div class="line">        <span class="keyword">this</span>.books = in.createTypedArrayList(Book.CREATOR);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Creator&lt;User&gt; CREATOR = <span class="keyword">new</span> Creator&lt;User&gt;() &#123;</div><div class="line">        <span class="function"><span class="keyword">public</span> User <span class="title">createFromParcel</span><span class="params">(Parcel source)</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">new</span> User(source);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">public</span> User[] newArray(<span class="keyword">int</span> size) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">new</span> User[size];</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Binder"><a href="#Binder" class="headerlink" title="Binder"></a>Binder</h3><p>binder是android中一个很深入的话题，为了好好学习，单独写一篇来记录</p>
+<h2 id="android-IPC-方式"><a href="#android-IPC-方式" class="headerlink" title="android IPC 方式"></a>android IPC 方式</h2><h3 id="Bundle"><a href="#Bundle" class="headerlink" title="Bundle"></a>Bundle</h3><p>在android的三大组件(Activity,Service,Reciver)都支持在Intent中传递Bundle数据的，由于Bundle实现了Parcelable接口所以可以方便的在不同进程间传递数据。当我们在一个进程中启动另一个进程中的activity，service，reciver时，通过Bundle可以传递一些初始化信息。这些信息是支持序列化的，比如基本类型，实现Serializable和Parcelable的类，以及一些特殊类型</p>
+<p>Bundle还有一种使用情形，当在进程A进行一个计算，计算完成后要启动进程B的一个组件，并且要将计算结果传给B进程，然而这个计算结果不支持放入到Bundle中(想不到栗子)，此时一个解决方案是，将可以传递的初始数据通过Intent传到B进程中的一个service中，在service中进行计算后去启动</p>
+<p>然而这种方法的缺陷在于在初始化完成后，通信就无法正常进行了，可以说是一次性的，而且是单向的</p>
+<h3 id="文件共享"><a href="#文件共享" class="headerlink" title="文件共享"></a>文件共享</h3><p>这种方式也很好理解，通过文件作为中传实现数据在进程间的传递。android的内核是linux，linux对于文件的并发读写是没有限制的。所以容易产生问题，但这并不影响这种方法的有效性</p>
+<p>代码实现和在Serializable处的是相同的，由于文件读写是耗时操作，所以新开一个线程进行操作。剩下的就是javaIO的内容了</p>
+<p>关于文件的格式是没有硬性的要求的，只要是客户端和服务端约定好的格式都是可以的,Sharedpreference是android提供的一种轻量级的储存方案，底层是使用xml存储键值对，然而android系统对于其有着缓存策略，在内存中存在一份Sharedpreference文件，如果不同的进程进行修改，显然是会发生冲突的，会有数据的丢失。故不建议使用</p>
+<h3 id="Messenger"><a href="#Messenger" class="headerlink" title="Messenger"></a>Messenger</h3><p>我们使用Handler+Message的方式进行通信，都是在同一个进程中，从线程持有一个主线程的Handler对象，并向主线程发送消息。这种用法十分常见</p>
+<p>而Android既然可以使用bindler机制进行跨进行通信，所以我们当然可以将Handler与binder结合起来进行跨进程发送消息。</p>
+<p>可以看看Messenger的源码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">Messenger</span><span class="params">(Handler target)</span> </span>&#123;</div><div class="line">       mTarget = target.getIMessenger();</div><div class="line">   &#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">Messenger</span><span class="params">(IBinder target)</span> </span>&#123;</div><div class="line">       mTarget = IMessenger.Stub.asInterface(target);</div><div class="line">   &#125;</div></pre></td></tr></table></figure></p>
+<p>是不是觉得眼熟，AIDL生成的Binder类不就是有这样的用法吗。无论IMessenger 还是 Stub.asInterface都有着AIDL的痕迹，它的底层也就是AIDL。</p>
+<p>具体的使用方法是要在客户端进程和服务端进程同使用handler+Messenger来实现的</p>
+<ul>
+<li>客户端</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG=<span class="string">"Client"</span>;</div><div class="line"></div><div class="line">  <span class="keyword">private</span> Messenger mGetReplyMessenger=<span class="keyword">new</span> Messenger(<span class="keyword">new</span> mHandler());</div><div class="line">  <span class="keyword">private</span> Messenger mService;</div><div class="line"></div><div class="line">  <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">mHandler</span> <span class="keyword">extends</span> <span class="title">Handler</span></span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleMessage</span><span class="params">(Message msg)</span> </span>&#123;</div><div class="line">      <span class="keyword">switch</span> (msg.what)&#123;</div><div class="line">        <span class="keyword">case</span> Units.MSG_FROME_SERVICE:</div><div class="line">          Log.d(<span class="string">"TAG"</span>, <span class="string">"receive msg from Service:"</span> + msg.getData().getString(<span class="string">"reply"</span>));</div><div class="line">          <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">default</span>:</div><div class="line">          <span class="keyword">super</span>.handleMessage(msg);</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">private</span> ServiceConnection connection=<span class="keyword">new</span> ServiceConnection() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onServiceConnected</span><span class="params">(ComponentName name, IBinder service)</span> </span>&#123;</div><div class="line">      mService=<span class="keyword">new</span> Messenger(service);</div><div class="line">      Log.d(<span class="string">"TAG"</span>, <span class="string">"bind Service"</span>);</div><div class="line">      Message msg=Message.obtain(<span class="keyword">null</span>,Units.MSG_FROME_CLIENT);</div><div class="line">      Bundle bundle=<span class="keyword">new</span> Bundle();</div><div class="line">      bundle.putString(<span class="string">"msg"</span>,<span class="string">"hello this is client"</span>);</div><div class="line">      msg.setData(bundle);</div><div class="line">      msg.replyTo=mGetReplyMessenger;</div><div class="line">      <span class="keyword">try</span> &#123;</div><div class="line">        mService.send(msg);</div><div class="line">      &#125; <span class="keyword">catch</span> (RemoteException e) &#123;</div><div class="line">        e.printStackTrace();</div><div class="line">      &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onServiceDisconnected</span><span class="params">(ComponentName name)</span> </span>&#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">  &#125;;</div><div class="line"></div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">    setContentView(R.layout.activity_main);</div><div class="line">    Intent intent=<span class="keyword">new</span> Intent(Client.<span class="keyword">this</span>,Service.class);</div><div class="line">    bindService(intent,connection,BIND_AUTO_CREATE);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</div><div class="line">    unbindService(connection);</div><div class="line">    <span class="keyword">super</span>.onDestroy();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>服务端</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Service</span> <span class="keyword">extends</span> <span class="title">android</span>.<span class="title">app</span>.<span class="title">Service</span></span>&#123;</div><div class="line">    <span class="meta">@Nullable</span></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> IBinder <span class="title">onBind</span><span class="params">(Intent intent)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> mMessenger.getBinder();</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">mHandler</span> <span class="keyword">extends</span> <span class="title">Handler</span></span>&#123;</div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleMessage</span><span class="params">(Message msg)</span> </span>&#123;</div><div class="line">            <span class="keyword">switch</span> (msg.what)&#123;</div><div class="line">                <span class="keyword">case</span> Units.MSG_FROME_CLIENT:</div><div class="line">                    Log.d(<span class="string">"TAG"</span>, <span class="string">"receive msg from Client:"</span> + msg.getData().getString(<span class="string">"msg"</span>));</div><div class="line">                    Messenger client = msg.replyTo;</div><div class="line">                    Message reply=Message.obtain(<span class="keyword">null</span>,Units.MSG_FROME_SERVICE);</div><div class="line">                    Bundle bundle=<span class="keyword">new</span> Bundle();</div><div class="line">                    bundle.putString(<span class="string">"reply"</span>, <span class="string">"i have got your message"</span>);</div><div class="line">                    reply.setData(bundle);</div><div class="line">                    <span class="keyword">try</span>&#123;</div><div class="line">                        Log.d(<span class="string">"TAG"</span>, <span class="string">"send message"</span>);</div><div class="line">                        client.send(reply);</div><div class="line">                    &#125; <span class="keyword">catch</span> (RemoteException e) &#123;</div><div class="line">                        e.printStackTrace();</div><div class="line">                    &#125;</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                <span class="keyword">default</span>:</div><div class="line">                    <span class="keyword">super</span>.handleMessage(msg);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Messenger mMessenger=<span class="keyword">new</span> Messenger(<span class="keyword">new</span> mHandler());</div><div class="line"></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>一些配置</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MSG_FROME_CLIENT=<span class="number">0</span>;</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MSG_FROME_SERVICE=<span class="number">1</span>;</div></pre></td></tr></table></figure>
+<p>想要理解运行方式就需要理解下Binder底层的模式，不清楚可以看看另一篇，在 <strong>onServiceConnected</strong> 中我们可以拿到另一个进程中service的Ibinder对象，这个IBinder对象是在service的onBind中绑定的，其实这时已经进行了一次IPC，我们拿到的服务端传来的Ibinder对象并不真正是service中的IBinder对象，而是他的一个影子，一个拷贝。在Binder机制中有有管理这些拷贝的部分，我们在客户端对其进行操作，都会被记录下来然后到服务端去进行操作。反过来也是相同的。</p>
+<p>Messenger进行消息传递的载体是Message，Message中可以使用的载体有what，arg1,arg2,Bundle,replyTo。object是在2.2以后支持跨进程传输的，然而只支持系统给的实现了Parcelable接口的类。这样局限性就比较大。</p>
+<h3 id="AIDL"><a href="#AIDL" class="headerlink" title="AIDL"></a>AIDL</h3><p>aidl的东西也比较多，新开一个。</p>
+<h3 id="content-Provider"><a href="#content-Provider" class="headerlink" title="content Provider"></a>content Provider</h3><p>CotentProvider底层实现也是Binder，不过由于封装的比较好，所以调用起来比较简单。一般我们调用的是系统提供的ContentPrvider，例如MediaStore。我们在使用时一般是用到URI，用getContentResolver来获取到对应的Cursor。</p>
+<p>因为ContentProvider的底层数据组织主要是用表格来完成的，其实和SQLite很像，所以操作也很像。CRUD(增删查改)，再加上一个onCreate和getType(获取URI请求的数据类型)，就是我们自定义需要完成的方法。具体的实现就不写了。</p>
+<p>在AndroidManifest中的配置如下<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--代码来自任玉刚《android开发艺术探索》--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">provider</span></span></div><div class="line">  <span class="attr">android:name</span>=<span class="string">".provider.BookProvider"</span></div><div class="line">  <span class="attr">android:authorities</span>=<span class="string">"com.ryg.chapter_2.book.provider"</span></div><div class="line">  <span class="attr">android:permission</span>=<span class="string">"com.ryg.PROVIDER"</span></div><div class="line">  <span class="attr">android:process</span>=<span class="string">":provider"</span></div><div class="line">/&gt;</div><div class="line"><span class="comment">&lt;!--authorities是provider的唯一标识，URI设置也与其有关，比如要访问这个provider的话，URI为"content://com.ryg.chapter_2.book.provider" --&gt;</span></div></pre></td></tr></table></figure></p>
+<h3 id="socket"><a href="#socket" class="headerlink" title="socket"></a>socket</h3><p>socket实际上是java中用于TCP，UDP通信的。被称为“套接字”，是网络当中的概念。具体的使用其实就是TCP，UDP的使用方式，可以看看在《应用层》中的示例</p>
+<p>注意加权限<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.INTERNET"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.ACCESS_NETWORK_STATE"</span>/&gt;</span></div></pre></td></tr></table></figure></p>
+<h2 id="IPC总结"><a href="#IPC总结" class="headerlink" title="IPC总结"></a>IPC总结</h2><p>在众多的IPC方式中，简单易用的有Bundle和文件共享机制，不过它们都不适合高并发且实时通信，只适合简单数据的交换工作，而AIDL支持高并发通信，但是要处理线程同步问题，使用起来稍微麻烦一些，因此有了上层封装好的Messenger和ContentProvider通信，Messenger使用Message使用数据交换，而ContentProvider更适合于一对多的数据共享，最后是Socket通信，它支持实时通信，通过网络传输字节流，实现起来也稍微麻烦一些。</p>
+<p><img src="http://7xt1ey.com1.z0.glb.clouddn.com/IPC_method.png" alt=""></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/04/06/android/Binder/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Binder
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/04/03/android/Activity/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Activity</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="android/android-IPC" data-title="android IPC" data-url="wamcs.github.io/2016/04/05/android/android-IPC/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 wamcs
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: undefined,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: undefined
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

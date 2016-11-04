@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>AIDL(中) | wamcs hood</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="AIDL当然AIDL(上)中的简单实用并不能完全满足需求，我们有时需要实现消息的推送等功能。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AIDL(中)">
+<meta property="og:url" content="wamcs.github.io/2016/04/10/android/AIDL-中/index.html">
+<meta property="og:site_name" content="wamcs hood">
+<meta property="og:description" content="AIDL当然AIDL(上)中的简单实用并不能完全满足需求，我们有时需要实现消息的推送等功能。">
+<meta property="og:image" content="http://7xt1ey.com1.z0.glb.clouddn.com/Client_listener.png">
+<meta property="og:image" content="http://7xt1ey.com1.z0.glb.clouddn.com/Service_listener.png">
+<meta property="og:image" content="http://7xt1ey.com1.z0.glb.clouddn.com/Service_RemoteCallbackList.png">
+<meta property="og:updated_time" content="2016-09-02T12:30:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AIDL(中)">
+<meta name="twitter:description" content="AIDL当然AIDL(上)中的简单实用并不能完全满足需求，我们有时需要实现消息的推送等功能。">
+<meta name="twitter:image" content="http://7xt1ey.com1.z0.glb.clouddn.com/Client_listener.png">
+  
+    <link rel="alternative" href="/atom.xml" title="wamcs hood" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/img/header_picture.jpg" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">wamcs</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Rome was not built in a day</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+						<li>Über</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/" title="github">github</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android-Test/" style="font-size: 10px;">Android Test</a> <a href="/tags/Android-代码记录/" style="font-size: 10px;">Android 代码记录</a> <a href="/tags/Android-基础/" style="font-size: 20px;">Android 基础</a> <a href="/tags/Android-库/" style="font-size: 10px;">Android 库</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/sql语法/" style="font-size: 10px;">sql语法</a> <a href="/tags/数据结构/" style="font-size: 20px;">数据结构</a> <a href="/tags/网络基础/" style="font-size: 15px;">网络基础</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">nothing is true，everything is permitted</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">wamcs</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img src="/img/header_picture.jpg" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">wamcs</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Rome was not built in a day</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/" title="github">github</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-android/AIDL-中" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/10/android/AIDL-中/" class="article-date">
+  	<time datetime="2016-04-10T13:45:45.000Z" itemprop="datePublished">2016-04-10</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      AIDL(中)
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android-基础/">Android 基础</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Android/">Android</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="AIDL"><a href="#AIDL" class="headerlink" title="AIDL"></a>AIDL</h1><p>当然AIDL(上)中的简单实用并不能完全满足需求，我们有时需要实现消息的推送等功能。</p>
+<a id="more"></a>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="加入通知功能后的改进"><a href="#加入通知功能后的改进" class="headerlink" title="加入通知功能后的改进"></a>加入通知功能后的改进</h3><p>实际上就是观察者模式的一次使用，但是由于在多进程中使用，和单进程有些区别。</p>
+<h4 id="新建listenerAIDL接口"><a href="#新建listenerAIDL接口" class="headerlink" title="新建listenerAIDL接口"></a>新建listenerAIDL接口</h4><p>先加入一个AIDL接口，用于观察<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">package</span> wamcs.ipctest.aidl;</div><div class="line"><span class="keyword">import</span> wamcs.ipctest.aidl.User;</div><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">INotifyListener</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">newPeopleComing</span><span class="params">(in User user)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="原接口修改"><a href="#原接口修改" class="headerlink" title="原接口修改"></a>原接口修改</h4><p>修改IUserManager接口<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> wamcs.ipctest.aidl;</div><div class="line"></div><div class="line"><span class="comment">// Declare any non-default types here with import statements</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> wamcs.ipctest.aidl.User;</div><div class="line"><span class="keyword">import</span> wamcs.ipctest.aidl.INotifyListener;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">IUserManager</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function">List&lt;User&gt; <span class="title">getUserList</span><span class="params">()</span></span>;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">addUser</span><span class="params">(in User user)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">registerListener</span><span class="params">(INotifyListener listener)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">unRegisterListener</span><span class="params">(INotifyListener listener)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>接口使用AIDL类型的原因之前说过了，不加tag的原因也有，记得一定要import</p>
+<h4 id="服务端修改"><a href="#服务端修改" class="headerlink" title="服务端修改"></a>服务端修改</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">package</span> wamcs.ipctest.aidl;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * author:wamcs</div><div class="line"> * date:2016/4/7</div><div class="line"> * email:kaili@hustunique.com</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyService</span> <span class="keyword">extends</span> <span class="title">Service</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"ServiceLK"</span>;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> CopyOnWriteArrayList&lt;User&gt; mUserList = <span class="keyword">new</span> CopyOnWriteArrayList&lt;&gt;();</div><div class="line">    <span class="comment">//为保证线程安全</span></div><div class="line">    <span class="keyword">private</span> CopyOnWriteArrayList&lt;INotifyListener&gt; mListenerList = <span class="keyword">new</span> CopyOnWriteArrayList&lt;&gt;();</div><div class="line">    <span class="keyword">private</span> Boolean isRun = <span class="keyword">true</span>;</div><div class="line">    <span class="keyword">private</span> NotificationManager manager;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> Binder mBinder = <span class="keyword">new</span> IUserManager.Stub() &#123;</div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> List&lt;User&gt; <span class="title">getUserList</span><span class="params">()</span> <span class="keyword">throws</span> RemoteException </span>&#123;</div><div class="line">            Log.d(TAG, <span class="string">"getUserList"</span>);</div><div class="line">            <span class="keyword">return</span> mUserList;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addUser</span><span class="params">(User user)</span> <span class="keyword">throws</span> RemoteException </span>&#123;</div><div class="line">            mUserList.add(user);</div><div class="line">            <span class="keyword">for</span> (User item : mUserList) &#123;</div><div class="line">                String Gender = <span class="string">"male"</span>;</div><div class="line">                <span class="keyword">if</span> (<span class="number">0</span> == item.getGender())</div><div class="line">                    Gender = <span class="string">"female"</span>;</div><div class="line">                Log.d(TAG, <span class="string">"userManager list: name is "</span> + item.getName() + <span class="string">" gender is "</span> + Gender + <span class="string">" and he is "</span> + item.getDescription());</div><div class="line"></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">registerListener</span><span class="params">(INotifyListener listener)</span> <span class="keyword">throws</span> RemoteException </span>&#123;</div><div class="line">            <span class="keyword">if</span> (mListenerList.contains(listener)) &#123;</div><div class="line">                Log.d(TAG, <span class="string">"listener has exists"</span>);</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                mListenerList.add(listener);</div><div class="line">            &#125;</div><div class="line">            Log.d(TAG, <span class="string">"register ListenerList size is "</span> + mListenerList.size());</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">unRegisterListener</span><span class="params">(INotifyListener listener)</span> <span class="keyword">throws</span> RemoteException </span>&#123;</div><div class="line">            <span class="keyword">if</span> (!mListenerList.contains(listener)) &#123;</div><div class="line">                Log.d(TAG, <span class="string">"listener has not exists"</span>);</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                mListenerList.remove(listener);</div><div class="line">            &#125;</div><div class="line">            Log.d(TAG, <span class="string">"unregister ListenerList size is "</span> + mListenerList.size());</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate();</div><div class="line">        mUserList.add(User.newBuilder().name(<span class="string">"Boss T"</span>).gender(<span class="number">1</span>).description(<span class="string">"gay"</span>).build());</div><div class="line">        mUserList.add(User.newBuilder().name(<span class="string">"daozhang"</span>).gender(<span class="number">1</span>).description(<span class="string">"gay"</span>).build());</div><div class="line">        mUserList.add(User.newBuilder().name(<span class="string">"zuliang"</span>).gender(<span class="number">1</span>).description(<span class="string">"gay"</span>).build());</div><div class="line">        manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);</div><div class="line">        <span class="keyword">new</span> Thread(<span class="keyword">new</span> NewPeople()).start();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Nullable</span></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> IBinder <span class="title">onBind</span><span class="params">(Intent intent)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> mBinder;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">NewPeople</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">while</span> (isRun) &#123;</div><div class="line">                <span class="keyword">try</span> &#123;</div><div class="line">                    Thread.sleep(<span class="number">5000</span>);</div><div class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">                    e.printStackTrace();</div><div class="line">                &#125;</div><div class="line">                User.Builder builder = User.newBuilder();</div><div class="line">                builder.gender(<span class="number">1</span>).name(<span class="string">"gzjj"</span> + mUserList.size()).description(<span class="string">"gay"</span>);</div><div class="line">                <span class="keyword">try</span> &#123;</div><div class="line">                    onNewPeopleComing(builder.build());</div><div class="line">                &#125; <span class="keyword">catch</span> (RemoteException e) &#123;</div><div class="line">                    e.printStackTrace();</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">onNewPeopleComing</span><span class="params">(User user)</span> <span class="keyword">throws</span> RemoteException </span>&#123;</div><div class="line">        mUserList.add(user);</div><div class="line">        dispatchNotify(user);</div><div class="line">        Log.d(TAG, <span class="string">"onNewPeopleComing,listener list size is "</span> + mListenerList.size());</div><div class="line">        <span class="keyword">for</span> (INotifyListener listener : mListenerList) &#123;</div><div class="line">            Log.d(TAG, <span class="string">"onNewPeopleComing listener:"</span> + listener);</div><div class="line">            listener.newPeopleComing(user);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">dispatchNotify</span><span class="params">(User user)</span></span>&#123;</div><div class="line">        Notification.Builder builder = <span class="keyword">new</span> Notification.Builder(<span class="keyword">this</span>);</div><div class="line">        Intent intent = <span class="keyword">new</span> Intent(<span class="keyword">this</span>,MainActivity.class);</div><div class="line">        Bundle bundle =<span class="keyword">new</span> Bundle();</div><div class="line">        bundle.putParcelable(<span class="string">"user"</span>,user);</div><div class="line">        intent.putExtras(bundle);</div><div class="line">        PendingIntent pendingIntent =PendingIntent.getActivity(<span class="keyword">this</span>,<span class="number">0</span>,intent,<span class="number">0</span>);</div><div class="line">        builder.setContentText(<span class="string">"some people coming"</span>)</div><div class="line">                .setContentTitle(<span class="string">"test"</span>)</div><div class="line">                .setTicker(<span class="string">"test coming"</span>)</div><div class="line">                .setWhen(System.currentTimeMillis())</div><div class="line">                .setAutoCancel(<span class="keyword">true</span>)</div><div class="line">                .setSmallIcon(R.mipmap.ic_launcher)</div><div class="line">                .setContentIntent(pendingIntent);</div><div class="line">        Notification notification = builder.build();</div><div class="line">        manager.notify((<span class="keyword">int</span>) System.currentTimeMillis(),notification);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</div><div class="line">        Log.d(TAG,<span class="string">"onDestroy"</span>);</div><div class="line">        isRun = <span class="keyword">false</span>;</div><div class="line">        <span class="keyword">super</span>.onDestroy();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>注册解注册都是观察者模式的运用，为了检验有效性，写了一个线程用来添加数据，每次数据添加都会通知观察者</p>
+<h4 id="客户端修改"><a href="#客户端修改" class="headerlink" title="客户端修改"></a>客户端修改</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"ActivityLK"</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MESSAGE_NEW_PEOPLE_COMING = <span class="number">1</span>;</div><div class="line">    <span class="meta">@Bind</span>(R.id.activity_name_edit_text)</div><div class="line">    EditText activityNameEditText;</div><div class="line">    <span class="meta">@Bind</span>(R.id.activity_radio_gender_male)</div><div class="line">    RadioButton activityRadioGenderMale;</div><div class="line">    <span class="meta">@Bind</span>(R.id.activity_description_edit_text)</div><div class="line">    EditText activityDescriptionEditText;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="keyword">private</span> IUserManager userManager;</div><div class="line">    <span class="keyword">private</span> Context context = <span class="keyword">this</span>;</div><div class="line">    <span class="keyword">private</span> NotifyListener listener1;</div><div class="line">    <span class="keyword">private</span> NotifyListener listener2;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line">        ButterKnife.bind(<span class="keyword">this</span>);</div><div class="line">        listener1 = <span class="keyword">new</span> NotifyListener(<span class="string">"lk"</span>,<span class="number">1</span>);</div><div class="line">        listener2 = <span class="keyword">new</span> NotifyListener(<span class="string">"wamcs"</span>,<span class="number">2</span>);</div><div class="line">        Intent intent = <span class="keyword">new</span> Intent(<span class="keyword">this</span>, MyService.class);</div><div class="line">        bindService(intent, connection, BIND_AUTO_CREATE);</div><div class="line">        initFromIntent();</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initFromIntent</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">        Intent intent = getIntent();<span class="comment">//隐式启动不为空</span></div><div class="line">        <span class="keyword">if</span> (<span class="keyword">null</span> == intent.getExtras())&#123;</div><div class="line">            Log.d(TAG, <span class="string">"initFromIntent: bundle is null"</span>);</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">        Bundle bundle = intent.getExtras();</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">null</span> == bundle.getParcelable(<span class="string">"user"</span>)) &#123;</div><div class="line">            Log.d(TAG, <span class="string">"initFromIntent: user is null"</span>);</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">        User user = bundle.getParcelable(<span class="string">"user"</span>);</div><div class="line"></div><div class="line"></div><div class="line">        String Gender = <span class="string">"male"</span>;</div><div class="line">        <span class="keyword">if</span> (<span class="number">0</span> == user.getGender())</div><div class="line">            Gender = <span class="string">"female"</span>;</div><div class="line">        Toast.makeText(context, <span class="string">"initFromIntent: name is "</span> + user.getName() + <span class="string">" gender is "</span> + Gender + <span class="string">" and he is "</span> + user.getDescription()</div><div class="line">                , Toast.LENGTH_SHORT).show();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    ServiceConnection connection = <span class="keyword">new</span> ServiceConnection() &#123;</div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onServiceConnected</span><span class="params">(ComponentName name, IBinder service)</span> </span>&#123;</div><div class="line">            userManager = IUserManager.Stub.asInterface(service);</div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                Log.d(TAG, <span class="string">"IBinder description is "</span> + service.getInterfaceDescriptor());</div><div class="line">                userManager.registerListener(listener1);</div><div class="line">                userManager.registerListener(listener2);</div><div class="line">            &#125; <span class="keyword">catch</span> (RemoteException e) &#123;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;</div><div class="line">            refresh();</div><div class="line"></div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onServiceDisconnected</span><span class="params">(ComponentName name)</span> </span>&#123;</div><div class="line"></div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="meta">@OnClick</span>(R.id.activity_add_button)</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">addData</span><span class="params">()</span> </span>&#123;</div><div class="line">        User.Builder builder = User.newBuilder();</div><div class="line">        Editable name = activityNameEditText.getText();</div><div class="line">        builder.name(name.toString());</div><div class="line">        <span class="keyword">if</span> (activityRadioGenderMale.isChecked()) &#123;</div><div class="line">            builder.gender(<span class="number">1</span>);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            builder.gender(<span class="number">0</span>);</div><div class="line">        &#125;</div><div class="line">        Editable description = activityDescriptionEditText.getText();</div><div class="line">        builder.description(description.toString());</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            userManager.addUser(builder.build());</div><div class="line">        &#125; <span class="keyword">catch</span> (RemoteException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@OnClick</span>(R.id.activity_refresh_button)</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">refresh</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            List&lt;User&gt; list = userManager.getUserList();</div><div class="line">            Log.d(TAG, <span class="string">"query user list, list type is"</span> + list.getClass().getCanonicalName());</div><div class="line">            <span class="keyword">for</span> (User item : list) &#123;</div><div class="line">                String Gender = <span class="string">"male"</span>;</div><div class="line">                <span class="keyword">if</span> (<span class="number">0</span> == item.getGender())</div><div class="line">                    Gender = <span class="string">"female"</span>;</div><div class="line">                Log.d(TAG, <span class="string">"userManager list: name is "</span> + item.getName() + <span class="string">" gender is "</span> + Gender + <span class="string">" and he is "</span> + item.getDescription());</div><div class="line"></div><div class="line">            &#125;</div><div class="line"></div><div class="line">        &#125; <span class="keyword">catch</span> (RemoteException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (userManager != <span class="keyword">null</span> &amp;&amp; userManager.asBinder().isBinderAlive())&#123;</div><div class="line"></div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                Log.d(TAG,<span class="string">"destroy unRegisterListener"</span>);</div><div class="line">                userManager.unRegisterListener(listener1);</div><div class="line">                userManager.unRegisterListener(listener2);</div><div class="line">            &#125; <span class="keyword">catch</span> (RemoteException e) &#123;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        unbindService(connection);</div><div class="line">        <span class="keyword">super</span>.onDestroy();</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">NotifyListener</span> <span class="keyword">extends</span> <span class="title">INotifyListener</span>.<span class="title">Stub</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">private</span> String name;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">int</span> index;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="title">NotifyListener</span><span class="params">(String name,<span class="keyword">int</span> index)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.name = name;</div><div class="line">            <span class="keyword">this</span>.index = index;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">newPeopleComing</span><span class="params">(User user)</span> <span class="keyword">throws</span> RemoteException </span>&#123;</div><div class="line">            Log.d(TAG,<span class="string">"NotifyListener "</span>+name+<span class="string">" new People coming: name is "</span> + user.getName() + <span class="string">" gender is "</span> + user.getGender() + <span class="string">" and he is "</span> + user.getDescription());</div><div class="line">            <span class="comment">//Toast.makeText(context,</span></div><div class="line">            <span class="comment">//        "NotifyListener "+name+" new People coming: name is " + user.getName() + " gender is " + user.getGender() + " and he is " + user.getDescription()</span></div><div class="line">            <span class="comment">//        , Toast.LENGTH_SHORT).show();</span></div><div class="line">            <span class="comment">//这样是无法显示的，会抛错</span></div><div class="line">            handler.obtainMessage(MESSAGE_NEW_PEOPLE_COMING, index, <span class="number">0</span>, user).sendToTarget();</div><div class="line"></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> Handler handler = <span class="keyword">new</span> Handler() &#123;</div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleMessage</span><span class="params">(Message msg)</span> </span>&#123;</div><div class="line">            <span class="keyword">switch</span> (msg.what)&#123;</div><div class="line">                <span class="keyword">case</span> MESSAGE_NEW_PEOPLE_COMING:</div><div class="line">                    User user = (User) msg.obj;</div><div class="line">                    Toast.makeText(context,</div><div class="line">                            <span class="string">"NotifyListener "</span>+msg.arg1+<span class="string">" new People coming: name is "</span> + user.getName() + <span class="string">" gender is "</span> + user.getGender() + <span class="string">" and he is "</span> + user.getDescription()</div><div class="line">                            , Toast.LENGTH_SHORT).show();</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                <span class="keyword">default</span>:</div><div class="line">                    <span class="keyword">super</span>.handleMessage(msg);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>客户端中，为了模拟多个观察者操作时的情况，实例创建了俩。注意的是当bindService时将NotifyListener传入方法时，这时Activity是服务端，而Service是客户端。在Binder的模型中，binder类的方法是运行在服务端的Binder线程池中的(客户端中的是Proxy)，由于不是主线程，在这些方法中无法进行UI操作，我们需要用一个hanlder切换到主线程操作UI。对于Binder的解释可以看另一篇说Binder的。</p>
+<h4 id="LOG"><a href="#LOG" class="headerlink" title="LOG"></a>LOG</h4><p>客户端<br><img src="http://7xt1ey.com1.z0.glb.clouddn.com/Client_listener.png" alt=""><br>服务端<br><img src="http://7xt1ey.com1.z0.glb.clouddn.com/Service_listener.png" alt=""></p>
+<p>服务端打出的log中出现了奇怪的东西，listener不存在，明明是传进去的是同一个对象，为什么会发生这样的情况。<br><br>原因就是在现在Service作为服务端，CopyOnWriteArrayList<inotifylistener>里放着的根本不是Binder对象，而是Proxy对象，Binder会将客户端传来的对象转化为Proxy(在Serivce可能Binder的asInterface方法底层调用，或者Binder进行了类似的处理)，即使传入的是同一个对象，但是每次新建的Proxy是不同的，这也就是不存在的原因了</inotifylistener></p>
+<h4 id="RemoteCallbackList"><a href="#RemoteCallbackList" class="headerlink" title="RemoteCallbackList"></a>RemoteCallbackList</h4><p>从上面可以看出普通的方法是不奏效的，由于Binder的机制，在Binder提供了RemoteCallbackList来实现这种功能。<br><br>RemoteCallbackList是一个泛型，支持管理任意的AIDL接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RemoteCallbackList</span>&lt;<span class="title">E</span> <span class="keyword">extends</span> <span class="title">IInterface</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>我们进入它的源码，可以看到有一个Map结构<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">ArrayMap&lt;IBinder, Callback&gt; mCallbacks = <span class="keyword">new</span> ArrayMap&lt;IBinder, Callback&gt;();</div></pre></td></tr></table></figure></p>
+<p>map结构的key是IBinder，value是Callback,Callback中封装了真正远程的listener，当客户端注册listener时，会把这个listener信息存入mCallbacks中</p>
+<p>虽然多长跨进程传输客户端的同一个对象会在服务端生成不同的对象，但是他们底层的Binder对象是同一个，那么在解注册的时候就历遍所有的listener，找到和解注册listener有相同Binder对象的服务端listener，然后删除就好。RemoteCallbackList做的就是这种事情，只不过保持了线程安全。</p>
+<p>我们要做的是，把服务端中的CopyOnWriteArrayList换成RemoteCallbackList</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">private</span> RemoteCallbackList&lt;INotifyListener&gt; mListenerList = <span class="keyword">new</span> RemoteCallbackList&lt;&gt;();</div></pre></td></tr></table></figure>
+<p>更改接口方法的实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">registerListener</span><span class="params">(INotifyListener listener)</span> <span class="keyword">throws</span> RemoteException </span>&#123;</div><div class="line">    mListenerList.register(listener);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">unRegisterListener</span><span class="params">(INotifyListener listener)</span> <span class="keyword">throws</span> RemoteException </span>&#123;    </div><div class="line">    mListenerList.unregister(listener);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>更改通知<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">onNewPeopleComing</span><span class="params">(User user)</span> <span class="keyword">throws</span> RemoteException </span>&#123;</div><div class="line">        mUserList.add(user);</div><div class="line">        dispatchNotify(user);</div><div class="line"></div><div class="line">        <span class="keyword">final</span> <span class="keyword">int</span> N = mListenerList.beginBroadcast();</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;N;i++)&#123;</div><div class="line">            mListenerList.getBroadcastItem(i).newPeopleComing(user);</div><div class="line">        &#125;</div><div class="line">        mListenerList.finishBroadcast();</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>来看看log,很明显这次成功了<br><img src="http://7xt1ey.com1.z0.glb.clouddn.com/Service_RemoteCallbackList.png" alt=""></p>
+<p><strong>PS：关于RemoteCallbackList的一些说明</strong></p>
+<ul>
+<li>RemoteCallbackList并不是一个真正的list，所以foreach语句是不能用的(list的相关操作均不可行)，如果遍历的话，老老实实的用普通的历遍吧</li>
+<li>注意beginBroadcast和finishBroadcast的配套使用</li>
+</ul>
+<p>我们可以去源码看一下</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">beginBroadcast</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">synchronized</span> (mCallbacks) &#123;</div><div class="line">        <span class="keyword">if</span> (mBroadcastCount &gt; <span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(</div><div class="line">                    <span class="string">"beginBroadcast() called while already in a broadcast"</span>);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">final</span> <span class="keyword">int</span> N = mBroadcastCount = mCallbacks.size();</div><div class="line">        <span class="keyword">if</span> (N &lt;= <span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        &#125;</div><div class="line">        Object[] active = mActiveBroadcast;</div><div class="line">        <span class="keyword">if</span> (active == <span class="keyword">null</span> || active.length &lt; N) &#123;</div><div class="line">            mActiveBroadcast = active = <span class="keyword">new</span> Object[N];</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;N; i++) &#123;</div><div class="line">            active[i] = mCallbacks.valueAt(i);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> N;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">finishBroadcast</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (mBroadcastCount &lt; <span class="number">0</span>) &#123;</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(</div><div class="line">                <span class="string">"finishBroadcast() called outside of a broadcast"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    Object[] active = mActiveBroadcast;</div><div class="line">    <span class="keyword">if</span> (active != <span class="keyword">null</span>) &#123;</div><div class="line">        <span class="keyword">final</span> <span class="keyword">int</span> N = mBroadcastCount;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;N; i++) &#123;</div><div class="line">            active[i] = <span class="keyword">null</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    mBroadcastCount = -<span class="number">1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>  其实对数据进行了一份拷贝，这样做的意义在于不会一直锁着mCallbacks,使得别的线程不能操作。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/04/10/android/AIDL-下/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          AIDL(下)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/04/07/android/AIDL-上/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">AIDL(上)</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="android/AIDL-中" data-title="AIDL(中)" data-url="wamcs.github.io/2016/04/10/android/AIDL-中/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 wamcs
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: undefined,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: undefined
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

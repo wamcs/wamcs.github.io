@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>数据结构与算法分析（五） | wamcs hood</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="此系列为数据结构与算法分析C++描述学习后的笔记
+排序插入排序插入排序的实现思路是对于N个数的排序，对于P=1趟到P=N-1趟，0到P是排好序的。时间复杂度O(N^2)
+12345678910void InsertSort(ElementType A[], int N)&amp;#123;  ElementType temp;  for (int i = 1; i &amp;lt; N; i++) &amp;#123;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构与算法分析（五）">
+<meta property="og:url" content="wamcs.github.io/2016/03/22/数据结构与算法分析/数据结构与算法分析（五）/index.html">
+<meta property="og:site_name" content="wamcs hood">
+<meta property="og:description" content="此系列为数据结构与算法分析C++描述学习后的笔记
+排序插入排序插入排序的实现思路是对于N个数的排序，对于P=1趟到P=N-1趟，0到P是排好序的。时间复杂度O(N^2)
+12345678910void InsertSort(ElementType A[], int N)&amp;#123;  ElementType temp;  for (int i = 1; i &amp;lt; N; i++) &amp;#123;">
+<meta property="og:updated_time" content="2016-09-02T12:28:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据结构与算法分析（五）">
+<meta name="twitter:description" content="此系列为数据结构与算法分析C++描述学习后的笔记
+排序插入排序插入排序的实现思路是对于N个数的排序，对于P=1趟到P=N-1趟，0到P是排好序的。时间复杂度O(N^2)
+12345678910void InsertSort(ElementType A[], int N)&amp;#123;  ElementType temp;  for (int i = 1; i &amp;lt; N; i++) &amp;#123;">
+  
+    <link rel="alternative" href="/atom.xml" title="wamcs hood" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/img/header_picture.jpg" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">wamcs</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Rome was not built in a day</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+						<li>Über</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/" title="github">github</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android-Test/" style="font-size: 10px;">Android Test</a> <a href="/tags/Android-代码记录/" style="font-size: 10px;">Android 代码记录</a> <a href="/tags/Android-基础/" style="font-size: 20px;">Android 基础</a> <a href="/tags/Android-库/" style="font-size: 10px;">Android 库</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/sql语法/" style="font-size: 10px;">sql语法</a> <a href="/tags/数据结构/" style="font-size: 20px;">数据结构</a> <a href="/tags/网络基础/" style="font-size: 15px;">网络基础</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">nothing is true，everything is permitted</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">wamcs</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img src="/img/header_picture.jpg" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">wamcs</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Rome was not built in a day</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/" title="github">github</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-数据结构与算法分析/数据结构与算法分析（五）" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/22/数据结构与算法分析/数据结构与算法分析（五）/" class="article-date">
+  	<time datetime="2016-03-22T15:08:37.000Z" itemprop="datePublished">2016-03-22</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      数据结构与算法分析（五）
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构/">数据结构</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/数据结构与算法/">数据结构与算法</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>此系列为数据结构与算法分析C++描述学习后的笔记</strong></p>
+<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><p>插入排序的实现思路是对于N个数的排序，对于P=1趟到P=N-1趟，0到P是排好序的。时间复杂度O(N^2)</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">InsertSort</span><span class="params">(ElementType A[], <span class="keyword">int</span> N)</span></span>&#123;</div><div class="line">  ElementType temp;</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; N; i++) &#123;</div><div class="line">    temp=A[i];</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = i; j&gt;<span class="number">0</span> &amp;&amp; A[j<span class="number">-1</span>]&gt;A[j]; j--) &#123;</div><div class="line">      A[j]=A[j<span class="number">-1</span>];</div><div class="line">    &#125;</div><div class="line">    A[j]=temp;</div><div class="line">  &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h3><p>希尔排序将数组中的元素分间隔进行排序，然后间隔逐渐减小，直到间隔为一，例如先划分间隔为5，则将数组分为5份，间隔为5的元素在一组，对其进行排序。之后减小间隔，变为3，继续划分，最后变为1。划分并不去产生新的数组保存数据，直接在原数组排序。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">shellsort</span><span class="params">(<span class="keyword">int</span> arr[],<span class="keyword">int</span> len)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> gap,i,j;</div><div class="line">    <span class="keyword">int</span> temp;</div><div class="line">    <span class="keyword">for</span>(gap=len&gt;&gt;<span class="number">1</span>;gap&gt;<span class="number">0</span>;gap&gt;&gt;<span class="number">1</span>)</div><div class="line">        <span class="keyword">for</span>(i=gap;i&lt;len;i++)</div><div class="line">        &#123;</div><div class="line">             temp=arr[i];</div><div class="line">             <span class="keyword">for</span>(j=i-gap;arr[j]&gt;temp&amp;&amp;j&gt;<span class="number">0</span>;j-=gap)</div><div class="line">                arr[j+gap]=arr[j];</div><div class="line">             arr[j+gap]=temp;</div><div class="line">        &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>特别的shell排序的时间受到所选增量的影响 其最坏的运行时间为O(N^2)</strong></p>
+<ul>
+<li>Hibbard：{1, 3, …, 2^k-1}</li>
+<li>Sedgewick：{1, 5, 19, 41, 109…} 该序列中的项或者是94^i - 92^i + 1或者是4^i - 3*2^i + 1</li>
+</ul>
+<h3 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h3><p>利用优先队列排序，由于优先队列的排序时间为O(N logN),加之建立堆的时间是O(N),执行DeleteMin的时间总共为O(N),故总的运算时间为O(N logN)。但空间上增加了一倍。</p>
+<p>不过实践中慢于Sedgewick增量序列的shell排序。</p>
+<h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h3><p>采用分冶，之后将有序俩子列合并的思路。<br><a href="http://blog.csdn.net/morewindows/article/details/6678165/" target="_blank" rel="external">代码以及文字引用处</a></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//将有二个有序数列a[first...mid]和a[mid...last]合并。  </span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">mergearray</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> first, <span class="keyword">int</span> mid, <span class="keyword">int</span> last, <span class="keyword">int</span> temp[])</span>  </span></div><div class="line">&#123;  </div><div class="line">    <span class="keyword">int</span> i = first, j = mid + <span class="number">1</span>;  </div><div class="line">    <span class="keyword">int</span> m = mid,   n = last;  </div><div class="line">    <span class="keyword">int</span> k = <span class="number">0</span>;  </div><div class="line"></div><div class="line">    <span class="keyword">while</span> (i &lt;= m &amp;&amp; j &lt;= n)  </div><div class="line">    &#123;  </div><div class="line">        <span class="keyword">if</span> (a[i] &lt;= a[j])  </div><div class="line">            temp[k++] = a[i++];  </div><div class="line">        <span class="keyword">else</span>  </div><div class="line">            temp[k++] = a[j++];  </div><div class="line">    &#125;  </div><div class="line"></div><div class="line">    <span class="keyword">while</span> (i &lt;= m)  </div><div class="line">        temp[k++] = a[i++];  </div><div class="line"></div><div class="line">    <span class="keyword">while</span> (j &lt;= n)  </div><div class="line">        temp[k++] = a[j++];  </div><div class="line"></div><div class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; k; i++)  </div><div class="line">        a[first + i] = temp[i];  </div><div class="line">&#125;  </div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">mergesort</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> first, <span class="keyword">int</span> last, <span class="keyword">int</span> temp[])</span>  </span></div><div class="line">&#123;  </div><div class="line">    <span class="keyword">if</span> (first &lt; last)  </div><div class="line">    &#123;  </div><div class="line">        <span class="keyword">int</span> mid = (first + last) / <span class="number">2</span>;  </div><div class="line">        mergesort(a, first, mid, temp);    <span class="comment">//左边有序  </span></div><div class="line">        mergesort(a, mid + <span class="number">1</span>, last, temp); <span class="comment">//右边有序  </span></div><div class="line">        mergearray(a, first, mid, last, temp); <span class="comment">//再将二个有序数列合并  </span></div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line"></div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">MergeSort</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> n)</span>  </span></div><div class="line">&#123;  </div><div class="line">    <span class="keyword">int</span> *p = <span class="keyword">new</span> <span class="keyword">int</span>[n];  </div><div class="line">    <span class="keyword">if</span> (p == <span class="literal">NULL</span>)  </div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;  </div><div class="line">    mergesort(a, <span class="number">0</span>, n - <span class="number">1</span>, p);  </div><div class="line">    <span class="built_in">free</span>(p);  </div><div class="line">    <span class="keyword">return</span> <span class="literal">true</span>;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>解决了上面的合并有序数列问题，再来看归并排序，其的基本思路就是将数组分成二组A，B，如果这二组组内的数据都是有序的，那么就可以很方便的将这二组数据进行排序。如何让这二组组内数据有序了？</p>
+<p>可以将A，B组各自再分成二组。依次类推，当分出来的小组只有一个数据时，可以认为这个小组组内已经达到了有序，然后再合并相邻的二个小组就可以了。这样通过先递归的分解数列，再合并数列就完成了归并排序。</p>
+</blockquote>
+<h3 id="快排"><a href="#快排" class="headerlink" title="快排"></a>快排</h3><p>选取枢纽元，将数组分开，使用快排分别排序，是分冶的一种思路</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">quicksort</span><span class="params">(<span class="keyword">int</span> arr[],<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span>(l&gt;=r)</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    <span class="keyword">int</span> c=adjustArray(arr,l,r);</div><div class="line">    quicksort(arr,l,c<span class="number">-1</span>);</div><div class="line">    quicksort(arr,c+<span class="number">1</span>,r);</div><div class="line"></div><div class="line">&#125;</div><div class="line"><span class="comment">//r为数组最后一位</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">adjustArray</span><span class="params">(<span class="keyword">int</span> arr[],<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> state=arr[r];</div><div class="line">    <span class="keyword">int</span> i=l;</div><div class="line">    <span class="keyword">int</span> j=r<span class="number">-1</span>;</div><div class="line">    <span class="keyword">int</span> temp;</div><div class="line">    <span class="keyword">for</span>(;;)&#123;</div><div class="line">        <span class="keyword">for</span>(;arr[i]&lt;state;i++)&#123;&#125;</div><div class="line">        <span class="keyword">for</span>(;arr[j]&gt;=state;j--)&#123;&#125;</div><div class="line">        <span class="keyword">if</span>(i&lt;j)&#123;</div><div class="line">            temp=arr[i];</div><div class="line">            arr[i]=arr[j];</div><div class="line">            arr[j]=temp;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span></div><div class="line">            <span class="keyword">break</span>;</div><div class="line">    &#125;</div><div class="line">    temp=arr[i];</div><div class="line">    arr[i]=state;</div><div class="line">    arr[r]=temp;</div><div class="line">    <span class="keyword">return</span> i;</div><div class="line"></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>此处采取的枢纽元为数组的最后一位，另有别的选取方法<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//三数中值分割</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">Median3</span><span class="params">(<span class="keyword">int</span> A[],<span class="keyword">int</span> left,<span class="keyword">int</span> right)</span></span>&#123;</div><div class="line">  <span class="keyword">int</span> center = (left+right)/<span class="number">2</span>;</div><div class="line">  <span class="keyword">if</span> (A[left]&gt;A[center])&#123;</div><div class="line">    swap(&amp;A[left],&amp;A[center]);</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">if</span> (A[left]&gt;A[right])&#123;</div><div class="line">    swap(&amp;A[left],&amp;A[right]);</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">if</span> (A[center]&gt;A[right])&#123;</div><div class="line">    swap(&amp;A[center],&amp;A[right]);</div><div class="line">  &#125;</div><div class="line">  <span class="comment">//使得这三点顺序排好，取中间点为枢纽元</span></div><div class="line"></div><div class="line">  swap(&amp;A[center],&amp;A[right<span class="number">-1</span>]);</div><div class="line">  <span class="keyword">return</span> A[right<span class="number">-1</span>];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>快排时间在O(N logN)</p>
+<h3 id="other排序"><a href="#other排序" class="headerlink" title="other排序"></a>other排序</h3><p>这部分没有细看，列几个名词以后看</p>
+<ul>
+<li>决策数</li>
+<li>外部排序</li>
+<li>筒式排序</li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/03/23/数据结构与算法分析/数据结构与算法分析（六）/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          数据结构与算法分析 (六)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/03/21/数据结构与算法分析/数据结构与算法分析（四）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">数据结构与算法分析（四）</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="数据结构与算法分析/数据结构与算法分析（五）" data-title="数据结构与算法分析（五）" data-url="wamcs.github.io/2016/03/22/数据结构与算法分析/数据结构与算法分析（五）/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 wamcs
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: undefined,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: undefined
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

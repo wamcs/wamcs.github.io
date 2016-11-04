@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>AIDL(下) | wamcs hood</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="AIDL这一篇终于要结束拉2333">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AIDL(下)">
+<meta property="og:url" content="wamcs.github.io/2016/04/10/android/AIDL-下/index.html">
+<meta property="og:site_name" content="wamcs hood">
+<meta property="og:description" content="AIDL这一篇终于要结束拉2333">
+<meta property="og:updated_time" content="2016-09-02T12:30:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AIDL(下)">
+<meta name="twitter:description" content="AIDL这一篇终于要结束拉2333">
+  
+    <link rel="alternative" href="/atom.xml" title="wamcs hood" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/img/header_picture.jpg" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">wamcs</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Rome was not built in a day</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+						<li>Über</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/" title="github">github</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android-Test/" style="font-size: 10px;">Android Test</a> <a href="/tags/Android-代码记录/" style="font-size: 10px;">Android 代码记录</a> <a href="/tags/Android-基础/" style="font-size: 20px;">Android 基础</a> <a href="/tags/Android-库/" style="font-size: 10px;">Android 库</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/sql语法/" style="font-size: 10px;">sql语法</a> <a href="/tags/数据结构/" style="font-size: 20px;">数据结构</a> <a href="/tags/网络基础/" style="font-size: 15px;">网络基础</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">nothing is true，everything is permitted</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">wamcs</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img src="/img/header_picture.jpg" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">wamcs</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Rome was not built in a day</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/" title="github">github</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-android/AIDL-下" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/10/android/AIDL-下/" class="article-date">
+  	<time datetime="2016-04-10T13:45:45.000Z" itemprop="datePublished">2016-04-10</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      AIDL(下)
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android-基础/">Android 基础</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Android/">Android</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="AIDL"><a href="#AIDL" class="headerlink" title="AIDL"></a>AIDL</h1><p>这一篇终于要结束拉2333</p>
+<a id="more"></a>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="BinderPool"><a href="#BinderPool" class="headerlink" title="BinderPool"></a>BinderPool</h3><p>Binder连接池是用来解决多模块都需要使用AIDL方式进行进程间通信的情况，按照在之前的说到的做法，每一个通信搞个Service显然太浪费了，而且数量多了，Service的使用量会不会趋于无穷？显然这样的做法是不合理的。</p>
+<p>解决的思路也很简单，sservice一个就够了，我们搞一个连接池，在连接池内部进行不同模块的识别和处理。</p>
+<p>提供两个AIDL接口,实现代码就不写了<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// IRect.aidl</span></div><div class="line"><span class="keyword">package</span> wamcs.ipctest.aidl;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">IRect</span> </span>&#123;</div><div class="line">   <span class="function"><span class="keyword">int</span> <span class="title">area</span><span class="params">(<span class="keyword">int</span> length,<span class="keyword">int</span> width)</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// ICompute.aidl</span></div><div class="line"><span class="keyword">package</span> wamcs.ipctest.aidl;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">ICompute</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>下面是连接池的AIDL接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> wamcs.ipctest.aidl;</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">IBinderPool</span> </span>&#123;</div><div class="line">      <span class="function">IBinder <span class="title">queryBinder</span><span class="params">(<span class="keyword">int</span> binderCode)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>服务端由于处理都由BinderPool干了，所以onBind时只要返回一个BinderPool的Binder类就好<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SecondService</span> <span class="keyword">extends</span> <span class="title">Service</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"secondService"</span>;</div><div class="line">    <span class="keyword">private</span> IBinder binder = <span class="keyword">new</span> BinderPool.BinderPoolImpl();</div><div class="line"></div><div class="line">    <span class="meta">@Nullable</span></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> IBinder <span class="title">onBind</span><span class="params">(Intent intent)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> binder;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>BinderPool的实现<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BinderPool</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"BinderPool"</span>;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> BINDER_COMPUTE = <span class="number">1</span>;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> BINDER_RECT = <span class="number">2</span>;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> Context mContext;</div><div class="line">    <span class="keyword">private</span> IBinderPool mIBinderPool;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">volatile</span> BinderPool mPool;</div><div class="line">    <span class="keyword">private</span> CountDownLatch countDownLatch;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">BinderPool</span><span class="params">(Context context)</span></span>&#123;</div><div class="line">        mContext = context.getApplicationContext();</div><div class="line">        connectBinderPoolService();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> BinderPool <span class="title">getInstance</span><span class="params">(Context context)</span></span>&#123;</div><div class="line">        <span class="keyword">if</span>(mPool == <span class="keyword">null</span>)&#123;</div><div class="line">            <span class="keyword">synchronized</span> (BinderPool.class)&#123;</div><div class="line">                <span class="keyword">if</span> (mPool == <span class="keyword">null</span>)&#123;</div><div class="line">                    mPool = <span class="keyword">new</span> BinderPool(context);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> mPool;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">connectBinderPoolService</span><span class="params">()</span></span>&#123;</div><div class="line">        countDownLatch = <span class="keyword">new</span> CountDownLatch(<span class="number">1</span>);</div><div class="line">        Intent intent =<span class="keyword">new</span> Intent(mContext,SecondService.class);</div><div class="line">        mContext.bindService(intent,mConnection,Context.BIND_AUTO_CREATE);</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            countDownLatch.await();</div><div class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> IBinder <span class="title">queryBinder</span><span class="params">(<span class="keyword">int</span> binderCode)</span> </span>&#123;</div><div class="line">        IBinder binder = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            <span class="keyword">if</span> (mIBinderPool != <span class="keyword">null</span>) &#123;</div><div class="line">                binder = mIBinderPool.queryBinder(binderCode);</div><div class="line">            &#125;</div><div class="line">        &#125; <span class="keyword">catch</span> (RemoteException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> binder;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> ServiceConnection mConnection = <span class="keyword">new</span> ServiceConnection() &#123;</div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onServiceConnected</span><span class="params">(ComponentName name, IBinder service)</span> </span>&#123;</div><div class="line">            mIBinderPool = IBinderPool.Stub.asInterface(service);</div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                mIBinderPool.asBinder().linkToDeath(deathRecipient,<span class="number">0</span>);</div><div class="line">            &#125; <span class="keyword">catch</span> (RemoteException e) &#123;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;</div><div class="line">            countDownLatch.countDown();</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onServiceDisconnected</span><span class="params">(ComponentName name)</span> </span>&#123;</div><div class="line"></div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> IBinder.DeathRecipient deathRecipient = <span class="keyword">new</span> IBinder.DeathRecipient() &#123;</div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">binderDied</span><span class="params">()</span> </span>&#123;</div><div class="line">            Log.d(TAG,<span class="string">"binder died"</span>);</div><div class="line">            mIBinderPool.asBinder().unlinkToDeath(deathRecipient, <span class="number">0</span>);</div><div class="line">            mIBinderPool = <span class="keyword">null</span>;</div><div class="line">            connectBinderPoolService();</div><div class="line"></div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">BinderPoolImpl</span> <span class="keyword">extends</span> <span class="title">IBinderPool</span>.<span class="title">Stub</span> </span>&#123;</div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> IBinder <span class="title">queryBinder</span><span class="params">(<span class="keyword">int</span> binderCode)</span> <span class="keyword">throws</span> RemoteException </span>&#123;</div><div class="line">            IBinder binder = <span class="keyword">null</span>;</div><div class="line">            <span class="keyword">switch</span> (binderCode)&#123;</div><div class="line">                <span class="keyword">case</span> BINDER_COMPUTE:</div><div class="line">                    binder= <span class="keyword">new</span> Compute();</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                <span class="keyword">case</span> BINDER_RECT:</div><div class="line">                    binder= <span class="keyword">new</span> Rect();</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line"></div><div class="line">            &#125;</div><div class="line">            <span class="keyword">return</span> binder;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>客户端调用<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SecondActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"secondActivity"</span>;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> GET_DATA = <span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> Handler mHandler =<span class="keyword">new</span> Handler()&#123;</div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleMessage</span><span class="params">(Message msg)</span> </span>&#123;</div><div class="line">            <span class="keyword">switch</span> (msg.what)&#123;</div><div class="line">                <span class="keyword">case</span> GET_DATA:</div><div class="line">                    Toast.makeText(SecondActivity.<span class="keyword">this</span>,<span class="string">"按钮"</span>+msg.arg2+<span class="string">"结果为"</span>+msg.arg1,Toast.LENGTH_SHORT).show();</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                <span class="keyword">default</span>:</div><div class="line">                    <span class="keyword">super</span>.handleMessage(msg);</div><div class="line"></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="meta">@OnClick</span>(R.id.activity_add_button)</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">addButton</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">                <span class="keyword">try</span> &#123;</div><div class="line">                    doWork(<span class="number">1</span>);</div><div class="line">                &#125; <span class="keyword">catch</span> (RemoteException e) &#123;</div><div class="line">                    e.printStackTrace();</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;).start();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@OnClick</span>(R.id.activity_area_button)</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">area</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">                <span class="keyword">try</span> &#123;</div><div class="line">                    doWork(<span class="number">2</span>);</div><div class="line">                &#125; <span class="keyword">catch</span> (RemoteException e) &#123;</div><div class="line">                    e.printStackTrace();</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;).start();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_second);</div><div class="line">        ButterKnife.bind(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">doWork</span><span class="params">(<span class="keyword">int</span> code)</span> <span class="keyword">throws</span> RemoteException </span>&#123;</div><div class="line">        BinderPool binderPool = BinderPool.getInstance(SecondActivity.<span class="keyword">this</span>);</div><div class="line">        IBinder binder;</div><div class="line">        <span class="keyword">int</span> number;</div><div class="line">        <span class="keyword">switch</span> (code)&#123;</div><div class="line">            <span class="keyword">case</span> <span class="number">1</span>:</div><div class="line">                binder = binderPool.queryBinder(BinderPool.BINDER_COMPUTE);</div><div class="line">                ICompute compute = ICompute.Stub.asInterface(binder);</div><div class="line">                number = compute.add(<span class="number">3</span>, <span class="number">5</span>);</div><div class="line">                mHandler.obtainMessage(GET_DATA,number,<span class="number">1</span>).sendToTarget();</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> <span class="number">2</span>:</div><div class="line">                binder = binderPool.queryBinder(BinderPool.BINDER_RECT);</div><div class="line">                IRect rect = IRect.Stub.asInterface(binder);</div><div class="line">                number = rect.area(<span class="number">3</span>, <span class="number">5</span>);</div><div class="line">                mHandler.obtainMessage(GET_DATA,number,<span class="number">2</span>).sendToTarget();</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>有些要说明一下，由于BinderPool这职责是处理不同的请求然后返回对应请求的模块，所有的请求操作都会经过它，当然多线程请求是正常不过的，所以在这里要处理好线程的同步，我们可以看到BinderPool的单例模式使用了volatile和synchronized的方法，这样是因为java底层在初始化类时并不是一步完成，所以会出现混乱导致单例失败。而后面的bindService方法本来是异步方法，为了线程安全，ServiceConnection先初始化再进行绑定，用countDownLatch搞成了同步方法，当然这样会使得方法耗时，所以在客户端会新开线程运行。</p>
+<h2 id="补充说明"><a href="#补充说明" class="headerlink" title="补充说明"></a>补充说明</h2><ol>
+<li>切忌在客户端的UI线程中调用服务端的耗时方法，因为调用远程方法时，本地的线程会被挂起，如果是耗时操作且还是UI线程发起调用，那么结果只能是ANR</li>
+<li>onServiceConnected和onServiceDisconnected都是运行在UI线程中的所以参见上条</li>
+<li>服务端的方法本来就是运行在Binder线程池中的，没啥事就别在方法中开线程了。</li>
+<li>为了程序的健壮性，要处理当Binder意外死亡的情况。有两种方法，一种是设置死亡代理，即设置DeathRecipient监听，死了就重连续命；另一种是在onServiceDisconnected中重连。区别在于onServiceConnected运行在主线程，binderDied运行在binder线程池</li>
+<li>设置权限</li>
+</ol>
+<h3 id="设置权限"><a href="#设置权限" class="headerlink" title="设置权限"></a>设置权限</h3><p>远程服务在默认情况下是任何人都可以连接的，不想出现这种情况就需要加权限验证。有两种常用方法，一种在onBind里做手脚，一种在Binder的onTransact类做手脚</p>
+<p>无论如何，首先要自己来定义permission</p>
+<p>Android权限被分为四个等级：</p>
+<ul>
+<li>普通级：<br>  这些权限并不能真正伤害到用户（比如更换壁纸），当程序需要这些权限是，开发者不需要指定程序会自动赋予这些权限。</li>
+<li>危险级：<br>  这些权限可能会带来真的伤害（比如打电话，打开网络链接等），如果要使用它们需要开发者在AndroidManifest.xml中声明对应的权限。</li>
+<li>签名级：<br>  如果应用使用的是相同的签名证书时，这些权限会自动授予给声明或者创建这些权限的程序。设计这一层级权限的目的是方便组件间数据共享。</li>
+<li>签名/系统级：<br>  和签名级一样，例外的是系统镜像是自动获取这些权限的，这一层级是专为设备制造商设计的。</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">permission</span></span></div><div class="line">  <span class="attr">android:name</span>=<span class="string">"com.wamcs.ipctest.permission.ACCESS_SERVICE"</span></div><div class="line">  <span class="attr">android:protectionLevel</span>=<span class="string">"normal"</span>/&gt;</div></pre></td></tr></table></figure>
+<p>绑定添加<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"com.wamcs.ipctest.permission.ACCESS_SERVICE"</span>/&gt;</span></div></pre></td></tr></table></figure></p>
+<h4 id="onBind"><a href="#onBind" class="headerlink" title="onBind"></a>onBind</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> IBinder <span class="title">onBind</span><span class="params">(Intent intent)</span></span>&#123;</div><div class="line">  <span class="keyword">int</span> check = checkCallingOrSelfPermission(<span class="string">"com.wamcs.ipctest.permission.ACCESS_SERVICE"</span>);</div><div class="line">  <span class="keyword">if</span> (check == PackageManager.PERMISSION_DENIED)&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> mBinder;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="onTransact"><a href="#onTransact" class="headerlink" title="onTransact"></a>onTransact</h4><p>使用这个方法的原因是，在这个方法中返回false的话，客户端的请求会被拒绝，我们可以验证权限，也可以验证包名<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTransact</span><span class="params">(<span class="keyword">int</span> code, Parcel data, Parcel reply, <span class="keyword">int</span> flags)</span></span></div><div class="line">                <span class="keyword">throws</span> RemoteException &#123;</div><div class="line">            <span class="keyword">int</span> check = checkCallingOrSelfPermission(<span class="string">"com.wamcs.ipctest.permission.ACCESS_SERVICE"</span>);</div><div class="line">            <span class="keyword">if</span> (check == PackageManager.PERMISSION_DENIED)&#123;</div><div class="line">              <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            String packageName = <span class="keyword">null</span>;</div><div class="line">            String[] packages = getPackageManager().getPackagesForUid(</div><div class="line">                    getCallingUid());</div><div class="line">            <span class="keyword">if</span> (packages != <span class="keyword">null</span> &amp;&amp; packages.length &gt; <span class="number">0</span>) &#123;</div><div class="line">                packageName = packages[<span class="number">0</span>];</div><div class="line">            &#125;</div><div class="line">            Log.d(TAG, <span class="string">"onTransact: "</span> + packageName);</div><div class="line">            <span class="keyword">if</span> (!packageName.startsWith(<span class="string">"com.wamcs"</span>)) &#123;</div><div class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="keyword">return</span> <span class="keyword">super</span>.onTransact(code, data, reply, flags);</div><div class="line">        &#125;</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/04/16/网络/运输层/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          运输层
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/04/10/android/AIDL-中/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">AIDL(中)</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="android/AIDL-下" data-title="AIDL(下)" data-url="wamcs.github.io/2016/04/10/android/AIDL-下/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 wamcs
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: undefined,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: undefined
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

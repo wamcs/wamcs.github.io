@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>数据结构与算法分析 (六) | wamcs hood</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="此系列为数据结构与算法分析C++描述学习后的笔记
+图论图的详细定义见离散数学。在离散中，对于图的表示是采用邻接矩阵做的，当然在计算机中可以使用多维数组表示，对于大规模数据，特别是内部0点比较多的，可以采用邻接表来实现。对每个顶点，使用一个表来储存所有与之邻接的点，这些点中可以储存边权。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构与算法分析 (六)">
+<meta property="og:url" content="wamcs.github.io/2016/03/23/数据结构与算法分析/数据结构与算法分析（六）/index.html">
+<meta property="og:site_name" content="wamcs hood">
+<meta property="og:description" content="此系列为数据结构与算法分析C++描述学习后的笔记
+图论图的详细定义见离散数学。在离散中，对于图的表示是采用邻接矩阵做的，当然在计算机中可以使用多维数组表示，对于大规模数据，特别是内部0点比较多的，可以采用邻接表来实现。对每个顶点，使用一个表来储存所有与之邻接的点，这些点中可以储存边权。">
+<meta property="og:image" content="wamcs.github.io/\images\邻接表.png">
+<meta property="og:image" content="http://7xt1ey.com1.z0.glb.clouddn.com/networkStream1.png">
+<meta property="og:image" content="http://7xt1ey.com1.z0.glb.clouddn.com/networkStream1.png">
+<meta property="og:image" content="http://7xt1ey.com1.z0.glb.clouddn.com/networkStream2.png">
+<meta property="og:image" content="http://7xt1ey.com1.z0.glb.clouddn.com/networkStream3.png">
+<meta property="og:image" content="http://7xt1ey.com1.z0.glb.clouddn.com/networkStream4.png">
+<meta property="og:updated_time" content="2016-09-02T12:28:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据结构与算法分析 (六)">
+<meta name="twitter:description" content="此系列为数据结构与算法分析C++描述学习后的笔记
+图论图的详细定义见离散数学。在离散中，对于图的表示是采用邻接矩阵做的，当然在计算机中可以使用多维数组表示，对于大规模数据，特别是内部0点比较多的，可以采用邻接表来实现。对每个顶点，使用一个表来储存所有与之邻接的点，这些点中可以储存边权。">
+<meta name="twitter:image" content="wamcs.github.io/\images\邻接表.png">
+  
+    <link rel="alternative" href="/atom.xml" title="wamcs hood" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/img/header_picture.jpg" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">wamcs</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Rome was not built in a day</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+						<li>Über</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/" title="github">github</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android-Test/" style="font-size: 10px;">Android Test</a> <a href="/tags/Android-代码记录/" style="font-size: 10px;">Android 代码记录</a> <a href="/tags/Android-基础/" style="font-size: 20px;">Android 基础</a> <a href="/tags/Android-库/" style="font-size: 10px;">Android 库</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/sql语法/" style="font-size: 10px;">sql语法</a> <a href="/tags/数据结构/" style="font-size: 20px;">数据结构</a> <a href="/tags/网络基础/" style="font-size: 15px;">网络基础</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">nothing is true，everything is permitted</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">wamcs</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img src="/img/header_picture.jpg" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">wamcs</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Rome was not built in a day</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/" title="github">github</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-数据结构与算法分析/数据结构与算法分析（六）" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/23/数据结构与算法分析/数据结构与算法分析（六）/" class="article-date">
+  	<time datetime="2016-03-23T05:20:27.000Z" itemprop="datePublished">2016-03-23</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      数据结构与算法分析 (六)
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构/">数据结构</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/数据结构与算法/">数据结构与算法</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>此系列为数据结构与算法分析C++描述学习后的笔记</strong></p>
+<h2 id="图论"><a href="#图论" class="headerlink" title="图论"></a>图论</h2><p>图的详细定义见离散数学。在离散中，对于图的表示是采用邻接矩阵做的，当然在计算机中可以使用多维数组表示，对于大规模数据，特别是内部0点比较多的，可以采用邻接表来实现。对每个顶点，使用一个表来储存所有与之邻接的点，这些点中可以储存边权。</p>
+<p><img src="\images\邻接表.png" alt="邻接表"></p>
+<a id="more"></a>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> Node</div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> dest;                    <span class="comment">//邻接边的弧头结点序号</span></div><div class="line">    <span class="keyword">int</span> weight;                    <span class="comment">//权值信息</span></div><div class="line">    <span class="keyword">struct</span> Node *next;            <span class="comment">//指向下一条邻接边</span></div><div class="line">&#125;Edge;                            <span class="comment">//单链表结点的结构体</span></div><div class="line"></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span></div><div class="line">&#123;</div><div class="line">    DataType data;                <span class="comment">//结点的一些数据，比如名字</span></div><div class="line">    <span class="keyword">int</span> sorce;                    <span class="comment">//邻接边的弧尾结点序号</span></div><div class="line">    Edge *adj;                    <span class="comment">//邻接边头指针</span></div><div class="line">&#125;AdjHeight;                        <span class="comment">//数组的数据元素类型的结构体</span></div><div class="line"></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span></div><div class="line">&#123;</div><div class="line">    AdjHeight a[MaxVertices];    <span class="comment">//邻接表数组</span></div><div class="line">    <span class="keyword">int</span> numOfVerts;                <span class="comment">//结点个数</span></div><div class="line">    <span class="keyword">int</span> numOfEdges;                <span class="comment">//边个数</span></div><div class="line">&#125;AdjGraph;                        <span class="comment">//邻接表结构体</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>转自<a href="http://www.cnblogs.com/g0feng/archive/2012/09/18/2690913.html" target="_blank" rel="external">基于邻接表建图的几种方法</a></p>
+</blockquote>
+<hr>
+<h3 id="拓扑排序"><a href="#拓扑排序" class="headerlink" title="拓扑排序"></a>拓扑排序</h3><p>拓扑排序是对于无圈图的顶点的一种排序方式，它使得如果存在一条从vi到vj的路径，那么排序时vj出现在vi后面。</p>
+<p>拓扑排序的思路是先找出任一一个没有入度为0的点，然后取出该点，并将其与其边一起删除。继续寻找，并进行排序，直到结束。</p>
+<p>伪代码：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">Topsort</span><span class="params">(Graph G)</span></span>&#123;</div><div class="line">  <span class="keyword">int</span> Counter;</div><div class="line">  Vertex V,W;<span class="comment">//节点</span></div><div class="line">  <span class="keyword">for</span> (Counter =<span class="number">0</span>; Counter&lt;NumVertex; Counter++ )&#123;</div><div class="line">    V=FindNewVertexOfIndegreeZero();<span class="comment">//寻找入度为0的点</span></div><div class="line">    <span class="keyword">if</span> (V=NoAVertex)&#123;</div><div class="line">      <span class="keyword">break</span>;<span class="comment">//该图为有圈图</span></div><div class="line">    &#125;</div><div class="line">    TopNum[Counter]=V;</div><div class="line">    <span class="keyword">for</span> each W adjacent to V</div><div class="line">        Indegree[W]--;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这样实现带来的问题是对入度为零点的扫描，每次都要对整个数组进行扫描，无形中浪费了时间。为解决这个问题，采用一个盒子来装入度为0的点，在V的相邻节点入度减小后判断是否降为0，如果是0则放入盒子中，下次<strong>FindNewVertexOfIndegreeZero()</strong>时直接从盒子中获取。盒子的实现一般采用堆或者队列。后面在广搜的地方也会用到。</p>
+<hr>
+<h3 id="最短路径问题"><a href="#最短路径问题" class="headerlink" title="最短路径问题"></a>最短路径问题</h3><h4 id="无权最短路"><a href="#无权最短路" class="headerlink" title="无权最短路"></a>无权最短路</h4><p>一种解决办法是使用<strong>广度优先搜索</strong>(BFS)</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">Queue Q;</div><div class="line">Vertex V,W;</div><div class="line">Q = CreateQueue(NumVertex);</div><div class="line">MakeEmpty(Q);</div><div class="line"></div><div class="line"><span class="keyword">while</span> (!isEmpty(Q)) &#123;</div><div class="line">  V=Dequeue(Q);</div><div class="line">  T[V].Know=<span class="literal">true</span>;</div><div class="line">  <span class="function"><span class="keyword">for</span> each W adjacent to V</span></div><div class="line">    <span class="title">if</span> <span class="params">(!T[W].Dist == Indinity)</span>&#123;</div><div class="line">      <span class="comment">//Indinity可设为-1,注意此处不能使用Know来判断</span></div><div class="line">      T[W].Dist=T[V].Dist+<span class="number">1</span>;</div><div class="line">      T[W].Path=V;</div><div class="line">      Enqueue(W,Q);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>广度优先顾名思义优先广度，树是一种特殊的图，用树来理解的话这种搜索优先搜索同一深度的节点，当这一深度的节点不存在时进行下一深度的搜索，仔细思考下队列中的数据入队出队顺序，采取的就是BFS。</p>
+<h4 id="Dijkstra算法"><a href="#Dijkstra算法" class="headerlink" title="Dijkstra算法"></a>Dijkstra算法</h4><p>这种算法用来处理赋权图，当然无权图的权值可以看为1，所以这种算法是解决这一问题的一般方法。这种算法属于greedy algorithm。</p>
+<p>思路与上面是相同的，不过由于权的增加，不能够单纯使用队列，最为合适的结构是使用堆，并且dist要进行判断更新。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> Vertex</div><div class="line"></div><div class="line"><span class="keyword">struct</span> TableEntry&#123;</div><div class="line">  List Header;<span class="comment">//邻接表</span></div><div class="line">  <span class="keyword">int</span> Know;</div><div class="line">  DistType Dist;</div><div class="line">  Vertex path;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> NoAVertex(-1)</span></div><div class="line"><span class="keyword">typedef</span> TableEntry Table[NumVertex]</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">InitTable</span><span class="params">(Vertex start,Graph G, Table T)</span></span>&#123;</div><div class="line">  <span class="keyword">int</span> i;</div><div class="line">  ReadGrap(G,T)</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;NumVertex; i++)&#123;</div><div class="line">    T[i].Know=False;</div><div class="line">    T[i].Dist=Infinity;</div><div class="line">    T[i].Path=NoAVertex;</div><div class="line">  &#125;</div><div class="line">  T[start].Dist=<span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">//邻接表的初始化</span></div><div class="line"></div><div class="line"><span class="comment">//V为结束点</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">printPath</span><span class="params">(Vertex V, Table T)</span></span>&#123;</div><div class="line">  <span class="keyword">if</span> (T[V].Path != NoAVertex )&#123;</div><div class="line">    printPath(T[V].Path,T);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"to"</span>);</div><div class="line">  &#125;</div><div class="line">  <span class="built_in">printf</span>(<span class="string">"%v"</span>, V);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">Dijkstra</span><span class="params">(Table T)</span></span>&#123;</div><div class="line">  Vertex V,W;</div><div class="line">  <span class="keyword">for</span> (;;)&#123;</div><div class="line">    V=smallest unknow distance vertex;</div><div class="line">    <span class="keyword">if</span> (V == NoAVertex)&#123;</div><div class="line">      <span class="keyword">break</span>;</div><div class="line">    &#125;</div><div class="line">    T[V].Know=<span class="literal">true</span>;</div><div class="line">    <span class="function"><span class="keyword">for</span> each W adjacent to V</span></div><div class="line">      <span class="title">if</span> <span class="params">(!T[W].Know)</span>&#123;</div><div class="line">        <span class="keyword">if</span> (T[V].Dist+Cvw&lt;T[W].Dist)&#123;</div><div class="line">          Decrease(T[W].Dist to T[V].Dist+Cvw);</div><div class="line">          <span class="comment">//这里Cvw指的是(v,w)的边权，如果相加权值小于现在的权值，那么将现在的权值updata为相加的权值，并updata堆</span></div><div class="line">          T[W].Path=V;</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="具有负边值的图"><a href="#具有负边值的图" class="headerlink" title="具有负边值的图"></a>具有负边值的图</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">WeightedNegative</span><span class="params">(Table T)</span></span>&#123;</div><div class="line">  Queue Q;</div><div class="line">  Vertex V,W;</div><div class="line">  Q = CreateQueue(NumVertex);</div><div class="line">  MakeEmpty(Q);</div><div class="line"></div><div class="line">  <span class="keyword">while</span> (!isEmpty(Q)) &#123;</div><div class="line">    V=Dequeue(Q);</div><div class="line">    <span class="function"><span class="keyword">for</span> each W adjacent to V</span></div><div class="line">      <span class="title">if</span> <span class="params">(T[V].Dist+Cvw&lt;T[W].Dist)</span>&#123;</div><div class="line">        T[W].Dist=T[V].Dist+Cvw;</div><div class="line">        T[W].Path=V;</div><div class="line">        <span class="keyword">if</span> (W is not already in Q)</div><div class="line">           Enqueue(W,Q);</div><div class="line">      &#125;</div><div class="line">  &#125;</div><div class="line">  DisposeQueue(Q);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>大致的思路是每一阶段让一个顶点出队，找到与v邻接的顶点w，使得dw &gt; dv +Cvw。然后更新dw，pw，并在w不在队列时把它放入队列。重复直到队列为空。</p>
+<p>此算法要求没有负值圈，不然会陷入死循环。特别的每个点最多允许出队|V|次，|V|为图中所有点的数量。</p>
+<h3 id="网络流"><a href="#网络流" class="headerlink" title="网络流"></a>网络流</h3><h4 id="Ford-Fulkerson算法（一个简单的最大流算法）"><a href="#Ford-Fulkerson算法（一个简单的最大流算法）" class="headerlink" title="Ford-Fulkerson算法（一个简单的最大流算法）"></a>Ford-Fulkerson算法（一个简单的最大流算法）</h4><p>基本思路很简单,每次用dfs从源到汇找一条可行路径，然后把这条路塞满。这条路径上容量最小的那条边的容量，就是这次dfs所找到的流量。然后对于路径上的每条边，其容量要减去刚才找到的流量。这样，每次dfs都可能增大流量，直到某次dfs找不到可行路径为止，最大流就求出来了</p>
+<p>然而这样实现会发生问题</p>
+<p>例如：</p>
+<p><img src="http://7xt1ey.com1.z0.glb.clouddn.com/networkStream1.png" alt="networkStream"></p>
+<p>这样走显然得到的最大流为100，然而最大流能够达到200。</p>
+<p>所以在一次路径选择结束后加入反向流，可以允许流的取消</p>
+<p>第一次路径选择</p>
+<p><img src="http://7xt1ey.com1.z0.glb.clouddn.com/networkStream1.png" alt="networkStream"></p>
+<p>加入反向流<br><img src="http://7xt1ey.com1.z0.glb.clouddn.com/networkStream2.png" alt="networkStream"></p>
+<p>再次BFS<br><img src="http://7xt1ey.com1.z0.glb.clouddn.com/networkStream3.png" alt="networkStream"></p>
+<p>加入反向流，此时从起点到终点无通路，结束<br><img src="http://7xt1ey.com1.z0.glb.clouddn.com/networkStream4.png" alt="networkStream"></p>
+<p>上述是该算法的大致流程</p>
+<h4 id="网络流基本概念"><a href="#网络流基本概念" class="headerlink" title="网络流基本概念"></a>网络流基本概念</h4><p>解决最大流问题要分阶段进行，我们从图G中可以构造一个<strong>流图</strong>Gf，一个<strong>残余图Gr(residual graph)</strong><br>初始化时，Gf和G中的节点相同，但边值均为0，Gr和G相同</p>
+<p>每个阶段寻找Gf中从起点到终点的一条路径，这条路径叫做增长通路，这条路上的最小边值就是可以添加到路径每一边上的流的量。</p>
+<p>然后流图中要加入这条流，残余图中要去掉这条流，如此进行下去直至残余图中起点和终点找不到通路，流图中获取到的就是最大流。</p>
+<h3 id="最小生成树"><a href="#最小生成树" class="headerlink" title="最小生成树"></a>最小生成树</h3><p>这个在离散中也有（骚年好好学数学吧），用的是破圈法，即找到圈就破掉，不过这种办法不好用算法实现，这里主要给出两种算法Prim和Kruskal</p>
+<ul>
+<li>Prim：</li>
+</ul>
+<p>这种算法的实现和Dijkstra算法一样，思路是对于一个起始点，将其作为根节点，然后挑选距离其最近的节点，作为下一个进行搜索的点，对于别的点的处理和Dijkstra算法的一样</p>
+<ul>
+<li>Kruskal：</li>
+</ul>
+<p>这种算法是一种greedy algorithm,思路是寻找边权最小的边，用这些边连接起最小树，当遇到会构成圈的时候跳过不取。<br>实现思路也比较简单，使用一个堆维护所有边，每次取出堆顶元素，将其连接的端点放入一个set中，一直继续到所有的点都在一个集合中，这期间若有一条边的俩端点已经在同一个set中则舍弃这条边。</p>
+<p>下面这种是别人的一种实现方法<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> &#123;</div><div class="line">  <span class="keyword">char</span> vertex[VertexNum]; <span class="comment">//顶点表</span></div><div class="line">  <span class="keyword">int</span> edges[VertexNum][VertexNum]; <span class="comment">//邻接矩阵,可看做边表</span></div><div class="line">  <span class="keyword">int</span> n,e; <span class="comment">//图中当前的顶点数和边数</span></div><div class="line">&#125;MGraph;</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> node &#123;</div><div class="line">  <span class="keyword">int</span> u; <span class="comment">//边的起始顶点</span></div><div class="line">  <span class="keyword">int</span> v; <span class="comment">//边的终止顶点</span></div><div class="line">  <span class="keyword">int</span> w; <span class="comment">//边的权值</span></div><div class="line">&#125;Edge;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">kruskal</span><span class="params">(MGraph G)</span> </span>&#123;</div><div class="line">  <span class="keyword">int</span> i,j,u1,v1,sn1,sn2,k;</div><div class="line">  <span class="keyword">int</span> vset[VertexNum]; <span class="comment">//辅助数组，判定两个顶点是否连通</span></div><div class="line">  <span class="keyword">int</span> E[EdgeNum]; <span class="comment">//存放所有的边 k=0;</span></div><div class="line">  <span class="comment">//E数组的下标从0开始</span></div><div class="line">  <span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;G.n;i++) &#123;</div><div class="line">    <span class="keyword">for</span> (j=<span class="number">0</span>;j&lt;G.n;j++) &#123;</div><div class="line">      <span class="keyword">if</span> (G.edges[i][j]!=<span class="number">0</span> &amp;&amp; G.edges[i][j]!=INF) &#123;</div><div class="line">        E[k].u=i; E[k].v=j; E[k].w=G.edges[i][j]; k++;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;<span class="comment">//初始化</span></div><div class="line">  heapsort(E,k,<span class="keyword">sizeof</span>(E[<span class="number">0</span>])); <span class="comment">//堆排序</span></div><div class="line">  <span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;G.n;i++) <span class="comment">//初始化辅助数组</span></div><div class="line">  &#123; vset[i]=i; &#125;</div><div class="line">  k=<span class="number">1</span>; <span class="comment">//生成的边数，最后要刚好为总边数</span></div><div class="line">  j=<span class="number">0</span>; <span class="comment">//E中的下标</span></div><div class="line">  <span class="keyword">while</span> (k&lt;G.n) &#123;</div><div class="line">    sn1=vset[E[j].u];</div><div class="line">    sn2=vset[E[j].v]; <span class="comment">//得到两顶点属于的集合编号</span></div><div class="line">    <span class="keyword">if</span> (sn1!=sn2) <span class="comment">//不在同一集合编号内的话，把边加入最小生成树</span></div><div class="line">    &#123;</div><div class="line">      <span class="built_in">printf</span>(<span class="string">"%d ---&gt; %d, %d"</span>,E[j].u,E[j].v,E[j].w); k++;</div><div class="line">      <span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;G.n;i++) &#123;</div><div class="line">        <span class="keyword">if</span> (vset[i]==sn2) &#123;</div><div class="line">          vset[i]=sn1;</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    j++;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这种方式实现会有些浪费时间。。</p>
+<blockquote>
+<p><a href="http://www.cnblogs.com/biyeymyhjob/archive/2012/07/30/2615542.html" target="_blank" rel="external">最小生成树-Prim算法和Kruskal算法</a></p>
+</blockquote>
+<h3 id="深度优先搜索（DFS）"><a href="#深度优先搜索（DFS）" class="headerlink" title="深度优先搜索（DFS）"></a>深度优先搜索（DFS）</h3><p>这是对先序历遍的推广。模板如下：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">Dfs</span><span class="params">(Vertex V)</span></span>&#123;</div><div class="line">  Visited[V] = True;</div><div class="line">  <span class="function"><span class="keyword">for</span> each W adjacent to V</span></div><div class="line">      <span class="title">if</span> <span class="params">(!Visited[W])</span></div><div class="line">          <span class="title">Dfs</span><span class="params">(W)</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>DFS的一些应用没细看了（强连通，欧拉回路，哈密尔顿圈。。。orz感觉一票离散的东西，去看看离散中的解释吧，还有四色地图的补图，因垂丝汀）</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/03/23/SQL/sql语法/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Sql语法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/03/22/数据结构与算法分析/数据结构与算法分析（五）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">数据结构与算法分析（五）</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="数据结构与算法分析/数据结构与算法分析（六）" data-title="数据结构与算法分析 (六)" data-url="wamcs.github.io/2016/03/23/数据结构与算法分析/数据结构与算法分析（六）/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 wamcs
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: undefined,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: undefined
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

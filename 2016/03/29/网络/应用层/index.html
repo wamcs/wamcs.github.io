@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>应用层 | wamcs hood</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="应用层互联网协议栈的最顶层。
+网络应用程序的体系结构
+客户机/服务器体系结构
+对等体系结构（p2p）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="应用层">
+<meta property="og:url" content="wamcs.github.io/2016/03/29/网络/应用层/index.html">
+<meta property="og:site_name" content="wamcs hood">
+<meta property="og:description" content="应用层互联网协议栈的最顶层。
+网络应用程序的体系结构
+客户机/服务器体系结构
+对等体系结构（p2p）">
+<meta property="og:updated_time" content="2016-09-02T12:29:13.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="应用层">
+<meta name="twitter:description" content="应用层互联网协议栈的最顶层。
+网络应用程序的体系结构
+客户机/服务器体系结构
+对等体系结构（p2p）">
+  
+    <link rel="alternative" href="/atom.xml" title="wamcs hood" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/img/header_picture.jpg" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">wamcs</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Rome was not built in a day</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+						<li>Über</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/" title="github">github</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android-Test/" style="font-size: 10px;">Android Test</a> <a href="/tags/Android-代码记录/" style="font-size: 10px;">Android 代码记录</a> <a href="/tags/Android-基础/" style="font-size: 20px;">Android 基础</a> <a href="/tags/Android-库/" style="font-size: 10px;">Android 库</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/sql语法/" style="font-size: 10px;">sql语法</a> <a href="/tags/数据结构/" style="font-size: 20px;">数据结构</a> <a href="/tags/网络基础/" style="font-size: 15px;">网络基础</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">nothing is true，everything is permitted</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">wamcs</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img src="/img/header_picture.jpg" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">wamcs</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Rome was not built in a day</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/" title="github">github</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-网络/应用层" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/29/网络/应用层/" class="article-date">
+  	<time datetime="2016-03-29T14:42:50.000Z" itemprop="datePublished">2016-03-29</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      应用层
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络基础/">网络基础</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/网络/">网络</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h2><p>互联网协议栈的最顶层。</p>
+<h3 id="网络应用程序的体系结构"><a href="#网络应用程序的体系结构" class="headerlink" title="网络应用程序的体系结构"></a>网络应用程序的体系结构</h3><ul>
+<li>客户机/服务器体系结构</li>
+<li>对等体系结构（p2p）</li>
+</ul>
+<a id="more"></a>
+<h3 id="进程通信"><a href="#进程通信" class="headerlink" title="进程通信"></a>进程通信</h3><p>不同端系统上的进程通过跨越计算机网络交换 <strong>报文</strong> 进行相互通信</p>
+<p><strong>对客户机和服务器的定义是在一对进程之间的通信中，发起请求的是客户机，等待通信的是服务器。</strong> 所以这两者的身份并不是固定的。只不过在通常的客户机/服务器体系中，由于分工的明确，使得身份固化。</p>
+<p>每个进程通过一个称为 <strong>套接字(socket)</strong> 的如见接口在网络上发送和接收报文。</p>
+<p>运输层协议为应用程序提供的服务：</p>
+<ul>
+<li><p>可靠数据传输</p>
+</li>
+<li><p>吞吐量</p>
+<p>可用吞吐量指的是发送进程向接收进程交付比特的速率。</p>
+</li>
+<li><p>定时</p>
+<p>对需要数据交付有严格时间限制的应用，比如因特网电话，虚拟环境，电视会议，多方游戏……</p>
+</li>
+<li><p>安全性</p>
+</li>
+</ul>
+<h4 id="TCP服务"><a href="#TCP服务" class="headerlink" title="TCP服务"></a>TCP服务</h4><ul>
+<li><p>面向连接服务</p>
+<p>在传输开始之前有三次握手，提示做好传输准备。握手后，双方建立一个TCP连接。此连接是 <strong>双工（意即连接双方的进程可以在此连接上同时进行报文收发）</strong> 的。当报文发送结束，连接被拆除。</p>
+</li>
+<li><p>可靠的数据传输</p>
+<p>TCP传输数据时，无差错，按顺序的交付发送数据</p>
+</li>
+<li><p>拥塞控制机制</p>
+<p>当发送方和接收方之间的网络出现拥塞时，TCP协议的拥塞控制机制会抑制发送进程。</p>
+</li>
+</ul>
+<h4 id="UDP服务"><a href="#UDP服务" class="headerlink" title="UDP服务"></a>UDP服务</h4><p>UDP的许多特性与TCP相反，比如连接前没有握手，数据传输不可靠，没有拥塞控制机制</p>
+<h4 id="进程寻址"><a href="#进程寻址" class="headerlink" title="进程寻址"></a>进程寻址</h4><p>为了识别接收进程，定义了两种信息</p>
+<ul>
+<li>该主机的名称或者地址（IP）</li>
+<li>用来指定主机上接收进程的标识（端口）</li>
+</ul>
+<h4 id="流行的Internet应用及其协议"><a href="#流行的Internet应用及其协议" class="headerlink" title="流行的Internet应用及其协议"></a>流行的Internet应用及其协议</h4><table>
+<thead>
+<tr>
+<th>应用</th>
+<th>应用层协议</th>
+<th>支撑的运输层协议</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>email</td>
+<td>SMTP[RFC2821]</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>远程终端</td>
+<td>Telnet[RFC854]</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>Web</td>
+<td>Http[RFC2616]</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>file transfer</td>
+<td>FTP[RFC959]</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>流媒体</td>
+<td>Http、RTP</td>
+<td>TCP or UDP</td>
+</tr>
+<tr>
+<td>Internet telephone</td>
+<td>SIP、RTP或专用（Skype）</td>
+<td>usually UDP</td>
+</tr>
+</tbody>
+</table>
+<h3 id="具体应用"><a href="#具体应用" class="headerlink" title="具体应用"></a>具体应用</h3><h4 id="1-Web和Http"><a href="#1-Web和Http" class="headerlink" title="1.Web和Http"></a>1.Web和Http</h4><p><strong>超文本传送协议(HyperText Transfer Protocol,Http)</strong><br>Http协议由两部分程序实现，一个客户机程序和一个服务器程序。</p>
+<p><strong>注意</strong> 服务器在向客户机发送被请求文件时，并不存储任何关于该客户机的信息。故Http是一种 <strong>无状态协议（stateless protocol）</strong>。</p>
+<p>介绍两个概念</p>
+<ul>
+<li>非持久连接：每个请求/响应是经过一个 <strong>单独</strong> 的TCP连接发送</li>
+<li>持久连接:所有请求/响应是经过一个 <strong>相同</strong> 的TCP连接发送</li>
+</ul>
+<h5 id="Http报文"><a href="#Http报文" class="headerlink" title="Http报文"></a>Http报文</h5><h6 id="Http请求报文"><a href="#Http请求报文" class="headerlink" title="Http请求报文"></a>Http请求报文</h6><p>典型的Http请求报文如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">GET /somedir/page.html Http/1.1</div><div class="line">Host: www.someschool.edu</div><div class="line">Connection: close</div><div class="line">User-agent: Mozilla/4.0</div><div class="line">Accept-language: fr</div></pre></td></tr></table></figure>
+<p>实际上的请求报文可以有更多行或者仅有一行。</p>
+<p>HTTP请求报文的第一行叫做 <strong>请求行(request line)</strong> 请求行有三个字段：<strong>方法字段</strong>、<strong>URL字段</strong>、<strong>HTTP协议版本字段</strong>。方法字段可以取值：GET，POST，HEAD，PUT，DELETE。</p>
+<p>请求行的后继行叫做 <strong>首部行(header line)</strong>。首部行 <em>Host: www.someschool.edu</em> 定义了目标所在的主机，这个信息是Web代理高速缓存所需要的。首部行 <em>Connection: close</em> 告诉服务器在发送完被请求对象后就关闭连接，不使用持久连接。<em>User-agent</em> 首部行用来定义用户代理，即向服务器发送请求的浏览器类型。服务器根据该信息可以正确的为不同类型的用户代理实际发送相同对象的不同版本。<em>Accept-language</em> 首部行表示用户想得到对象的语言版本。</p>
+<p>在首部行后有一个 <strong>“实体主体”(entity body)</strong>。使用GET方法时为空，使用POST方法时才会用到。</p>
+<p>拓展URL，在URL后面附加查询要求，在URL后加？，？后面添加查询要求，用&amp;隔开，例如：www.somesite.com/animalsearch?monkey&amp;bananas</p>
+<p>HEAD类似于GET方法。当服务器接收到使用HEAD方法的请求时，会用一个HTTP报文响应，但不返回对象。常用其进行故障跟踪。PUT方法用于将对象上传到指定的web服务器的指定路径。DELETE方法用于删除服务器上的对象。</p>
+<h6 id="HTTP响应报文"><a href="#HTTP响应报文" class="headerlink" title="HTTP响应报文"></a>HTTP响应报文</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">HTTP/1.1 200 OK</div><div class="line">Connection: close</div><div class="line">Date: Thu, 03 Jul 2003 12:00:15 GMT</div><div class="line">Server: Apache/1.3.0 (Unix)</div><div class="line">Last-Modified: Sun, 6 May 2007 09:23:24 GMT</div><div class="line">Content-Length: 6821</div><div class="line">Content-Type: text/html</div><div class="line"></div><div class="line">(data data data data data data ......)</div></pre></td></tr></table></figure>
+<p>该报文分为三部分：一个初始 <strong>状态行(status line)</strong> , 之后 <strong>首部行(header line)</strong> ,然后 <strong>实体主体(entity body)</strong></p>
+<p>状态行包括：<strong>协议版本</strong> ，<strong>状态码</strong> 和相应的 <strong>状态信息</strong></p>
+<p>状态码：</p>
+<ul>
+<li>200 OK：请求成功，信息在返回报文中</li>
+<li>301 Moved Permanently： 请求对象已经被永久转移，新的URL定义在响应报文的Location：首部行中指定。客户机软件自动用新的URL获取该对象</li>
+<li>400 Bad Request: 一个通用差错代码，指示该请求不能被服务器理解</li>
+<li>404 Not Found： 被请求的文档不在服务器上</li>
+<li>505 HTTP Version Not Supported： 服务器不支持请求报文使用的HTTP协议版本</li>
+</ul>
+<p>首部行和请求报文的首部行类似， <em>Connection: close</em> 通知客户机在报文发送完毕后关闭连接。<em>Date:</em> 指示服务器产生并发送该响应报文的时间。该时间指的是服务器从文件系统中检索到对象、插入响应报文并发送的时间。<br><em>Content-Length</em> 指的是报文中数据的大小（字节数）。 <em>Content-Type</em> 指的是实体主体中的对象类型。</p>
+<h6 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h6><p>cookie由四个部分组成</p>
+<ol>
+<li>HTTP响应报文中有cookie首部行（Set-cookie）</li>
+<li>HTTP请求报文中有cookie首部行（Cookie）</li>
+<li>用户端系统中保留有cookie文件，由浏览器管理</li>
+<li>web站点有一个后端数据库  </li>
+</ol>
+<blockquote>
+<p>因为HTTP协议是无状态的，即服务器不知道用户上一次做了什么，这严重阻碍了交互式Web应用程序的实现。在典型的网上购物场景中，用户浏览了几个页面，买了一盒饼干和两饮料。最后结帐时，由于HTTP的无状态性，不通过额外的手段，服务器并不知道用户到底买了什么。</p>
+<p>所以Cookie就是用来绕开HTTP的无状态性的“额外手段”之一。服务器可以设置或读取Cookies中包含信息，借此维护用户跟服务器会话中的状态。<br>在刚才的购物场景中，当用户选购了第一项商品，服务器在向用户发送网页的同时，还发送了一段Cookie，记录着那项商品的信息。当用户访问另一个页面，浏览器会把Cookie发送给服务器，于是服务器知道他之前选购了什么。用户继续选购饮料，服务器就在原来那段Cookie里追加新的商品信息。结帐时，服务器读取发送来的Cookie就行了。</p>
+<p>Cookie另一个典型的应用是当登录一个网站时，网站往往会请求用户输入用户名和密码，并且用户可以勾选“下次自动登录”。如果勾选了，那么下次访问同一网站时，用户会发现没输入用户名和密码就已经登录了。这正是因为前一次登录时，服务器发送了包含登录凭据（用户名加密码的某种加密形式）的Cookie到用户的硬盘上。第二次登录时，（如果该Cookie尚未到期）浏览器会发送该Cookie，服务器验证凭据，于是不必输入用户名和密码就让用户登录了。</p>
+<p> From <a href="https://zh.wikipedia.org/wiki/Cookie" target="_blank" rel="external">wikipedia Cookie</a></p>
+</blockquote>
+<h4 id="2-文件传输协议FTP"><a href="#2-文件传输协议FTP" class="headerlink" title="2.文件传输协议FTP"></a>2.文件传输协议FTP</h4><p>传输过程：用户通过一个FTP用户代理与FTP交互，先提供远程主机的主机名，本地的FTP客户机进程建立一个到远程主机的FTP服务器的TCP连接。然后用户提供用户标识和口令，作为FTP命令的一部分在该TCP连接上传送。一旦获取到该服务器提供授权，用户就可以进行文件的传输。</p>
+<p>FTP使用两个并行的TCP连接来传输文件。一个是 <strong>控制连接(controll connection)</strong> ,另一个是 <strong>数据连接(data connection)</strong> 。控制连接用于在两个主机间传输控制信息，eg：用户标识，口令，改变远程目录的命令，以及PUT和GET文件的命令（感觉应该是用于传命令和通讯的通道），数据连接用于传输文件。</p>
+<p>由于FTP协议使用一个分离的控制连接，所以我们称FTP的控制信息是 <strong>带外(out-of-band)</strong> 传送。而对于HTTP来说，在传输文件的TCP连接中发送请求和响应首部行，所以称为 <strong>带内（in-band）</strong> 发送控制信息。</p>
+<p>显然FTP的数据连接时非持久的，而且FTP服务器在整个会话期间需要保留用户的状态信息。用于确定用户所在远程目录树的位置。</p>
+<p>FTP命令：</p>
+<ul>
+<li>USER username： 用户标识</li>
+<li>PASS password： 口令</li>
+<li>LIST： 用于请求服务器返回远程主机当前目录的所有文件列表。文件列表在数据连接上传输。</li>
+<li>RETR filename： 用于远程主机的当前目录检索（get）文件。该命令触发一个数据连接，在该连接上传输文件。</li>
+<li>STOR filename：用于远程主机的当前目录存放（put）文件</li>
+</ul>
+<p>FTP回答：</p>
+<ul>
+<li>331 Username OK，Password required</li>
+<li>125 Data connection already open;transfer starting;</li>
+<li>425: Can’t open data connection</li>
+<li>452: Error write file</li>
+</ul>
+<h4 id="3-Email"><a href="#3-Email" class="headerlink" title="3.Email"></a>3.Email</h4><p>有三个组成部分：<strong>用户代理(user agent)</strong>, <strong>邮件服务器(mail server)</strong>, <strong>简单邮件传输协议(Simple Mail Transfer Protocol,SMTP)</strong>。</p>
+<p>具体结构是每个接收方在某个服务器上有一个邮箱，管理和维护发给他的报文。</p>
+<p>发送过程是：从发送方的用户代理开始，传输到发送方的邮件服务器，再由此服务器发给接收方服务器，然后被分发到接收者的邮箱中。</p>
+<h5 id="STMP"><a href="#STMP" class="headerlink" title="STMP"></a>STMP</h5><p>STMP的缺陷在于这种遗留下来的技术限制所有邮件报文的主体部分（并不只限于首部）只能采用简单的7位ASCII码表示，对于传输多媒体数据文件就比较蛋疼了。</p>
+<p>STMP一般不使用中间邮件服务器发送邮件，如果接收方的服务器处于未开机状态，那么邮件会暂存在发送方的邮件服务器上</p>
+<h5 id="邮件报文和MIME"><a href="#邮件报文和MIME" class="headerlink" title="邮件报文和MIME"></a>邮件报文和MIME</h5><h6 id="发送报文"><a href="#发送报文" class="headerlink" title="发送报文"></a>发送报文</h6><p>典型发送报文如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">From: alice@crepes.fr</div><div class="line">To: bob@hamburger.edu</div><div class="line">Subject: Searching for the meaning of life</div></pre></td></tr></table></figure></p>
+<p>在报文首部后，紧接的是一个空白行，然后是ASCII格式表示的报文主体</p>
+<h6 id="MIME"><a href="#MIME" class="headerlink" title="MIME"></a>MIME</h6><p><strong>多用途因特网邮件拓展(Multipurpose Intern Mail Extension, MIME)</strong> 是应对于为发送非ASCII文本格式的内容而要在报文中使用附加的首部行的情形。</p>
+<p>支持MIME的两个关键的首部行是 <strong>Content-Type</strong> 和 <strong>Content-Transfer-Encoding</strong> 。<br><em>Content-Type</em> 首部行允许接收用户代理对报文采取适当的动作，本身指明报文主体内容。<br><em>Content-Transfer-Encoding</em> 指明非ASCII报文转化为ASCII报文所用的编码类型，根据这个对报文主体进行还原。</p>
+<p>示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">From: alice@crepes.fr</div><div class="line">To: bob@hamburger.edu</div><div class="line">Subject: Picture of yummy crepe</div><div class="line">MIME-Version: 1.0</div><div class="line">Content-Transfer-Encoding: base64</div><div class="line">Content-Type: image/jpeg</div><div class="line">(base64 encoded data ...</div><div class="line">  .......................</div><div class="line">  ...........  base64 encoded data)</div></pre></td></tr></table></figure></p>
+<h6 id="接收报文"><a href="#接收报文" class="headerlink" title="接收报文"></a>接收报文</h6><p>示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Received: from crepes.fr by hamburger.edu; 12 Oct 98 15:27:39 GMT</div><div class="line">From: alice@crepes.fr</div><div class="line">To: bob@hamburger.edu</div><div class="line">Subject: Picture of yummy crepe</div><div class="line">MIME-Version: 1.0</div><div class="line">Content-Transfer-Encoding: base64</div><div class="line">Content-Type: image/jpeg</div><div class="line">(base64 encoded data ...</div><div class="line">  .......................</div><div class="line">  ...........  base64 encoded data)</div></pre></td></tr></table></figure>
+<p>Received行可能有多个，或者有更加复杂的Return-Path,这是因为有的邮件在发送方和接收方之间的路径上要经过不止一个SMTP服务器的转发。</p>
+<h5 id="邮件访问协议"><a href="#邮件访问协议" class="headerlink" title="邮件访问协议"></a>邮件访问协议</h5><ul>
+<li>POP3<ul>
+<li>第一阶段：特许阶段，用户代理发送用户名和口令来鉴别用户</li>
+<li>第二阶段：事物处理阶段，用户代理取回报文，并且对报文做一些操作，如对报文做删除标记，取消报文删除标记，获取邮件的统计信息等</li>
+<li>第三阶段，更新阶段，用于结束会话。并在此时邮件服务器删除那些被标记为删除的报文</li>
+</ul>
+</li>
+<li>IMAP</li>
+</ul>
+<h4 id="4-DNS"><a href="#4-DNS" class="headerlink" title="4.DNS"></a>4.DNS</h4><p><strong>域名系统(Domain Name System)</strong> 用于主机名到IP地址的转化。DNS是有两层含义，一指一个由分层的DNS服务器实现的分布式数据库；二是指一个运行主机查询分布式数据库的协议。</p>
+<p>DNS除了主机名到IP地址的转化外还有别的一些重要的服务</p>
+<ul>
+<li><strong>主机别名(host aliasing)</strong> 有着复杂主机名的主机可以拥有一个或多个别名 eg：一台名为relay1.west-coast.enterprise.com的主机可能有两个别名 ——— enterprise.com 和www.enterprise.com,其中relay1.west-coast.enterprise.com叫做规范主机名。</li>
+<li><strong>邮件服务器别名(mail server aliasing)</strong></li>
+<li><strong>负载分配(load distribution)</strong> 繁忙的站点北冗余地分布在多台服务器上，每台服务器运行在不同的端系统上。这些服务器的IP做为一个集，与一个主机名对应。当用户搜索该主机名时，会得到所有IP的返回报文，不过DNS会对这些IP进行顺序进行修改</li>
+</ul>
+<h5 id="DNS工作机理概述"><a href="#DNS工作机理概述" class="headerlink" title="DNS工作机理概述"></a>DNS工作机理概述</h5><p>如果在Internet上只是使用一个DNS服务器，这种集中式设计存在如下问题：</p>
+<ul>
+<li>单点故障(a single point of failure)。该服务器崩溃会影响到整个网络</li>
+<li>通信容量(traffic volume)</li>
+<li>远距离的集中式数据库(distant centralized database) 会导致严重时延</li>
+<li>维护(maintenance)</li>
+</ul>
+<p>故DNS采用了分布式设计方式</p>
+<h6 id="分布式，层次数据库"><a href="#分布式，层次数据库" class="headerlink" title="分布式，层次数据库"></a>分布式，层次数据库</h6><p>大致DNS服务器可以分为三类：根DNS服务器，顶级域DNS服务器和权威DNS服务器</p>
+<ul>
+<li>根DNS服务器  在Internet上存在13个根DNS服务器(标号A到M)，其中大部分位于北美。每个服务器其实是冗余服务器的集群</li>
+<li>顶级域服务器  负责顶级域名(eg:com,edu,org,net,gov)和所有国家的顶级域名(eg:uk,fr,ca,cn)</li>
+<li>权威DNS服务器 在Internet上具有公共可访问主机的每个组织机构必须提供公共可访问的DNS记录。权威DNS服务器就是用来保持这些数据</li>
+</ul>
+<p>另一类重要的DNS称为 <strong>本地DNS服务器(local DNS server)</strong>。 这种服务器并不属于DNS服务器的层次结构，他相当于是每个ISP(如大学，系，公司或居民区的ISP)的代理，所有该ISP的发出的请求都传到这里，然后转发到DNS服务器层次结构中。这个服务器中可能会保留有主机名和IP的对应信息，如果有的话，就不需要向DNS服务器层次结构中转发了。而查询过程是先向根服务器查询，之后是顶级域服务器，若有权威DNS服务器，则会向权威服务器查询</p>
+<h6 id="DNS缓存"><a href="#DNS缓存" class="headerlink" title="DNS缓存"></a>DNS缓存</h6><p>原理比较简单，在请求链中，当一个DNS服务器接收到一个DNS回答时，DNS服务器能够将回答中的信息缓存在本地的储存器中。然后当被查询时，如果有缓存，直接返回。不过缓存不是永久的(一般是两天)。</p>
+<h4 id="5-P2P"><a href="#5-P2P" class="headerlink" title="5.P2P"></a>5.P2P</h4><h5 id="P2P文件分发"><a href="#P2P文件分发" class="headerlink" title="P2P文件分发"></a>P2P文件分发</h5><p>对应于客户机/服务器模式，如果服务器需要向N个客户机发送长度为F byte的文件，设服务器上传速率为Us，那么所需要的传输的时间最少需要NF/Us。若N个客户机的下载速率为Di，i=1:n; Dmin=Min（Di），最小的分发时间为F/Dmin。对于全体来说的话最小的分发时间为max{NF/Us，F/Dmin}。那么当N-&gt;无穷，所话费的时间是巨大的。对于P2P来说，客户机和服务器都是对等方，所有对等方可以向别的对等方传输数据，也可以接受别的传来的数据，这样把服务器的功能分担给所有人。上传时会整合所有本地已有文件的对等方的上传能力，从而节省时间。</p>
+<p><strong>BitTorrent</strong> 是一种用于文件分发的P2P协议。参与一个特定文件分发的所有对等方的集合称为一个 <strong>洪流(Torrent)</strong><br>在一个洪流中对等方彼此下载等长度的文件块，一般大小为256k。当一个对等方加入一个洪流时，开始没有文件块，随着时间的积累，文件块的数量也随之上升。同时也会为别的对等方上传多个文件块。当文件下载完成后，可以离开洪流，也可以留在洪流为别的对等方传输文件。</p>
+<p>BitTorrent里也采用了一些比较巧妙地技术，比如 <em>最稀罕优先(rarest first)</em> ,可以根据自己没有的块从邻居处确定最稀罕的块来进行下载。还有一种 <em>对换算法</em> 可以通过其邻居对其的上传速率确定优先级。</p>
+<p>种子文件：</p>
+<blockquote>
+<p>.torrent种子文件本质上是文本文件，包含Tracker信息和文件信息两部分。Tracker信息主要是BT下载中需要用到的Tracker服务器的地址和针对Tracker服务器的设置，文件信息是根据对目标文件的计算生成的，计算结果根据BitTorrent协议内的Bencode规则进行编码。它的主要原理是需要把提供下载的文件虚拟分成大小相等的块，块大小必须为2k的整数次方（由于是虚拟分块，硬盘上并不产生各个块文件），并把每个块的索引信息和Hash验证码写入种子文件中；所以，种子文件就是被下载文件的“索引”。</p>
+<p>From <a href="https://zh.wikipedia.org/wiki/%E7%A7%8D%E5%AD%90%E6%96%87%E4%BB%B6" target="_blank" rel="external">wikipedia 种子文件</a></p>
+</blockquote>
+<h4 id="6-TCP，UDP编程"><a href="#6-TCP，UDP编程" class="headerlink" title="6.TCP，UDP编程"></a>6.TCP，UDP编程</h4><p>代码都是简单的java代码，记录下，防止遗忘</p>
+<h5 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h5><p>TCPClient<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.io.*;</div><div class="line"><span class="keyword">import</span> java.net.*;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TCPClient</span></span>&#123;</div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception  </span>&#123;</div><div class="line">    String sentence;</div><div class="line">    String modifiedSentence;</div><div class="line">    BufferedReader inFromUser = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(System.in));</div><div class="line">    Socket clientSocket = <span class="keyword">new</span> Socket(<span class="string">"hostname"</span>,<span class="number">6789</span>);</div><div class="line">    DataOutputStream outToServer = <span class="keyword">new</span> DataOutputStream(clientSocket.getOutputStream());</div><div class="line">    BufferedReader inFromServer = <span class="keyword">new</span> BufferedReader(clientSocket.getInputStream());</div><div class="line">    sentence = inFromUser.readLine();</div><div class="line">    outToServer.writeBytes(sentence + <span class="string">'\n'</span>);</div><div class="line">    modifiedSentence = inFromServer.readLine();</div><div class="line">    System.out.println(<span class="string">"From Server"</span>+modifiedSentence);</div><div class="line">    clientSocket.close();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>TCPServer<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">import</span> java.io.*;</div><div class="line"><span class="keyword">import</span> java.net.*;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TCPServer</span></span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span>&#123;</div><div class="line">    String clientSentence;</div><div class="line">    String capitalizedSentence;</div><div class="line">    ServerSocket welcomeSocket = <span class="keyword">new</span> ServerSocket(<span class="number">6789</span>);</div><div class="line">    <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</div><div class="line">      Socket connectionSocket  = <span class="keyword">new</span> welcomeSocket.accept();</div><div class="line">      BufferedReader inFromClient = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(connectionSocket.getInputStream()));</div><div class="line">      DataOutputStream outToClient = <span class="keyword">new</span> DataOutputStream(connectionSocket.getOutputStream());</div><div class="line">      clientSentence = inFromClient.readLine();</div><div class="line">      capitalizedSentence = clientSentence.toUpperCase() + <span class="string">'/n'</span>;</div><div class="line">      outToClient.writeBytes(capitalizedSentence);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h5 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h5><p>UDP的套接字和TCP是不同的</p>
+<p>UDPClient<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">import</span> java.io.*;</div><div class="line"><span class="keyword">import</span> java.net.*;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">UDPClient</span></span>&#123;</div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception  </span>&#123;</div><div class="line">     BufferedReader inFromUser = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(System.in));</div><div class="line">     DatagramSocket clientSocket = <span class="keyword">new</span> DatagramSocket();</div><div class="line">     InetAddress IPAddress = InetAddress.getByName(<span class="string">"hostname"</span>);<span class="comment">//get IP address</span></div><div class="line">     <span class="keyword">byte</span>[] sendData = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</div><div class="line">     <span class="keyword">byte</span>[] receiveData = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</div><div class="line">     String sentence = inFromUser.readLine();</div><div class="line">     sendData = sentence.getBytes();</div><div class="line">     DatagramPacket sendPacket = <span class="keyword">new</span> DatagramPacket(sendData, sendData.length, IPAddress, <span class="number">9876</span>);</div><div class="line">     clientSocket.send(sendPacket);</div><div class="line">     DatagramPacket receivePacket = <span class="keyword">new</span> DatagramPacket(receiveData, receiveData.length);</div><div class="line">     clientSocket.receive(receivePacket);</div><div class="line">     String modifiedSentence = <span class="keyword">new</span> String(receivePacket.getData());</div><div class="line">     System.out.println(<span class="string">"From Server"</span> + modifiedSentence);</div><div class="line">     clientSocket.close();</div><div class="line"></div><div class="line"></div><div class="line">   &#125;</div><div class="line"> &#125;</div></pre></td></tr></table></figure></p>
+<p>UDPServer</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.io.*;</div><div class="line"><span class="keyword">import</span> java.net.*;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">UDPServer</span></span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span>&#123;</div><div class="line">    DatagramSocket serverSocket = <span class="keyword">new</span> DatagramSocket(<span class="number">9876</span>);</div><div class="line">    <span class="keyword">byte</span>[] sendData = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</div><div class="line">    <span class="keyword">byte</span>[] receiveData = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</div><div class="line">    <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</div><div class="line">      DatagramPacket receivePacket = <span class="keyword">new</span> DatagramPacket(receiveData, receiveData.length);</div><div class="line">      serverSocket.receive(receivePacket);</div><div class="line">      String sentence = <span class="keyword">new</span> String(receivePacket.getData());</div><div class="line">      InetAddress IPAddress = InetAddress.getAddress();</div><div class="line">      <span class="keyword">int</span> port = receivePacket.getPort();</div><div class="line">      String capitalizedSentence = sentence.toUpperCase();</div><div class="line">      sendData = capitalizedSentence.getBytes();</div><div class="line">      DatagramPacket sendPacket = <span class="keyword">new</span> DatagramPacket(sendData, sendData.length, IPAddress, port);</div><div class="line">      serverSocket.send(sendPacket);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/04/02/android/android-unit-test/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          android unit test
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/03/28/数据结构与算法分析/红黑树/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">红黑树</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="网络/应用层" data-title="应用层" data-url="wamcs.github.io/2016/03/29/网络/应用层/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 wamcs
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: undefined,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: undefined
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

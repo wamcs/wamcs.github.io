@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>红黑树 | wamcs hood</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="红黑树红黑树是AVL树的一个变种，最坏的情形花费时间为O(logN)。
+红黑树性质
+
+每一个节点或者染为红色或者染为黑色
+根节点是黑色的
+如果一个节点是红色的，那么他的子节点一定是黑色的
+每个节点到一个NUll指针的每一条路径必需包含相同多数目的黑色节点
+
+普通树的插入是直接将插入值作为树叶插入，但对于红黑树来说，这样的实现是不符合红黑树要求的。插入为黑色，则会违反条件4，插入为红色，对于父节点为">
+<meta property="og:type" content="article">
+<meta property="og:title" content="红黑树">
+<meta property="og:url" content="wamcs.github.io/2016/03/28/数据结构与算法分析/红黑树/index.html">
+<meta property="og:site_name" content="wamcs hood">
+<meta property="og:description" content="红黑树红黑树是AVL树的一个变种，最坏的情形花费时间为O(logN)。
+红黑树性质
+
+每一个节点或者染为红色或者染为黑色
+根节点是黑色的
+如果一个节点是红色的，那么他的子节点一定是黑色的
+每个节点到一个NUll指针的每一条路径必需包含相同多数目的黑色节点
+
+普通树的插入是直接将插入值作为树叶插入，但对于红黑树来说，这样的实现是不符合红黑树要求的。插入为黑色，则会违反条件4，插入为红色，对于父节点为">
+<meta property="og:image" content="http://7xt1ey.com1.z0.glb.clouddn.com/RBTree1.png">
+<meta property="og:image" content="http://7xt1ey.com1.z0.glb.clouddn.com/RBTree2.png">
+<meta property="og:image" content="http://7xt1ey.com1.z0.glb.clouddn.com/RBTree3.png">
+<meta property="og:image" content="http://7xt1ey.com1.z0.glb.clouddn.com/RBTree4.png">
+<meta property="og:image" content="http://7xt1ey.com1.z0.glb.clouddn.com/RBTree5.png">
+<meta property="og:updated_time" content="2016-09-02T12:29:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="红黑树">
+<meta name="twitter:description" content="红黑树红黑树是AVL树的一个变种，最坏的情形花费时间为O(logN)。
+红黑树性质
+
+每一个节点或者染为红色或者染为黑色
+根节点是黑色的
+如果一个节点是红色的，那么他的子节点一定是黑色的
+每个节点到一个NUll指针的每一条路径必需包含相同多数目的黑色节点
+
+普通树的插入是直接将插入值作为树叶插入，但对于红黑树来说，这样的实现是不符合红黑树要求的。插入为黑色，则会违反条件4，插入为红色，对于父节点为">
+<meta name="twitter:image" content="http://7xt1ey.com1.z0.glb.clouddn.com/RBTree1.png">
+  
+    <link rel="alternative" href="/atom.xml" title="wamcs hood" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/img/header_picture.jpg" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">wamcs</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Rome was not built in a day</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+						<li>Über</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/" title="github">github</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android-Test/" style="font-size: 10px;">Android Test</a> <a href="/tags/Android-代码记录/" style="font-size: 10px;">Android 代码记录</a> <a href="/tags/Android-基础/" style="font-size: 20px;">Android 基础</a> <a href="/tags/Android-库/" style="font-size: 10px;">Android 库</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/sql语法/" style="font-size: 10px;">sql语法</a> <a href="/tags/数据结构/" style="font-size: 20px;">数据结构</a> <a href="/tags/网络基础/" style="font-size: 15px;">网络基础</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">nothing is true，everything is permitted</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">wamcs</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img src="/img/header_picture.jpg" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">wamcs</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Rome was not built in a day</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/" title="github">github</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-数据结构与算法分析/红黑树" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/28/数据结构与算法分析/红黑树/" class="article-date">
+  	<time datetime="2016-03-28T05:50:58.000Z" itemprop="datePublished">2016-03-28</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      红黑树
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构/">数据结构</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/数据结构与算法/">数据结构与算法</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h2><p>红黑树是AVL树的一个变种，最坏的情形花费时间为O(logN)。</p>
+<p><strong>红黑树性质</strong></p>
+<ol>
+<li>每一个节点或者染为红色或者染为黑色</li>
+<li>根节点是黑色的</li>
+<li>如果一个节点是红色的，那么他的子节点一定是黑色的</li>
+<li>每个节点到一个NUll指针的每一条路径必需包含相同多数目的黑色节点</li>
+</ol>
+<p>普通树的插入是直接将插入值作为树叶插入，但对于红黑树来说，这样的实现是不符合红黑树要求的。插入为黑色，则会违反<strong>条件4</strong>，插入为红色，对于父节点为红色的情况，会违反<strong>条件3</strong></p>
+<p>因而需要对颜色进行改变和对树进行旋转，使得插入后符合红黑树的性质</p>
+<a id="more"></a>
+<h3 id="插入操作"><a href="#插入操作" class="headerlink" title="插入操作"></a>插入操作</h3><h4 id="自底向上插入"><a href="#自底向上插入" class="headerlink" title="自底向上插入"></a>自底向上插入</h4><p>令即将插入的树叶为红色分两种种情况：</p>
+<ol>
+<li>插入项的父节点为黑色，插入完成。</li>
+<li>插入项父节点为红色，需要进行旋转。</li>
+</ol>
+<p>下面对父节点为红色的进行讨<em>(注意这里每种情况都有与其对应的镜像情况)</em></p>
+<p>规定：NULL节点为黑色，设X为新加的树叶，P是其父节点，S为其父节点的兄弟节点，G为其祖父节点。</p>
+<ol>
+<li>该父节点的兄弟节点是黑色的，这时只有P，X为红的。对于下图中的第一种情况，这时需要进行一次单旋，并且改变节点的颜色。对于第二种情况，需要进行双旋转，这里旋转的操作和AVL树的是相同的，只不过多添加了颜色的变动。在编写程序时，要注意记录父节点，祖父节点，以及为了重新连接还要记录的曾祖节点。<br><img src="http://7xt1ey.com1.z0.glb.clouddn.com/RBTree1.png" alt="redAndBlackTree"></li>
+<li>父节点的兄弟节点是红色的，做法和上面的是相同的。然而出现的问题是颜色的问题。为保持红黑树的性质，我们须将S和树的新根涂为红色，G和另一个节点涂为黑色。这样做的原因是因为在这种情况下，子树根到C的路径(见上图)只有一个黑色节点，即使旋转后仍然不改变。这样处理后可能遇到的问题是曾祖节点是红色。此时需要将此操作朝根的方向上滤。可以每次上滤两级，构成新的类似上述两种情况的样子处理。</li>
+</ol>
+<p>上滤的实现需要用栈或者一些父指针保存路径。</p>
+<h4 id="自定向下插入"><a href="#自定向下插入" class="headerlink" title="自定向下插入"></a>自定向下插入</h4><p>在向下的过程中当看到一个节点X有俩红儿子的时候,使X变为红而他的子节点变为黑。但当X的父节点为红时会破坏这种性质，此时可以使用旋转。</p>
+<p>查找过程中：</p>
+<ol>
+<li>当前节点X有两个红儿子，则让X变红，两儿子变黑（若X为根，则变红之后再变黑）<br>此时，若X的父节点为红，则出现两红相连，但可以证明，X的叔父节点不可能为红，则进行一次旋转和变色即可。</li>
+<li>其他情况继续向下遍历。</li>
+<li>找到插入点插入即可。</li>
+</ol>
+<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><h4 id="自顶向下删除"><a href="#自顶向下删除" class="headerlink" title="自顶向下删除"></a>自顶向下删除</h4><p>将问题归结为删除树叶:</p>
+<ol>
+<li>带有两个儿子的节点，用右子树最小节点代替（将右子树最小节点内容放入此节点），删除该最小节点（此节点必然最多有一个儿子）;</li>
+<li>带有一个右儿子（右子树），以1方式删除</li>
+<li>带有一个左儿子（左子树），用左子树最大节点代替（将左字数最大节点内容放入此节点），删除该最大节点。</li>
+</ol>
+<p>因为红色树叶的删除总是很容易的，不会改变性质4，然而黑色树叶的删除将破坏性质4，解决办法是保证从上到下删除时树叶是红的。</p>
+<p>令X为当前结点，T是其兄弟节点，P是其父节点。</p>
+<p>step 1： 检查root</p>
+<ol>
+<li>如果root两个children都为黑<ol>
+<li>root变红</li>
+<li>X指向搜索路径上root的child</li>
+<li>转到step2</li>
+</ol>
+</li>
+<li>否则， X指向root，转到step2B</li>
+</ol>
+<p>step2：</p>
+<ul>
+<li><p>2A:</p>
+<ol>
+<li><p>X有两个黑儿子, T也有两个黑儿子。反转X,P,T颜色</p>
+<p><img src="http://7xt1ey.com1.z0.glb.clouddn.com/RBTree2.png" alt="RBTree2"></p>
+</li>
+<li><p>X有两个黑儿子，T的左儿子为红。L,T,P进行双旋转（之字形旋转）， X, P变色</p>
+<p><img src="http://7xt1ey.com1.z0.glb.clouddn.com/RBTree3.png" alt="RBTree3"></p>
+</li>
+<li><p>2A3： X有两个黑儿子，T的右儿子为红。 R,T，P单旋转（一字形旋转）， X,P,T,R都变色</p>
+<p><img src="http://7xt1ey.com1.z0.glb.clouddn.com/RBTree4.png" alt="RBTree4"></p>
+</li>
+</ol>
+</li>
+<li><p>2B：</p>
+<ol>
+<li>继续向下</li>
+<li>如果新X为红，继续向下</li>
+<li>如果新X为黑，（必有T为红，P为黑），单旋转T,P，同时，T,P变色</li>
+<li>回到step2.</li>
+</ol>
+<p><img src="http://7xt1ey.com1.z0.glb.clouddn.com/RBTree5.png" alt="RBTree5"></p>
+</li>
+</ul>
+<p>step3<br>最终找到要删除节点，这是一个叶节点，将节点以红节点身份删除<br>step4<br>最后将root染成黑色。</p>
+<blockquote>
+<p><a href="http://blog.csdn.net/javyzheng/article/details/12339463" target="_blank" rel="external"> 红黑树 自底向上和自顶向下插入， 自顶向下删除</a></p>
+</blockquote>
+<h3 id="部分伪代码"><a href="#部分伪代码" class="headerlink" title="部分伪代码"></a>部分伪代码</h3><p>这部分实在是看不太懂，这里抄录书上给出的伪代码便于理解</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">enum</span> ColorType &#123;Red,Black&#125; ColorType;</div><div class="line"></div><div class="line"><span class="keyword">struct</span> RedBlackNode</div><div class="line">&#123;</div><div class="line">  ElementType Element;</div><div class="line">  RedBlackTree Left;</div><div class="line">  RedBlackTree Right;</div><div class="line">  ColorType Color;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"></div><div class="line">Position NullNode = NUll; <span class="comment">/*Needs initialization*/</span></div><div class="line"></div><div class="line"><span class="comment">/* initialization procedure*/</span></div><div class="line"><span class="function">RedBlackTree <span class="title">initialize</span><span class="params">(vodi)</span></span>&#123;</div><div class="line">  RedBlackTree T;</div><div class="line">  <span class="keyword">if</span> (NullNode = <span class="literal">NULL</span>)&#123;</div><div class="line">    NullNode == <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> RedBlackNode));</div><div class="line">    <span class="keyword">if</span> (NullNode == <span class="literal">NULL</span>)</div><div class="line">       FatalError(<span class="string">"out of space"</span>);</div><div class="line">    NullNode-&gt;Left = NullNode-&gt;Right = NullNode;</div><div class="line">    NullNode-&gt;Color = Black;</div><div class="line">    NullNode-&gt;Element = Infinity;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">/*create the header node */</span></div><div class="line"></div><div class="line">  T = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> RedBlackNode));</div><div class="line">  <span class="keyword">if</span> (T == <span class="literal">NULL</span>)&#123;</div><div class="line">    FatalError(<span class="string">"out of space"</span>);</div><div class="line">  &#125;</div><div class="line">  T-&gt;Element =NegInfinity;</div><div class="line">  T-&gt;Left = T-&gt;Right = NullNode;</div><div class="line">  T-&gt;Color = Black;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> T;</div><div class="line"></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong> 类型声明和初始化 </strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">DoPrint</span><span class="params">(RedBlackTree T)</span></span>&#123;</div><div class="line">  <span class="keyword">if</span> (T != NullNode)&#123;</div><div class="line">    DoPrint(T-&gt;Left);</div><div class="line">    OutPrint(T-&gt;Element);</div><div class="line">    DoPrint(T-&gt;Right);</div><div class="line"></div><div class="line">  &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">PrintTree</span><span class="params">(RedBlackTree T)</span></span>&#123;</div><div class="line">  DoPrint(T);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong> 使用两个标记对树进行中序历遍</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">static</span> Position X,P,GP,GGP;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">HandleReorient</span><span class="params">(ElementType Item,RedBlackTree T)</span></span>&#123;</div><div class="line">  X-&gt;Color = Red;</div><div class="line">  X-&gt;left-&gt;Color = Black;</div><div class="line">  X-&gt;Right-&gt;Color = Black;</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (P-&gt;Color == Red)&#123;</div><div class="line">    GP-&gt;Color = Red;</div><div class="line">    <span class="keyword">if</span> ((Item&lt;GP-&gt;Element) != (Item &lt; P-&gt;Element))</div><div class="line">      P = Rotate(Item,GP);<span class="comment">//Start double rotation</span></div><div class="line">    X = Rotate(Item,GGP);</div><div class="line">    X-&gt;Color = Black;</div><div class="line">  &#125;</div><div class="line">  T-&gt;Right-&gt;Color = Black;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function">RedBalckTree <span class="title">Insert</span><span class="params">(ElementType Item,RedBalckTree T)</span></span>&#123;</div><div class="line">  X = P = GP =T;</div><div class="line">  NullNode-&gt;Element = Item;</div><div class="line">  <span class="keyword">while</span>(X-&gt;Element != Item) <span class="comment">//Descenf down the tree</span></div><div class="line">  &#123;</div><div class="line">    GGP = GP;</div><div class="line">    GP = P;</div><div class="line">    P = X;</div><div class="line">    <span class="keyword">if</span> (Item &lt; X-&gt;Element)</div><div class="line">      X = X-&gt;Left;</div><div class="line">    <span class="keyword">else</span></div><div class="line">      X = X-&gt;Right;</div><div class="line">    <span class="keyword">if</span> (X-&gt;Left-&gt;Color == Red &amp;&amp; X-&gt;Right-&gt;Color == Red)</div><div class="line">      HandleReorient(Item, T);</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">if</span> (X != NullNode)</div><div class="line">    <span class="keyword">return</span> NullNode;</div><div class="line"></div><div class="line">  X = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> RedBalckNode));</div><div class="line">  <span class="keyword">if</span> (X == NullNode)</div><div class="line">    FatalError(<span class="string">"out of space"</span>);</div><div class="line">  X-&gt;Element = Item;</div><div class="line">  X-&gt;Left = X-&gt;Right = NullNode;</div><div class="line"></div><div class="line">  <span class="keyword">if</span>( Item &lt; P-&gt;Element )</div><div class="line">    P-&gt;Left = X;</div><div class="line">  <span class="keyword">else</span></div><div class="line">    P-&gt;Right = X;</div><div class="line">  HandleReorient(Item, T);</div><div class="line"></div><div class="line">  <span class="keyword">return</span> T;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/03/29/网络/应用层/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          应用层
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/03/23/SQL/sql语法/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Sql语法</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="数据结构与算法分析/红黑树" data-title="红黑树" data-url="wamcs.github.io/2016/03/28/数据结构与算法分析/红黑树/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 wamcs
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: undefined,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: undefined
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

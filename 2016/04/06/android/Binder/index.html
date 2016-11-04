@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Binder | wamcs hood</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="BinderBinder是android系统最重要的特性之一。学习IPC时，必然要接触到android中这种IPC的主要方式。说Binder重要，是因为Android系统的四大组件，AMS，PMS等系统服务无一不与Binder挂钩。
+理解了Binder对于理解整个android系统有着很大的帮助
+binder在android中代表很多意思，直观上，Binder是android的一个类，实现了IBi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Binder">
+<meta property="og:url" content="wamcs.github.io/2016/04/06/android/Binder/index.html">
+<meta property="og:site_name" content="wamcs hood">
+<meta property="og:description" content="BinderBinder是android系统最重要的特性之一。学习IPC时，必然要接触到android中这种IPC的主要方式。说Binder重要，是因为Android系统的四大组件，AMS，PMS等系统服务无一不与Binder挂钩。
+理解了Binder对于理解整个android系统有着很大的帮助
+binder在android中代表很多意思，直观上，Binder是android的一个类，实现了IBi">
+<meta property="og:image" content="http://7xt1ey.com1.z0.glb.clouddn.com/binder_Linux_os_.png">
+<meta property="og:image" content="http://7xt1ey.com1.z0.glb.clouddn.com/binder-model.png">
+<meta property="og:image" content="http://7xt1ey.com1.z0.glb.clouddn.com/Binder-register.png">
+<meta property="og:image" content="http://7xt1ey.com1.z0.glb.clouddn.com/Binder-get.png">
+<meta property="og:image" content="http://7xt1ey.com1.z0.glb.clouddn.com/binder-procedure.png">
+<meta property="og:image" content="http://7xt1ey.com1.z0.glb.clouddn.com/BinderCurrent.png">
+<meta property="og:updated_time" content="2016-09-02T12:30:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Binder">
+<meta name="twitter:description" content="BinderBinder是android系统最重要的特性之一。学习IPC时，必然要接触到android中这种IPC的主要方式。说Binder重要，是因为Android系统的四大组件，AMS，PMS等系统服务无一不与Binder挂钩。
+理解了Binder对于理解整个android系统有着很大的帮助
+binder在android中代表很多意思，直观上，Binder是android的一个类，实现了IBi">
+<meta name="twitter:image" content="http://7xt1ey.com1.z0.glb.clouddn.com/binder_Linux_os_.png">
+  
+    <link rel="alternative" href="/atom.xml" title="wamcs hood" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/img/header_picture.jpg" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">wamcs</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Rome was not built in a day</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+						<li>Über</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/" title="github">github</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android-Test/" style="font-size: 10px;">Android Test</a> <a href="/tags/Android-代码记录/" style="font-size: 10px;">Android 代码记录</a> <a href="/tags/Android-基础/" style="font-size: 20px;">Android 基础</a> <a href="/tags/Android-库/" style="font-size: 10px;">Android 库</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/sql语法/" style="font-size: 10px;">sql语法</a> <a href="/tags/数据结构/" style="font-size: 20px;">数据结构</a> <a href="/tags/网络基础/" style="font-size: 15px;">网络基础</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">nothing is true，everything is permitted</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">wamcs</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img src="/img/header_picture.jpg" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">wamcs</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Rome was not built in a day</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/" title="github">github</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-android/Binder" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/06/android/Binder/" class="article-date">
+  	<time datetime="2016-04-05T23:38:22.000Z" itemprop="datePublished">2016-04-06</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Binder
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android-基础/">Android 基础</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Android/">Android</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Binder"><a href="#Binder" class="headerlink" title="Binder"></a>Binder</h1><p>Binder是android系统最重要的特性之一。学习IPC时，必然要接触到android中这种IPC的主要方式。说Binder重要，是因为Android系统的四大组件，AMS，PMS等系统服务无一不与Binder挂钩。</p>
+<p>理解了Binder对于理解整个android系统有着很大的帮助</p>
+<p>binder在android中代表很多意思，直观上，Binder是android的一个类，实现了IBinder接口。从IPC角度来说，Binder是android的一种跨进程通信方式。Binder也可以理解为一种虚拟设备，有着驱动/dev/binder。从Android Framework角度来说，Binder是ServiceManager连接各种Manager（ActivityManager、WindowManager）和相应Service的桥梁。从Android应用层来说，Binder是客户端和服务端进行通信的媒介，可以通过其获取服务和数据。</p>
+<a id="more"></a>
+<h2 id="Linux相关知识"><a href="#Linux相关知识" class="headerlink" title="Linux相关知识"></a>Linux相关知识</h2><p>android系统是基于linux内核的，我们首先需要了解一下系统底层的特性才好理解Binder。</p>
+<h3 id="进程隔离"><a href="#进程隔离" class="headerlink" title="进程隔离"></a>进程隔离</h3><blockquote>
+<p>进程隔离是为保护操作系统中进程互不干扰而设计的一组不同硬件和软件的技术。这个技术是为了避免进程A写入进程B的情况发生。进程的隔离实现，使用了虚拟地址空间。进程A的虚拟地址和进程B的虚拟地址不同，这样就防止进程A将数据信息写入进程B。</p>
+</blockquote>
+<p>以上来自维基百科；操作系统的不同进程之间，数据不共享；因此一个进程需要与另外一个进程通信，需要某种系统机制才能完成。</p>
+<h3 id="用户空间-内核空间"><a href="#用户空间-内核空间" class="headerlink" title="用户空间/内核空间"></a>用户空间/内核空间</h3><p><img src="http://7xt1ey.com1.z0.glb.clouddn.com/binder_Linux_os_.png" alt=""></p>
+<p>Linux Kernel是操作系统的核心，可以访问受保护的内存空间，也有访问底层硬件设备的所有权限。</p>
+<p>在系统中会对linux kernel进行保护，防止别的应用程序随意访问。这样就将Kernel和上层的应用分离开来，分别称为Kernel Space 和 User Space</p>
+<h3 id="系统调用-内核态-用户态"><a href="#系统调用-内核态-用户态" class="headerlink" title="系统调用/内核态/用户态"></a>系统调用/内核态/用户态</h3><p>虽然系统对于内核有保护，然而不可避免的的是，总有那么一些用户空间需要访问内核的资源；比如应用程序访问文件，网络是很常见的事情</p>
+<blockquote>
+<p>Kernel space can be accessed by user processes only through the use of system calls.</p>
+</blockquote>
+<p>用户空间只能通过系统调用来访问内核空间，也就是所有的资源访问均在内核的控制下进行</p>
+<p>当一个任务执行系统调用而陷入内核代码中执行的时候，称为内核运行状态（简称内核态）此时处理器处于特权级最高的（0级）内核代码中执行。当进程在执行用户自己的代码时，则称其处于用户运行态（用户态）。即此时处理器在特权级最低的（3级）用户代码中运行。处理器在特权等级高的时候才能执行那些特权CPU指令。</p>
+<h3 id="内核模块"><a href="#内核模块" class="headerlink" title="内核模块"></a>内核模块</h3><p>传统的Linux通信机制内核支持，通过内核来实现不同用户空间之间的通信，Binder采取的是另一种方式，Linux有动态可加载内核模块（Loadable Kernel Module，LKM）机制；模块是具有独立功能的程序，它可以被单独编译，但不能独立运行。它在运行时被链接到内核作为内核的一部分在内核空间运行。这样，Android系统可以通过添加一个内核模块运行在内核空间，用户进程之间的通过这个模块作为桥梁，就可以完成通信了。</p>
+<h2 id="为何使用Binder"><a href="#为何使用Binder" class="headerlink" title="为何使用Binder"></a>为何使用Binder</h2><ol>
+<li>移动设备上大量CS通信方式的存在，原先linux下的IPC并不适用，只有socket是CS方式，然而socket主要用于网络和本机中进程的低速通信，效率低。</li>
+<li>传输性能：linux上的IPC采用存储-转发方式，即数据先从发送方缓存区拷贝到内核开辟的缓存区中，然后再从内核缓存区拷贝到接收方缓存区，至少有两次拷贝过程。共享内存虽然无需拷贝，但控制复杂，难以使用。而采用Binder机制的话，则只需要进行1次拷贝即可，因为从发送方的缓存区拷贝到内核的缓存区，而接收方的缓存区与内核的缓存区是映射到同一块物理地址的，因此只需要1次拷贝即可</li>
+<li>安全性：传统的Linux IPC机制没有任何安全措施，完全依赖上层协议来确保。传统IPC的接收方无法获得对方进程可靠的UID/PID，从而无法鉴别对方身份。而Binder机制则为每个进程分配了UID/PID来作为鉴别身份的标示，并且在Binder通信时会根据UID/PID进行有效性检测。</li>
+</ol>
+<h2 id="Binder通信模型"><a href="#Binder通信模型" class="headerlink" title="Binder通信模型"></a>Binder通信模型</h2><p>binder框架中定义了四个角色Client，Server，ServiceManager和Binder驱动。 这四个角色的关系和互联网类似：Server是服务器，Client是客户终端，SMgr是域名服务器（DNS），驱动是路由器。</p>
+<p><img src="http://7xt1ey.com1.z0.glb.clouddn.com/binder-model.png" alt=""></p>
+<ul>
+<li><p><strong>binder驱动</strong></p>
+<p>同路由器在网络中的地位相同，虽然默默无闻，但是做的确实最为核心的工作，缺少了Binder驱动通信就无法进行</p>
+</li>
+<li><p><strong>ServiceManager</strong></p>
+<p>ServiceManager和DNS的作用类似，里面存储着一张查找表，该表是server创建Binder后通知ServiceManager创建的，有了这个表Client就可以通过ServiceManager找到对应的server进行通信了。ServiceManager处于守护进程。<u>那么问题来了，ServiceManager和server通信时用的也是跨进程通信，用Binder机制的话就有了先有鸡还是先有蛋的悖论。这个下面说</u></p>
+</li>
+</ul>
+<h3 id="通信步骤"><a href="#通信步骤" class="headerlink" title="通信步骤"></a>通信步骤</h3><p><img src="http://7xt1ey.com1.z0.glb.clouddn.com/Binder-register.png" alt=""></p>
+<ol>
+<li>首先有一个进程向驱动提出申请为SM；驱动同意之后，SM进程负责管理Service</li>
+<li>XXXServer在自己的进程中向Binder驱动申请创建Binder实体。根据android中的使用来看应该是本地创建后通知驱动。</li>
+<li>Binder驱动为这个xxxServer创建内核中的Binder节点和Binder引用，然后将名字和引用打包传递给ServiceManager。通知SM注册一个名叫XXX的Service</li>
+<li>SM接到包取出名字和引用放入一张查找表中</li>
+</ol>
+<p><img src="http://7xt1ey.com1.z0.glb.clouddn.com/Binder-get.png" alt=""></p>
+<ol>
+<li>Client通过Service的名字在SM的查找表中获得Binder的引用了 Client也利用保留的handle值为0的引用向SM请求访问某个Service, SM就会从请求数据包中获得XXXService的名字，在查找表中找到该名字对应的条目，取出Binder的引用打包回复给client。</li>
+</ol>
+<p>来说说上面的问题，Binder在处理这个问题时，采用了巧妙的方法。去创创造一置鸡来孵蛋：即在SM中事先创建好一个Binder实体，它的引用为一个固定值，所有人都知道。SM的特殊性在于，它与别的进程进行通信时，SM是server，别的是client，需要SM中Binder的引用来实现注册，查询和获取。当某个进程注册为SM时，Binder驱动会为其创建Binder实体，引用号都为0。就像DNS的地址，必须预先手工或动态配置好</p>
+<h3 id="Binder跨进程原理"><a href="#Binder跨进程原理" class="headerlink" title="Binder跨进程原理"></a>Binder跨进程原理</h3><p>Linux中大部分IPC（如AB通信）将A的数据Copy到内核中，B再从内核中获取</p>
+<p>然而Binder的路不是这样的</p>
+<p>假设Client进程想要调用XXXServer进程的object对象的一个方法add</p>
+<p><img src="http://7xt1ey.com1.z0.glb.clouddn.com/binder-procedure.png" alt=""></p>
+<p>注册流程就不说了，重点在Client查询。Client向SM查询：需要联系一个名为XXXService进程中的Object对象，进程之间通信的数据都会经过运行在内核空间里面的驱动，驱动在数据流过的时候做了一点手脚，它并不会给Client进程返回一个真正的object对象，而是返回一个看起来跟object一模一样的代理对象objectProxy，这个objectProxy也有一个add方法，但是这个add方法没有Server进程里面object对象的add方法那个能力；objectProxy的add只是一个傀儡，它唯一做的事情就是把参数包装然后交给驱动。</p>
+<p>驱动收到这个消息，发现是这个objectProxy；一查表就明白了：我之前用objectProxy替换了object发送给Client了，它真正应该要访问的是object对象的add方法；于是Binder驱动通知Server进程，调用你的object对象的add方法，然后把结果发给我，Sever进程收到这个消息，照做之后将结果返回驱动，驱动然后把结果返回给Client进程；于是整个过程就完成了。</p>
+<p>由于驱动返回的objectProxy与Server进程里面原始的object是如此相似，给人感觉好像是直接把Server进程里面的对象object传递到了Client进程；因此，我们可以说Binder对象是可以进行跨进程传递的对象</p>
+<p>但事实上我们知道，Binder跨进程传输并不是真的把一个对象传输到了另外一个进程；传输过程好像是Binder跨进程穿越的时候，它在一个进程留下了一个真身，在另外一个进程幻化出一个影子（这个影子可以很多个）；Client进程的操作其实是对于影子的操作，影子利用Binder驱动最终让真身完成操作。</p>
+<h3 id="驱动中的Binder"><a href="#驱动中的Binder" class="headerlink" title="驱动中的Binder"></a>驱动中的Binder</h3><ul>
+<li>binder_proc是描述进程上下文信息的，每一个用户空间的进程都对应一个binder_proc结构体</li>
+<li>binder_node是Binder实体对应的结构体，它是Server在Binder驱动中的体现</li>
+<li>binder_ref是Binder引用对应的结构体，它是Client在Binder驱动中的体现</li>
+</ul>
+<p>他们的结构都是红黑树</p>
+<p>有的地方把Binder本地对象直接称作Binder实体，把Binder代理对象直接称作Binder引用（句柄），其实指的是Binder对象在驱动里面的表现形式</p>
+<h2 id="Binder类"><a href="#Binder类" class="headerlink" title="Binder类"></a>Binder类</h2><p>IDE根据AIDL会自动生成一个Binder类，我们可以通过研究这个类来理解Binder类的使用，至于什么是AIDL，可以看另一篇</p>
+<p>作为服务端的服务，会在本线程中创建一个Binder对象，并将其引用传递给Binder驱动，而客户端通过Binder驱动获得对应的Binder对象的引用时，其获得的其实是一个Proxy对象，然后其通过这个Proxy对象去跟驱动通信，再由驱动去跟服务端的Binder对象进行通信。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">package</span> wamcs.ipctest.aidl;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IUserManager</span> <span class="keyword">extends</span> <span class="title">android</span>.<span class="title">os</span>.<span class="title">IInterface</span> </span>&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Local-side IPC implementation stub class.</div><div class="line">     */</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Stub</span> <span class="keyword">extends</span> <span class="title">android</span>.<span class="title">os</span>.<span class="title">Binder</span> <span class="keyword">implements</span> <span class="title">wamcs</span>.<span class="title">ipctest</span>.<span class="title">aidl</span>.<span class="title">IUserManager</span> </span>&#123;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> java.lang.String DESCRIPTOR = <span class="string">"wamcs.ipctest.aidl.IUserManager"</span>;</div><div class="line"></div><div class="line">        <span class="comment">/**</span></div><div class="line">         * Construct the stub at attach it to the interface.</div><div class="line">         */</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Stub</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.attachInterface(<span class="keyword">this</span>, DESCRIPTOR);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">/**</span></div><div class="line">         * Cast an IBinder object into an wamcs.ipctest.aidl.IUserManager interface,</div><div class="line">         * generating a proxy if needed.</div><div class="line">         */</div><div class="line">        <span class="keyword">public</span> <span class="keyword">static</span> wamcs.ipctest.aidl.<span class="function">IUserManager <span class="title">asInterface</span><span class="params">(android.os.IBinder obj)</span> </span>&#123;</div><div class="line">            <span class="keyword">if</span> ((obj == <span class="keyword">null</span>)) &#123;</div><div class="line">                <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">            &#125;</div><div class="line">            android.os.IInterface iin = obj.queryLocalInterface(DESCRIPTOR);</div><div class="line">            <span class="keyword">if</span> (((iin != <span class="keyword">null</span>) &amp;&amp; (iin <span class="keyword">instanceof</span> wamcs.ipctest.aidl.IUserManager))) &#123;</div><div class="line">                <span class="keyword">return</span> ((wamcs.ipctest.aidl.IUserManager) iin);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">new</span> wamcs.ipctest.aidl.IUserManager.Stub.Proxy(obj);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="keyword">public</span> android.os.<span class="function">IBinder <span class="title">asBinder</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTransact</span><span class="params">(<span class="keyword">int</span> code, android.os.Parcel data, android.os.Parcel reply, <span class="keyword">int</span> flags)</span> <span class="keyword">throws</span> android.os.RemoteException </span>&#123;</div><div class="line">            <span class="keyword">switch</span> (code) &#123;</div><div class="line">                <span class="keyword">case</span> INTERFACE_TRANSACTION: &#123;</div><div class="line">                    reply.writeString(DESCRIPTOR);</div><div class="line">                    <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">case</span> TRANSACTION_getUserList: &#123;</div><div class="line">                    data.enforceInterface(DESCRIPTOR);</div><div class="line">                    java.util.List&lt;wamcs.ipctest.aidl.User&gt; _result = <span class="keyword">this</span>.getUserList();</div><div class="line">                    reply.writeNoException();</div><div class="line">                    reply.writeTypedList(_result);</div><div class="line">                    <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">case</span> TRANSACTION_addUser: &#123;</div><div class="line">                    data.enforceInterface(DESCRIPTOR);</div><div class="line">                    wamcs.ipctest.aidl.User _arg0;</div><div class="line">                    <span class="keyword">if</span> ((<span class="number">0</span> != data.readInt())) &#123;</div><div class="line">                        _arg0 = wamcs.ipctest.aidl.User.CREATOR.createFromParcel(data);</div><div class="line">                    &#125; <span class="keyword">else</span> &#123;</div><div class="line">                        _arg0 = <span class="keyword">null</span>;</div><div class="line">                    &#125;</div><div class="line">                    <span class="keyword">this</span>.addUser(_arg0);</div><div class="line">                    reply.writeNoException();</div><div class="line">                    <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">super</span>.onTransact(code, data, reply, flags);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Proxy</span> <span class="keyword">implements</span> <span class="title">wamcs</span>.<span class="title">ipctest</span>.<span class="title">aidl</span>.<span class="title">IUserManager</span> </span>&#123;</div><div class="line">            <span class="keyword">private</span> android.os.IBinder mRemote;</div><div class="line"></div><div class="line">            Proxy(android.os.IBinder remote) &#123;</div><div class="line">                mRemote = remote;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="keyword">public</span> android.os.<span class="function">IBinder <span class="title">asBinder</span><span class="params">()</span> </span>&#123;</div><div class="line">                <span class="keyword">return</span> mRemote;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="keyword">public</span> java.lang.<span class="function">String <span class="title">getInterfaceDescriptor</span><span class="params">()</span> </span>&#123;</div><div class="line">                <span class="keyword">return</span> DESCRIPTOR;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="keyword">public</span> java.util.List&lt;wamcs.ipctest.aidl.User&gt; getUserList() <span class="keyword">throws</span> android.os.RemoteException &#123;</div><div class="line">                android.os.Parcel _data = android.os.Parcel.obtain();</div><div class="line">                android.os.Parcel _reply = android.os.Parcel.obtain();</div><div class="line">                java.util.List&lt;wamcs.ipctest.aidl.User&gt; _result;</div><div class="line">                <span class="keyword">try</span> &#123;</div><div class="line">                    _data.writeInterfaceToken(DESCRIPTOR);</div><div class="line">                    mRemote.transact(Stub.TRANSACTION_getUserList, _data, _reply, <span class="number">0</span>);</div><div class="line">                    _reply.readException();</div><div class="line">                    _result = _reply.createTypedArrayList(wamcs.ipctest.aidl.User.CREATOR);</div><div class="line">                &#125; <span class="keyword">finally</span> &#123;</div><div class="line">                    _reply.recycle();</div><div class="line">                    _data.recycle();</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">return</span> _result;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addUser</span><span class="params">(wamcs.ipctest.aidl.User user)</span> <span class="keyword">throws</span> android.os.RemoteException </span>&#123;</div><div class="line">                android.os.Parcel _data = android.os.Parcel.obtain();</div><div class="line">                android.os.Parcel _reply = android.os.Parcel.obtain();</div><div class="line">                <span class="keyword">try</span> &#123;</div><div class="line">                    _data.writeInterfaceToken(DESCRIPTOR);</div><div class="line">                    <span class="keyword">if</span> ((user != <span class="keyword">null</span>)) &#123;</div><div class="line">                        _data.writeInt(<span class="number">1</span>);</div><div class="line">                        user.writeToParcel(_data, <span class="number">0</span>);</div><div class="line">                    &#125; <span class="keyword">else</span> &#123;</div><div class="line">                        _data.writeInt(<span class="number">0</span>);</div><div class="line">                    &#125;</div><div class="line">                    mRemote.transact(Stub.TRANSACTION_addUser, _data, _reply, <span class="number">0</span>);</div><div class="line">                    _reply.readException();</div><div class="line">                &#125; <span class="keyword">finally</span> &#123;</div><div class="line">                    _reply.recycle();</div><div class="line">                    _data.recycle();</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> TRANSACTION_getUserList = (android.os.IBinder.FIRST_CALL_TRANSACTION + <span class="number">0</span>);</div><div class="line">        <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> TRANSACTION_addUser = (android.os.IBinder.FIRST_CALL_TRANSACTION + <span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> java.util.List&lt;wamcs.ipctest.aidl.User&gt; getUserList() <span class="keyword">throws</span> android.os.RemoteException;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addUser</span><span class="params">(wamcs.ipctest.aidl.User user)</span> <span class="keyword">throws</span> android.os.RemoteException</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个是全部代码，我们分开看。</p>
+<p>最外层是继承了IInterface接口的一个接口，该接口既是在AIDL中定义的接口，包含这些东西：</p>
+<ul>
+<li>接口声明</li>
+<li>stub类</li>
+<li>proxy类</li>
+</ul>
+<p>着重看下Stub和Proxy类</p>
+<h3 id="Stub"><a href="#Stub" class="headerlink" title="Stub"></a>Stub</h3><ul>
+<li><p><strong>DESCRIPTOR</strong></p>
+<p>Binder的唯一标识，一般是当前Binder的类名</p>
+</li>
+<li><p><strong>标识符</strong></p>
+<p>对于每个接口中声明的方法，给予一个唯一标识。</p>
+</li>
+<li><p><strong>Stub()</strong></p>
+<p>这个方法中调用了一个attachInterface(IInterface owner, String descriptor)的方法，我们可以看看其源码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attachInterface</span><span class="params">(IInterface owner, String descriptor)</span> </span>&#123;</div><div class="line">    mOwner = owner;</div><div class="line">    mDescriptor = descriptor;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>其作用是将本身和其标识绑定</p>
+</li>
+<li><p><strong>asInterface()</strong></p>
+<p>在obj不为空时，调用了如下方法queryLocalInterface(String descriptor)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> IInterface <span class="title">queryLocalInterface</span><span class="params">(String descriptor)</span> </span>&#123;</div><div class="line">      <span class="keyword">if</span> (mDescriptor.equals(descriptor)) &#123;</div><div class="line">          <span class="keyword">return</span> mOwner;</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<p>这是将一个实现IBinder接口的对象转变成我们定义的接口对象，调用IBinder中声明的方法queryLocalInterface，来判断本地是否有Binder类。我们只考虑多进程的情况，由于多进程，static是会无效的，或者说不对别的进程产生影响。服务端stub被初始化，但是客户端的并没有，这就可以解释这部分的逻辑。如果queryLocalInterface返回不为空，那么是在同一个进程，拿到的是stub，如果是空，则说明进程改变了，拿到的是一个proxy。</p>
+</li>
+<li><p><strong>asBinder()</strong></p>
+<p>返回本身</p>
+</li>
+<li><p><strong>onTransact()</strong></p>
+<p>该方法运行在服务端的Binder线程池中，客服端发起请求时，请求会通过系统底层封装偶交给此方法执行。服务端通过code来确定是哪个方法被请求，如果目标函数有参数，那么会从data中取出参数，执行方法。结束后将结果写到reply中，若有结果。上面的代码中便是这样运行的。注意的是writeInterfaceToken()和enforceInterface()两个方法是用来将Binder的标识写入parcel/与parcel对比，保证parcel与Binder对应。</p>
+</li>
+</ul>
+<h3 id="Proxy"><a href="#Proxy" class="headerlink" title="Proxy"></a>Proxy</h3><p>Proxy类则是通过一个IBinder类型的mRemote对象来跟驱动进行交互，并将对应的数据信息通过驱动与服务端的进程进行交互</p>
+<p>构造方法和asBInder就不说了，主要说下接口方法的实现</p>
+<p>proxy中实现的方法运行在客户端，当客户端调用时，内部的实现是：先创建方法需要的输入型Parcel对象data，输出型Parcel对象reply，返回对象（void的话没有）。若有参数，则将参数写入到data中，调用transact方法发起RPC(远程过程调用)请求，同时当前的线程挂起；服务端的onTransact方法会被调用，直到RPC过程返回后，当前线程继续执行，并从reply中取出返回结果，然后返回数据</p>
+<h3 id="Binder死亡"><a href="#Binder死亡" class="headerlink" title="Binder死亡"></a>Binder死亡</h3><ul>
+<li>linkToDeath</li>
+<li>unlinkToDeath<br>这是Binder重要的两个方法，当Binder由于某种原因异常终止连接断裂(Binder死亡)，会导致远程调用失败，如果我们不知道Binder连接已经断裂，就会对客户端造成影响，因而Binder提供了这两个方法</li>
+</ul>
+<p>首先声明一个DeathRecipient<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> IBinder.DeathRecipient mDeathRecipient = <span class="keyword">new</span> IBinder.DeathRecipient()&#123;</div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">binderDied</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">if</span> (userManager == <span class="keyword">null</span>) &#123;<span class="comment">//userManager是Client中的proxy</span></div><div class="line">      <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    userManager.asBinder().unlinkToDeath(mDeathRecipient,<span class="number">0</span>);</div><div class="line">    userManager = <span class="keyword">null</span>;</div><div class="line">    <span class="comment">//<span class="doctag">TODO:</span>对service重新绑定</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在客户端绑定远程服务成功后给binder设置死亡代理<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">userManager = IUserManager.Stub.asInterface(service);</div><div class="line">userManager.asBinder().linkToDeath(mDeathRecipient,<span class="number">0</span>);</div></pre></td></tr></table></figure></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>工作流程图如下：<br><img src="http://7xt1ey.com1.z0.glb.clouddn.com/BinderCurrent.png" alt=""></p>
+<p>在这个Binder实例中，Stub是真正继承Binder的类，与Binder是is关系；而Proxy只是持有一个Binder对象，它拥有Binder的能力，但本身正如其名字一样，只是一个代理，与Binder关系是has。在了解Binder的设计理念后可以轻松理解这样设置的意义，在Client端中我们只需要Binder的能力，因为在这里只是记录操作，真正的操作要到服务端中执行，所以服务端需要一个Binder对象。这也就是最开始那句话的解释</p>
+<p>AIDL只是一种辅助手段，我们完全可以自己实现Binder，只不过写出来会发现和IDE生成的一模一样(除了命名)，手写的意义在于加深理解。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
+<li><a href="http://blog.csdn.net/universus/article/details/621158" target="_blank" rel="external"> Android Bander设计与实现 - 设计篇</a></li>
+<li><a href="http://weishu.me/2016/01/12/binder-index-for-newer/" target="_blank" rel="external">Binder学习指南</a></li>
+<li><a href="http://blog.csdn.net/luoshengyang/article/details/6618363" target="_blank" rel="external"> Android进程间通信（IPC）机制Binder简要介绍和学习计划</a>(这篇是从底层源码分析的，有点看不懂，放着以后啃)</li>
+<li><a href="http://blog.imallen.wang/blog/2016/02/24/android-binderji-zhi-1-binderjia-gou-fen-xi/" target="_blank" rel="external">Android Binder机制(1):Binder架构分析</a></li>
+<li><a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0319/2619.html" target="_blank" rel="external">Binder机制1—Binder原理介绍</a></li>
+<li>《android开发艺术探索》 –任玉刚</li>
+</ol>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/04/07/android/AIDL-上/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          AIDL(上)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/04/05/android/android-IPC/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">android IPC</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="android/Binder" data-title="Binder" data-url="wamcs.github.io/2016/04/06/android/Binder/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 wamcs
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: undefined,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: undefined
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

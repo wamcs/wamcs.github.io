@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>effective java | wamcs hood</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一.对象的创建和销毁静态工厂方法代替构造器静态工厂方法(static factory method)是一个返回实例的静态方法.eg:123public static Boolean valueOf(boolean b)&amp;#123;  return b ? Boolean.TRUE : Boolean.FALSE;&amp;#125;
+advantage
+1. 静态工厂方法可以有不同的名称，代码更清楚，更易">
+<meta property="og:type" content="article">
+<meta property="og:title" content="effective java">
+<meta property="og:url" content="wamcs.github.io/2016/09/02/effective java/effective java 1/index.html">
+<meta property="og:site_name" content="wamcs hood">
+<meta property="og:description" content="一.对象的创建和销毁静态工厂方法代替构造器静态工厂方法(static factory method)是一个返回实例的静态方法.eg:123public static Boolean valueOf(boolean b)&amp;#123;  return b ? Boolean.TRUE : Boolean.FALSE;&amp;#125;
+advantage
+1. 静态工厂方法可以有不同的名称，代码更清楚，更易">
+<meta property="og:updated_time" content="2016-09-04T06:56:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="effective java">
+<meta name="twitter:description" content="一.对象的创建和销毁静态工厂方法代替构造器静态工厂方法(static factory method)是一个返回实例的静态方法.eg:123public static Boolean valueOf(boolean b)&amp;#123;  return b ? Boolean.TRUE : Boolean.FALSE;&amp;#125;
+advantage
+1. 静态工厂方法可以有不同的名称，代码更清楚，更易">
+  
+    <link rel="alternative" href="/atom.xml" title="wamcs hood" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/img/header_picture.jpg" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">wamcs</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Rome was not built in a day</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+						<li>Über</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/" title="github">github</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android-Test/" style="font-size: 10px;">Android Test</a> <a href="/tags/Android-代码记录/" style="font-size: 10px;">Android 代码记录</a> <a href="/tags/Android-基础/" style="font-size: 20px;">Android 基础</a> <a href="/tags/Android-库/" style="font-size: 10px;">Android 库</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/sql语法/" style="font-size: 10px;">sql语法</a> <a href="/tags/数据结构/" style="font-size: 20px;">数据结构</a> <a href="/tags/网络基础/" style="font-size: 15px;">网络基础</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">nothing is true，everything is permitted</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">wamcs</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img src="/img/header_picture.jpg" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">wamcs</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Rome was not built in a day</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/" title="github">github</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-effective java/effective java 1" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/09/02/effective java/effective java 1/" class="article-date">
+  	<time datetime="2016-09-02T12:25:21.000Z" itemprop="datePublished">2016-09-02</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      effective java
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/java/">java</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一-对象的创建和销毁"><a href="#一-对象的创建和销毁" class="headerlink" title="一.对象的创建和销毁"></a>一.对象的创建和销毁</h1><h2 id="静态工厂方法代替构造器"><a href="#静态工厂方法代替构造器" class="headerlink" title="静态工厂方法代替构造器"></a>静态工厂方法代替构造器</h2><p>静态工厂方法(static factory method)是一个返回实例的静态方法.eg:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Boolean <span class="title">valueOf</span><span class="params">(<span class="keyword">boolean</span> b)</span></span>&#123;</div><div class="line">  <span class="keyword">return</span> b ? Boolean.TRUE : Boolean.FALSE;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="advantage"><a href="#advantage" class="headerlink" title="advantage"></a>advantage</h4><ul>
+<li><p><strong>1. 静态工厂方法可以有不同的名称，代码更清楚，更易读。</strong></p>
+<p> 当我们进行构造器重载时，有时会遇到这样的情况。即我们通过赋给不同的形参来实现构造器的重载，但有可能两种计划不同的构造器由于使用了相同形似的形参使得编译产生错误。原因在于java对于每个方法都设定了方法签名(signature)这个东西，相当于ID，JVM通过方法签名来实现对不同方法的识别。方法签名构造规则是方法名加形参，方法返回类型并不作为签名考虑的范围，也可以理解方法重载时的限制了。因此，采用静态工厂方法一来可以解决这个问题，二来也能够更好的通过方法名来表明含义.</p>
+</li>
+<li><p><strong>2.静态工厂方法不必在每次调用它们的时候都创建一个新对象</strong></p>
+<p> 比如你可以在静态工厂方法里限定创建该对象的个数，当超出规定的个数时，返回缓存里的对象。这一点很显然，我们知道Singleton其实也提供一个静态工厂方法获取实例。除此之外，可以用==代替equals()方法，达到性能的提升。</p>
+</li>
+<li><p><strong>3.静态工厂方法可以返回原返回类型的任何子类型的对象</strong></p>
+<p>构造器只能返回当前类的实例，无法返回子类的实例。</p>
+</li>
+<li><p><strong>4.静态工厂方法在创建参数化类型实例的时候使代码变得更加简洁。</strong></p>
+<p>Java的泛型类在实例化时，还是需要写两次类型参数，非常冗长,利用静态工厂方法可以简化。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// HashMap&lt;String, List&lt;String&gt;&gt; m = new HashMap&lt;String, List&lt;String&gt;&gt;();  </span></div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;k, v&gt; <span class="function">HashMap&lt;k, v&gt; <span class="title">newInstance</span><span class="params">()</span></span>&#123;</div><div class="line">     <span class="keyword">return</span> <span class="keyword">new</span> HashMap&lt;k, v&gt;();    </div><div class="line">&#125;  </div><div class="line"></div><div class="line">HashMap&lt;String, List&lt;String&gt;&gt; m = HashMap.newInstance();</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="disadvantage"><a href="#disadvantage" class="headerlink" title="disadvantage"></a>disadvantage</h4><ul>
+<li><strong>1.没有提供public或者protect构造方法无法进行实例化</strong></li>
+<li><strong>2.和普通的静态方法相同，在API文档中没有像构造器一样明确的标识出来</strong></li>
+</ul>
+<h4 id="PS-服务提供者框架-Service-Provider-FrameWork"><a href="#PS-服务提供者框架-Service-Provider-FrameWork" class="headerlink" title="PS.服务提供者框架(Service Provider FrameWork)"></a>PS.服务提供者框架(Service Provider FrameWork)</h4><p>该框架有三个重要的组成部分，分别为 <strong>服务接口</strong>， <strong>提供注册者api</strong>， <strong>服务访问api</strong>。第四个部件是可选的： <strong>服务提供者接口</strong>，负责创建实例，如果没有可以按类名注册然后通过反射来做。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//Service Provider FrameWork sketch</span></div><div class="line"></div><div class="line"><span class="comment">//Service interface</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Service</span></span>&#123;</div><div class="line">  ...<span class="comment">//Service-specific methods go here</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//Service provider interface</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Provider</span></span>&#123;</div><div class="line">  <span class="function">Service <span class="title">newService</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Services</span></span>&#123;</div><div class="line">  <span class="function"><span class="keyword">private</span> <span class="title">Services</span><span class="params">()</span></span>&#123;&#125;</div><div class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Map&lt;String,Provider&gt; providers = <span class="keyword">new</span> ConcurrentHashMap&lt;String,Provider&gt;();</div><div class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String DEFAULT_PROVIDER_NAME = <span class="string">"&lt;def&gt;"</span>;</div><div class="line"></div><div class="line">  <span class="comment">//Provider registration api</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">registerProvider</span><span class="params">(String name,Provider p)</span></span>&#123;</div><div class="line">    providers.put(name,p);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">registerDefaultProvider</span><span class="params">(Provider p)</span></span>&#123;</div><div class="line">    registerProvider(DEFAULT_PROVIDER_NAME,p);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">//Service access API</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Service <span class="title">newInstance</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">return</span> newInstance(DEFAULT_PROVIDER_NAME);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Service <span class="title">newInstance</span><span class="params">(String name)</span></span>&#123;</div><div class="line">    Provider p = providers.get(name);</div><div class="line">    <span class="keyword">if</span> (p == <span class="keyword">null</span>) &#123;</div><div class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"No Provider registered with name: "</span> + name);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> p.newService();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/09/13/android/retrofit+rxjava/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          retrofit+rxjava
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/07/03/网络/网络层/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">网络层</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="effective java/effective java 1" data-title="effective java" data-url="wamcs.github.io/2016/09/02/effective java/effective java 1/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 wamcs
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: undefined,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: undefined
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

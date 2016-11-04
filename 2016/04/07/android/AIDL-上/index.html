@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>AIDL(上) | wamcs hood</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="AIDL说到binder在android中的应用，一个无法避免要谈及的就是aidl。什么是aidl？
+AIDL (Android Interface Definition Language)  是一种IDL 语言，用于生成可以在Android设备上两个进程之间进行进程间通信">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AIDL(上)">
+<meta property="og:url" content="wamcs.github.io/2016/04/07/android/AIDL-上/index.html">
+<meta property="og:site_name" content="wamcs hood">
+<meta property="og:description" content="AIDL说到binder在android中的应用，一个无法避免要谈及的就是aidl。什么是aidl？
+AIDL (Android Interface Definition Language)  是一种IDL 语言，用于生成可以在Android设备上两个进程之间进行进程间通信">
+<meta property="og:image" content="http://7xt1ey.com1.z0.glb.clouddn.com/AIDL%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="http://7xt1ey.com1.z0.glb.clouddn.com/activity_log.png">
+<meta property="og:updated_time" content="2016-09-02T12:30:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AIDL(上)">
+<meta name="twitter:description" content="AIDL说到binder在android中的应用，一个无法避免要谈及的就是aidl。什么是aidl？
+AIDL (Android Interface Definition Language)  是一种IDL 语言，用于生成可以在Android设备上两个进程之间进行进程间通信">
+<meta name="twitter:image" content="http://7xt1ey.com1.z0.glb.clouddn.com/AIDL%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84.png">
+  
+    <link rel="alternative" href="/atom.xml" title="wamcs hood" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/img/header_picture.jpg" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">wamcs</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Rome was not built in a day</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+						<li>Über</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/" title="github">github</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android-Test/" style="font-size: 10px;">Android Test</a> <a href="/tags/Android-代码记录/" style="font-size: 10px;">Android 代码记录</a> <a href="/tags/Android-基础/" style="font-size: 20px;">Android 基础</a> <a href="/tags/Android-库/" style="font-size: 10px;">Android 库</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/sql语法/" style="font-size: 10px;">sql语法</a> <a href="/tags/数据结构/" style="font-size: 20px;">数据结构</a> <a href="/tags/网络基础/" style="font-size: 15px;">网络基础</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">nothing is true，everything is permitted</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">wamcs</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img src="/img/header_picture.jpg" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">wamcs</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Rome was not built in a day</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/" title="github">github</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-android/AIDL-上" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/07/android/AIDL-上/" class="article-date">
+  	<time datetime="2016-04-07T03:27:19.000Z" itemprop="datePublished">2016-04-07</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      AIDL(上)
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android-基础/">Android 基础</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Android/">Android</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="AIDL"><a href="#AIDL" class="headerlink" title="AIDL"></a>AIDL</h1><p>说到binder在android中的应用，一个无法避免要谈及的就是aidl。什么是aidl？</p>
+<p><strong>AIDL (Android Interface Definition Language)</strong>  是一种IDL 语言，用于生成可以在Android设备上两个进程之间进行进程间通信</p>
+<a id="more"></a>
+<blockquote>
+<p><strong>Note:</strong> Using AIDL is necessary only if you allow clients from different applications to access your service for IPC and want to handle multithreading in your service. If you do not need to perform concurrent IPC across different applications, you should create your interface by implementing a Binder or, if you want to perform IPC, but do not need to handle multithreading, implement your interface using a Messenger. Regardless, be sure that you understand Bound Services before implementing an AIDL.</p>
+</blockquote>
+<p>google官方给予的使用说明是在如下情况使用：</p>
+<ul>
+<li>允许客户端从不同的进程为了进程间的通信而去访问你的servic，</li>
+<li>想在service中处理多线程</li>
+</ul>
+<p>如果不需要进行不同应用程序间的并发通信(IPC)，you should create your interface by implementing a Binder；或者你想进行IPC，但不需要处理多线程的，则implement your interface using a Messenger。</p>
+<h2 id="AIDl接口"><a href="#AIDl接口" class="headerlink" title="AIDl接口"></a>AIDl接口</h2><p>创建也是简单的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//wamcs.ipctest.aidl.IUserManager.java</span></div><div class="line"><span class="keyword">package</span> wamcs.ipctest.aidl;</div><div class="line"></div><div class="line"><span class="keyword">import</span> wamcs.ipctest.aidl.User;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">IUserManager</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function">List&lt;User&gt; <span class="title">getUserList</span><span class="params">()</span></span>;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">getUser</span><span class="params">(in User user)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>注意</strong></p>
+<p> <strong>一、 AIDL支持的数据类型</strong></p>
+<ul>
+<li>基本数据类型(int,double,long,char,boolean等)</li>
+<li>String和CharSequence</li>
+<li>List(only ArrayList),且里面的元素都能被AIDL支持</li>
+<li>Map(only hashmap),且里面的元素都能被AIDL支持</li>
+<li>Parcelable:所有实现该接口的类(实现Serializable也是可以的，比如arraylist实现的就是Serializable)</li>
+<li>AIDL:所有的AIDL接口本身</li>
+</ul>
+<p><strong>二、 Parcelabel的引入</strong></p>
+<p>自定义的Parcelabel对象需要 <strong>显式地import</strong> 进来，而且必需在同名AIDL文件中声明，不然找不到</p>
+<p>例如上面的代码中有一个User类，那么需要如下声明<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//wamcs.ipctest.aidl.User.aidl</span></div><div class="line"><span class="keyword">package</span> wamcs.ipctest.aidl;</div><div class="line"></div><div class="line">parcelable User;</div></pre></td></tr></table></figure></p>
+<p>千万不能忘，不然IDE不能自动生成AIDL接口对应的Binder类</p>
+<p><strong>三、 参数方向标注</strong></p>
+<p>仔细观察会注意到，上面代码中User参数前面有一个 <strong>in</strong> 标注</p>
+<p>在AIDL中除了基本数据类型，别的类型都需要标注方向，有这么几种，而且从代码中可以看出区别：</p>
+<ul>
+<li><p>in</p>
+<p>Client端传数据给Server端，server端拷贝、使用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">_data.writeInterfaceToken(DESCRIPTOR);</div><div class="line"><span class="keyword">if</span> ((user!=<span class="keyword">null</span>)) &#123;</div><div class="line">  _data.writeInt(<span class="number">1</span>);</div><div class="line">  user.writeToParcel(_data, <span class="number">0</span>);<span class="comment">//数据写入</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">else</span> &#123;</div><div class="line">  _data.writeInt(<span class="number">0</span>);</div><div class="line">&#125;</div><div class="line">mRemote.transact(Stub.TRANSACTION_addUser, _data, _reply, <span class="number">0</span>);</div><div class="line">_reply.readException();</div></pre></td></tr></table></figure>
+</li>
+<li><p>out</p>
+<p>client将接口、地址等“空壳”传给server，server进行填充，然后client从中取出运算结果。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">_data.writeInterfaceToken(DESCRIPTOR);</div><div class="line">mRemote.transact(Stub.TRANSACTION_getUser, _data, _reply, <span class="number">0</span>);</div><div class="line">_reply.readException();</div><div class="line"><span class="keyword">if</span> ((<span class="number">0</span> != _reply.readInt())) &#123;</div><div class="line">    user.readFromParcel(_reply);<span class="comment">//从reply中获取结果</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>inout</p>
+<p>client端既从此处传入数据，又从此处取出server填充的结果。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">_data.writeInterfaceToken(DESCRIPTOR);</div><div class="line"><span class="keyword">if</span> ((user!=<span class="keyword">null</span>)) &#123;</div><div class="line">  _data.writeInt(<span class="number">1</span>);</div><div class="line">  user.writeToParcel(_data, <span class="number">0</span>);</div><div class="line">&#125;</div><div class="line"><span class="keyword">else</span> &#123;</div><div class="line">  _data.writeInt(<span class="number">0</span>);</div><div class="line">&#125;</div><div class="line">mRemote.transact(Stub.TRANSACTION_addUser, _data, _reply, <span class="number">0</span>);</div><div class="line">_reply.readException();</div><div class="line"><span class="keyword">if</span> ((<span class="number">0</span>!=_reply.readInt())) &#123;</div><div class="line">  user.readFromParcel(_reply);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>区别在代码中显示得很明显，这样设置的官方解释如下：</p>
+<blockquote>
+<p>All non-primitive parameters require a directional tag indicating which way the data goes. Either in, out, or inout (see the example below).<br><br><u>Primitives are in by default</u>, and cannot be otherwise.<br><br><strong>Caution:</strong><br><br>You should limit the direction to what is truly needed, because marshalling parameters is expensive.</p>
+</blockquote>
+<p>告诉我们应该对方向进行一个限制。因为对参数进行marshalling的代价是高昂的。</p>
+<blockquote>
+<p><strong>StackOverFlow:</strong><br><br>In AIDL, the “out” tag specifies an output-only parameter. In other words, it’s a parameter that contains no interesting data on input, but will be filled with data during the method.<br><br>This is important because the contents of every parameter must be marshalled (serialized, transmitted, received, and deserialized). The in/out tags allow the Binder to skip the marshalling step for better performance.</p>
+</blockquote>
+<p>第二段告诉我们为何要为何要为参数加tag</p>
+<p>当然tag的使用是要根据参数的作用来写的，如果是in的参数加了out或者out的参数加了in都会报错，都设成inout会浪费运算资源</p>
+<p>这里parcelable是没有readFromParcel方法的，但是里面的内容其实就是从parcel中加载数据，一般可以将类构造方法中的代码移植进去。</p>
+<p><strong>四、oneway关键字</strong></p>
+<p>特殊的关键字：<strong>oneway</strong><br><br>这个关键字用于说明在根据是否RPC进行不同的操作</p>
+<blockquote>
+<p>The oneway keyword modifies the behavior of remote calls. <u>When used, a remote call does not block</u>; it simply sends the transaction data and <u>immediately returns</u>. The implementation of the interface eventually receives this as a regular call from the Binder thread pool as a normal remote call. If oneway is used with a local call, there is no impact and the call is still synchronous.<br><br>The oneway keyword means that if that call results in an IPC (i.e. the caller and callee are in different processes) then the calling process will not wait for the called process to handle the IPC. If it does not result in an IPC (i.e. they’re both in the same process), the call will be synchronous. It’s an unfortunate detail that simplifies the implementation of binder IPC a lot. If they’re in the same process, the call is just a regular java method call.<br> —<strong>stackoverflow</strong></p>
+</blockquote>
+<p>这个关键字的作用是被该关键字标注的接口，那么调用者不会等待被调用者完成所有事情之后才会返回，而是直接返回。如果oneway被使用在非跨进程的情况下，那么和普通调用是相同的。</p>
+<p><strong>五、AIDL中只有方法暴露，静态变量是不支持的</strong></p>
+<p><strong>六、AIDL的实现要线程安全，因为要满足多个线程访问</strong></p>
+<p><strong>七、文件路径</strong></p>
+<p><img src="http://7xt1ey.com1.z0.glb.clouddn.com/AIDL%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84.png" alt=""></p>
+<p><strong>八、gradle设置</strong></p>
+<p>注意gradle里添加如下，不然会出现类找不到的情况，这是因为gardle脚本默认的java src中不含有aidl</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">sourceSets</span>&#123;</div><div class="line">       main&#123;</div><div class="line"></div><div class="line">           java.srcDirs=[<span class="string">'src/main/java'</span>,<span class="string">'src/main/aidl'</span>]</div><div class="line"></div><div class="line">       &#125;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<h2 id="普通使用"><a href="#普通使用" class="headerlink" title="普通使用"></a>普通使用</h2><h3 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h3><p>先上代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//package wamcs.ipctest.aidl;</span></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * author:wamcs</div><div class="line"> * date:2016/4/7</div><div class="line"> * email:kaili@hustunique.com</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyService</span> <span class="keyword">extends</span> <span class="title">Service</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"ServiceLK"</span>;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> CopyOnWriteArrayList&lt;User&gt; mUserList = <span class="keyword">new</span> CopyOnWriteArrayList&lt;&gt;();</div><div class="line">    <span class="comment">//为保证线程安全</span></div><div class="line"></div><div class="line">    <span class="keyword">private</span> Binder mBinder = <span class="keyword">new</span> IUserManager.Stub() &#123;</div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> List&lt;User&gt; <span class="title">getUserList</span><span class="params">()</span> <span class="keyword">throws</span> RemoteException </span>&#123;</div><div class="line">            Log.d(TAG,<span class="string">"getUserList"</span>);</div><div class="line">            <span class="keyword">return</span> mUserList;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addUser</span><span class="params">(User user)</span> <span class="keyword">throws</span> RemoteException </span>&#123;</div><div class="line">            mUserList.add(user);</div><div class="line">            <span class="keyword">for</span> (User item : mUserList) &#123;</div><div class="line">                String Gender = <span class="string">"male"</span>;</div><div class="line">                <span class="keyword">if</span> (<span class="number">0</span> == item.getGender())</div><div class="line">                    Gender = <span class="string">"female"</span>;</div><div class="line">                Log.d(TAG, <span class="string">"userManager list: name is "</span> + item.getName() + <span class="string">" gender is "</span> + Gender + <span class="string">" and he is "</span> + item.getDescription());</div><div class="line"></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate();</div><div class="line">        mUserList.add(User.newBuilder().name(<span class="string">"Boss T"</span>).gender(<span class="number">1</span>).description(<span class="string">"gay"</span>).build());</div><div class="line">        mUserList.add(User.newBuilder().name(<span class="string">"gzsama"</span>).gender(<span class="number">1</span>).description(<span class="string">"gay"</span>).build());</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Nullable</span></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> IBinder <span class="title">onBind</span><span class="params">(Intent intent)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> mBinder;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>服务端的实现需要注意的是</p>
+<ul>
+<li>Binder对象的创建并且在onBind中返回</li>
+<li>要注意保证服务端操作的线程安全，采用CopyOnWriteArrayList,这个list是支持并发读/写的</li>
+</ul>
+<p>AIDL中支持的List只用ArrayList，但为何CopyOnWriteArrayList(未继承ArrayList)可以正常工作呢？AIDL中支持的是抽象的List，是一个接口，虽然服务端返回的是CopyOnWriteArrayList,但Binder中会按照List的规范访问数据并最终形成一个ArrayList传给客户端。类似的还有ConcurrentHashMap</p>
+<p><img src="http://7xt1ey.com1.z0.glb.clouddn.com/activity_log.png" alt=""></p>
+<p>log很能说明问题了</p>
+<h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//package wamcs.ipctest.aidl;</span></div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"ActivityLK"</span>;</div><div class="line">    <span class="meta">@Bind</span>(R.id.activity_name_edit_text)</div><div class="line">    EditText activityNameEditText;</div><div class="line">    <span class="meta">@Bind</span>(R.id.activity_radio_gender_male)</div><div class="line">    RadioButton activityRadioGenderMale;</div><div class="line">    <span class="meta">@Bind</span>(R.id.activity_description_edit_text)</div><div class="line">    EditText activityDescriptionEditText;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="keyword">private</span> IUserManager userManager;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line">        ButterKnife.bind(<span class="keyword">this</span>);</div><div class="line">        Intent intent = <span class="keyword">new</span> Intent(<span class="keyword">this</span>,MyService.class);</div><div class="line">        bindService(intent,connection,BIND_AUTO_CREATE);</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    ServiceConnection connection = <span class="keyword">new</span> ServiceConnection() &#123;</div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onServiceConnected</span><span class="params">(ComponentName name, IBinder service)</span> </span>&#123;</div><div class="line">            userManager = IUserManager.Stub.asInterface(service);</div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                Log.d(TAG,<span class="string">"IBinder description is "</span>+ service.getInterfaceDescriptor() );</div><div class="line">            &#125; <span class="keyword">catch</span> (RemoteException e) &#123;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            refresh();</div><div class="line"></div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onServiceDisconnected</span><span class="params">(ComponentName name)</span> </span>&#123;</div><div class="line"></div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="meta">@OnClick</span>(R.id.activity_add_button)</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">addData</span><span class="params">()</span> </span>&#123;</div><div class="line">        User.Builder builder = User.newBuilder();</div><div class="line">        Editable name = activityNameEditText.getText();</div><div class="line">        builder.name(name.toString());</div><div class="line">        <span class="keyword">if</span> (activityRadioGenderMale.isChecked()) &#123;</div><div class="line">            builder.gender(<span class="number">1</span>);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            builder.gender(<span class="number">0</span>);</div><div class="line">        &#125;</div><div class="line">        Editable description = activityDescriptionEditText.getText();</div><div class="line">        builder.description(description.toString());</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            userManager.addUser(builder.build());</div><div class="line">        &#125; <span class="keyword">catch</span> (RemoteException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@OnClick</span>(R.id.activity_refresh_button)</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">refresh</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            List&lt;User&gt; list = userManager.getUserList();</div><div class="line">            Log.d(TAG, <span class="string">"query user list, list type is"</span> + list.getClass().getCanonicalName());</div><div class="line">            <span class="keyword">for</span> (User item : list) &#123;</div><div class="line">                String Gender = <span class="string">"male"</span>;</div><div class="line">                <span class="keyword">if</span> (<span class="number">0</span> == item.getGender())</div><div class="line">                    Gender = <span class="string">"female"</span>;</div><div class="line">                Log.d(TAG, <span class="string">"userManager list: name is "</span> + item.getName() + <span class="string">" gender is "</span> + Gender + <span class="string">" and he is "</span> + item.getDescription());</div><div class="line"></div><div class="line">            &#125;</div><div class="line"></div><div class="line">        &#125; <span class="keyword">catch</span> (RemoteException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</div><div class="line">        unbindService(connection);</div><div class="line">        <span class="keyword">super</span>.onDestroy();</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在ServiceConnection 的 onServiceConnected方法中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">userManager = IUserManager.Stub.asInterface(service);</div></pre></td></tr></table></figure>
+<p>是最重要的一句，我们拿到Binder后无论这个Binder是Binder对象还是Proxy，都可以像普通一样使用定义的方法了</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/04/10/android/AIDL-中/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          AIDL(中)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/04/06/android/Binder/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Binder</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="android/AIDL-上" data-title="AIDL(上)" data-url="wamcs.github.io/2016/04/07/android/AIDL-上/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 wamcs
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: undefined,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: undefined
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
